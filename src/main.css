@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  background-color: #444;
+}
+
+h1 {
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 5em;
+  font-family: sans-serif;
+  color: white;
+  text-shadow: 0 0 20px black;
+  height: 100vh;
+}
