@@ -1,3 +1,14 @@
 {
-  "plugins": ["transform-es2015-arrow-functions"]
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions"]
+        },
+        "debug": true
+      }
+    ]
+  ],
+  "plugins": ["transform-runtime"]
 }
