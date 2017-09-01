@@ -1,8 +1,9 @@
-const path = require("path")
+import path from "path"
+import webpack from "webpack"
 
 module.exports = {
   entry: {
-    main: "./src/main.js"
+    main: ["./src/main.js"]
   },
   output: {
     filename: "[name]-bundle.js",
@@ -10,7 +11,12 @@ module.exports = {
   },
   devServer: {
     contentBase: "dist",
-    overlay: true
+    overlay: true,
+    hot: true,
+    stats: {
+      colors: true
+    },
+    reload: true
   },
   module: {
     rules: [
@@ -57,5 +63,10 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(), // Enable HMR
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ]
 }
