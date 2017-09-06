@@ -1,5 +1,6 @@
-import path from "path"
-import webpack from "webpack"
+const path = require("path")
+const webpack = require("webpack")
+const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
@@ -7,16 +8,15 @@ module.exports = {
   },
   output: {
     filename: "[name]-bundle.js",
-    path: path.resolve(__dirname, "../dist")
+    path: path.resolve(__dirname, "../dist"),
+    publicPath: "/"
   },
   devServer: {
     contentBase: "dist",
     overlay: true,
-    hot: true,
     stats: {
       colors: true
-    },
-    reload: true
+    }
   },
   module: {
     rules: [
@@ -47,13 +47,13 @@ module.exports = {
       {
         test: /\.html$/,
         use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]"
-            }
-          },
-          { loader: "extract-loader" },
+          // {
+          //   loader: "file-loader",
+          //   options: {
+          //     name: "[name].[ext]"
+          //   }
+          // },
+          // { loader: "extract-loader" },
           {
             loader: "html-loader",
             options: {
@@ -66,6 +66,9 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new HTMLWebpackPlugin({
+      template: "./src/index.html"
+    })
   ]
 }
