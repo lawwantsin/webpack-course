@@ -1,5 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
@@ -18,6 +19,7 @@ module.exports = {
       colors: true
     }
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -31,7 +33,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+        use: [
+          {
+            loader: "style-loader"
+          },
+          { loader: "css-loader" }
+        ]
       },
       {
         test: /\.jpg$/,
@@ -47,13 +54,13 @@ module.exports = {
       {
         test: /\.html$/,
         use: [
-          // {
-          //   loader: "file-loader",
-          //   options: {
-          //     name: "[name].[ext]"
-          //   }
-          // },
-          // { loader: "extract-loader" },
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]"
+            }
+          },
+          { loader: "extract-loader" },
           {
             loader: "html-loader",
             options: {
@@ -66,9 +73,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin(),
-    new HTMLWebpackPlugin({
-      template: "./src/index.html"
-    })
+    new webpack.NamedModulesPlugin()
   ]
 }
