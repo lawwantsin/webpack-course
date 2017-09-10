@@ -24,7 +24,8 @@
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
-    "webpack-hot-middleware": "^2.18.2"
+    "webpack-hot-middleware": "^2.18.2",
+    "webpack-mild-compile": "^1.0.0"
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",

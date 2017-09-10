@@ -4403,6 +4403,10 @@ webpack-hot-middleware@^2.18.2:
     querystring "^0.2.0"
     strip-ansi "^3.0.0"
 
+webpack-mild-compile@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/webpack-mild-compile/-/webpack-mild-compile-1.0.0.tgz#f0a429d1b0c26f1fcdebb32996adf9167390f386"
+
 webpack-sources@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.0.1.tgz#c7356436a4d13123be2e2426a05d1dad9cbe65cf"
