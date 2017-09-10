@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
@@ -19,6 +18,7 @@ module.exports = {
       colors: true
     }
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
