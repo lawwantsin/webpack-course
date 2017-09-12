@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
@@ -54,13 +53,6 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]"
-            }
-          },
-          { loader: "extract-loader" },
-          {
             loader: "html-loader",
             options: {
               attrs: ["img:src"]
@@ -72,6 +64,9 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new HTMLWebpackPlugin({
+      template: "./src/index.html"
+    })
   ]
 }
