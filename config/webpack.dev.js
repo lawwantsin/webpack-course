@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
@@ -19,6 +18,7 @@ module.exports = {
       colors: true
     }
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -32,10 +32,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
       },
       {
         test: /\.jpg$/,
@@ -75,7 +72,6 @@ module.exports = {
       template: "./src/index.ejs",
       inject: false,
       title: "Link's Journal"
-    }),
-    new ExtractTextPlugin("[name].css")
+    })
   ]
 }
