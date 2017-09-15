@@ -7,9 +7,8 @@
           "browsers": ["last 2 versions"]
         },
         "debug": false
-      },
-    ],
-    "babel-preset-react"
+      }
+    ]
   ],
-  "plugins": ["transform-runtime", "react-hot-loader/babel"]
+  "plugins": ["transform-runtime"]
 }

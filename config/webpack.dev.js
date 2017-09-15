@@ -40,25 +40,34 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: "images/[name].[ext]"
+              name: "images/[name]-[hash:4].[ext]"
             }
           }
         ]
       },
       {
-        test: /\.html$/,
+        test: /\.pug$/,
         use: [
-          // {
-          //   loader: "file-loader",
-          //   options: {
-          //     name: "[name].[ext]"
-          //   }
-          // },
-          // { loader: "extract-loader" },
           {
-            loader: "html-loader",
-            options: {
-              attrs: ["img:src"]
+            loader: "pug-loader"
+          }
+        ]
+      },
+      {
+        test: /\.ejs$/,
+        use: [
+          {
+            loader: "ejs-loader"
+          }
+        ]
+      },
+      {
+        test: /\.hbs$/,
+        use: [
+          {
+            loader: "handlebars-loader",
+            query: {
+              inlineRequires: `\/images\/`
             }
           }
         ]
@@ -70,7 +79,7 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
-      inject: false,
+      inject: true,
       title: "Link's Journal"
     })
   ]
