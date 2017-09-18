@@ -32,7 +32,25 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+        use: [
+          { loader: "style-loader" },
+          {
+            loader: "css-loader",
+            query: {
+              modules: true,
+              localIdentName: "[name]__[local]__[hash:base64:5]"
+            }
+          }
+        ]
+      },
+      {
+        test: /\.sass$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: "postcss-loader" },
+          { loader: "sass-loader" }
+        ]
       },
       {
         test: /\.jpg$/,
