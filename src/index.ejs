@@ -1,14 +1,11 @@
 <html>
   <head>
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="/main.css">
-    <% %>
   </head>
   <body>
     <div class="profile">
-      <img src="./images/link.jpg" alt="">
+      <img src="<%= require("./images/link.jpg") %>">
       <h1>Link's Journal</h1>
     </div>
-    <script src="/main-bundle.js"></script>
   </body>
 </html>

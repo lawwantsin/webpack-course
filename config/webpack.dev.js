@@ -1,7 +1,8 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+// const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const isProd = process.env.NODE_ENV === "production"
 
 module.exports = {
   entry: {
@@ -32,10 +33,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          }
+        ]
       },
       {
         test: /\.jpg$/,
@@ -69,13 +74,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
+    isProd ? new webpack.HotModuleReplacementPlugin() : null,
     new webpack.NamedModulesPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
-      inject: false,
+      inject: true,
       title: "Link's Journal"
-    }),
-    new ExtractTextPlugin("[name].css")
+    })
   ]
 }
