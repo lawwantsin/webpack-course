@@ -74,7 +74,7 @@ module.exports = {
     ]
   },
   plugins: [
-    isProd ? new webpack.HotModuleReplacementPlugin() : null,
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
