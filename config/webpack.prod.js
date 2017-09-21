@@ -1,6 +1,9 @@
 const path = require("path")
 const webpack = require("webpack")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const isProd = process.env.NODE_ENV === "production"
 
 module.exports = {
   entry: {
@@ -31,14 +34,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader"
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: {
+            loader: "css-loader",
+            options: {
+              minimize: true
+            }
           }
-        ]
+        })
       },
       {
         test: /\.jpg$/,
@@ -54,7 +58,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin("[name].css"),
+    // new OptimizeCssAssetsPlugin({
+    //   assetNameRegExp: /\.css$/g,
+    //   cssProcessor: require("cssnano"),
+    //   cssProcessorOptions: { discardComments: { removeAll: true } },
+    //   canPrint: true
+    // }),
     new webpack.NamedModulesPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
