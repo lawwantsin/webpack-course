@@ -4,7 +4,11 @@ const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
-    main: ["./src/main.js"]
+    main: [
+      "babel-runtime/regenerator",
+      "webpack-hot-middleware/client?reload=true",
+      "./src/main.js"
+    ]
   },
   output: {
     filename: "[name]-bundle.js",
@@ -56,6 +60,11 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("development")
+      }
+    }),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
       inject: true,
