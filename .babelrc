@@ -9,6 +9,5 @@
         "debug": false
       }
     ]
-  ],
-  "plugins": ["transform-runtime"]
+  ]
 }

@@ -3,6 +3,7 @@ const webpack = require("webpack")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const MinifyPlugin = require("babel-minify-webpack-plugin")
 
 module.exports = env => {
   return {
@@ -75,7 +76,8 @@ module.exports = env => {
         template: "./src/index.ejs",
         inject: true,
         title: "Link's Journal"
-      })
+      }),
+      new MinifyPlugin()
     ]
   }
 }
