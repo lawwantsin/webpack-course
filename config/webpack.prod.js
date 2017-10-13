@@ -4,6 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const MinifyPlugin = require("babel-minify-webpack-plugin")
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 
 module.exports = env => {
   return {
@@ -77,7 +78,8 @@ module.exports = env => {
         inject: true,
         title: "Link's Journal"
       }),
-      new MinifyPlugin()
+      // new MinifyPlugin()
+      new UglifyJSPlugin()
     ]
   }
 }
