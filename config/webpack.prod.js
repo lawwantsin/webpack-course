@@ -79,7 +79,6 @@ module.exports = env => {
         inject: true,
         title: "Link's Journal"
       }),
-      // new MinifyPlugin()
       new UglifyJSPlugin(),
       new CompressionPlugin({
         algorithm: "gzip"

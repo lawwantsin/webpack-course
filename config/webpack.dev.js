@@ -4,7 +4,13 @@ const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
-    main: ["./src/main.js"]
+    main: [
+      "react-hot-loader/patch",
+      "babel-runtime/regenerator",
+      "babel-core/register",
+      "webpack-hot-middleware/client?reload=true",
+      "./src/main.js"
+    ]
   },
   output: {
     filename: "[name]-bundle.js",
@@ -72,6 +78,11 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new HTMLWebpackPlugin({
+      template: "./src/index.ejs",
+      inject: true,
+      title: "Link's Journal"
+    })
   ]
 }

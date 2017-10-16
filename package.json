@@ -18,6 +18,7 @@
     "css-loader": "^0.28.5",
     "express": "^4.15.4",
     "extract-loader": "^1.0.1",
+    "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^0.11.2",
     "fs": "^0.0.1-security",
     "html-loader": "^0.5.1",
@@ -36,7 +37,10 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "webpack --config=config/webpack.dev.js",
-    "dev": "nodemon --inspect --watch src/server --watch config src/server/main.js"
+    "build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
+    "build:dev": "webpack --config=config/webpack.dev.js",
+    "dev": "nodemon --inspect src/server/main.js",
+    "prod": "NODE_ENV=production node src/server/main.js",
+    "heroku-postbuild": "yarn build"
   }
 }

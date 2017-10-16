@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background-color: #444;
+  font-family: Helvetica;
 }
 
 .profile {
@@ -25,4 +26,10 @@ h1 {
   color: white;
   text-shadow: 0 0 20px black;
   text-align: center;
+}
+
+.content {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
 }
