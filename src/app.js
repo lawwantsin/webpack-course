@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import Counter from "./counter"
+import AppRoot from "./components/AppRoot"
 import { AppContainer } from "react-hot-loader"
 
 function render(Component) {
@@ -11,11 +11,11 @@ function render(Component) {
     document.getElementById("react-root")
   )
 }
-render(Counter)
+render(AppRoot)
 
 if (module.hot) {
-  module.hot.accept("./counter.js", () => {
-    const NewCounter = require("./counter.js").default
-    render(NewCounter)
+  module.hot.accept("./components/AppRoot.js", () => {
+    const NewAppRoot = require("./components/AppRoot.js").default
+    render(NewAppRoot)
   })
 }

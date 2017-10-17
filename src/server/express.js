@@ -27,7 +27,7 @@ if (!isProd) {
 const staticMiddleware = express.static("dist")
 server.use(staticMiddleware)
 
-const PORT = 8081
+const PORT = 8080
 server.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`)
 })
