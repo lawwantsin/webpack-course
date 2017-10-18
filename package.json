@@ -28,6 +28,7 @@
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
     "style-loader": "^0.18.2",
+    "styled-components": "^2.2.1",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
@@ -37,8 +38,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build":
-      "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
+    "build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
     "build:dev": "webpack --config=config/webpack.dev.js",
     "dev": "nodemon --watch src/server --inspect src/server/main.js",
     "prod": "NODE_ENV=production node src/server/main.js",
