@@ -1,3 +1,8 @@
+---
+title: The Journey Begins
+author: Link
+---
+
 # Long Ago in the Kingdom of Hyrule
 
-Our here wakes up.
+Our Hero wakes up.
