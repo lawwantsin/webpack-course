@@ -10,6 +10,7 @@ const BrotliPlugin = require("brotli-webpack-plugin")
 module.exports = env => {
   return {
     entry: {
+      vendor: ["react"],
       main: ["./src/main.js"]
     },
     output: {
@@ -82,6 +83,7 @@ module.exports = env => {
         }
       }),
       new webpack.NamedModulesPlugin(),
+      //      new webpack.optimize.CommonsChunkPlugin({}),
       new HTMLWebpackPlugin({
         template: "./src/index.ejs",
         inject: true,
