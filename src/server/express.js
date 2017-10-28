@@ -1,6 +1,7 @@
 import express from "express"
 const server = express()
 import path from "path"
+const expressStaticGzip = require("express-static-gzip")
 
 const isProd = process.env.NODE_ENV === "production"
 if (!isProd) {
@@ -24,8 +25,11 @@ if (!isProd) {
   console.log("Middleware enabled")
 }
 
-const staticMiddleware = express.static("dist")
-server.use(staticMiddleware)
+server.use(
+  expressStaticGzip("dist", {
+    enableBrotli: true
+  })
+)
 
 const PORT = 8080
 server.listen(PORT, () => {
