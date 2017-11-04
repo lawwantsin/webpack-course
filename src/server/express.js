@@ -1,7 +1,10 @@
+import React from "react"
 import express from "express"
 const server = express()
 import path from "path"
 const expressStaticGzip = require("express-static-gzip")
+import { renderToString } from "react-dom/server"
+import AppRoot from "../components/AppRoot"
 
 const isProd = process.env.NODE_ENV === "production"
 if (!isProd) {
@@ -23,13 +26,30 @@ if (!isProd) {
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
   console.log("Middleware enabled")
-}
-
-server.use(
-  expressStaticGzip("dist", {
-    enableBrotli: true
+  server.use(express.static(path.resolve(__dirname, "dist")))
+} else {
+  server.use(
+    expressStaticGzip("dist", {
+      enableBrotli: true
+    })
+  )
+  server.use("*", (req, res) => {
+    res.send(`
+      <html>
+        <head>
+          <link href="/main.css" rel="stylesheet" />
+        </head>
+        <body>
+          <div id="react-root">
+            ${renderToString(<AppRoot />)}
+          </div>
+          <script src='vendor-bundle.js'></script>
+          <script src='main-bundle.js'></script>
+        </body>
+      </html>
+    `)
   })
-)
+}
 
 const PORT = 8080
 server.listen(PORT, () => {

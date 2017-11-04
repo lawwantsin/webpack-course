@@ -1,5 +1,8 @@
 import React from "react"
-import MarkdownData from "../../data/post.md"
+const MarkdownData = process.env.WEBPACK
+  ? require("../../data/post.md")
+  : { title: "", __content: "" }
+const imagePath = process.env.WEBPACK ? require("../images/link.jpg") : ""
 
 export default class extends React.Component {
   constructor(props) {
@@ -10,7 +13,7 @@ export default class extends React.Component {
   render() {
     return (
       <div className="profile">
-        <img src={require("../images/link.jpg")} />
+        <img src={imagePath} />
         <h1>{MarkdownData.title}</h1>
         <div
           className="content"

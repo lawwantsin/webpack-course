@@ -95,6 +95,12 @@ module.exports = {
       generateStatsFile: true,
       analyzerMode: "disabled"
     }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("development"),
+        WEBPACK: true
+      }
+    }),
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
     new webpack.NamedModulesPlugin(),
     new HTMLWebpackPlugin({

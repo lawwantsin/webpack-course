@@ -2715,6 +2715,15 @@ iltorb@^1.0.12:
     node-gyp "^3.6.2"
     prebuild-install "^2.3.0"
 
+iltorb@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/iltorb/-/iltorb-2.0.2.tgz#3aed6f76397855c70daf7eaef18bfa48f729e6f9"
+  dependencies:
+    detect-libc "^0.2.0"
+    nan "^2.6.2"
+    node-gyp "^3.6.2"
+    prebuild-install "^2.3.0"
+
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
