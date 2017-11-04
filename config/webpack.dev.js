@@ -92,7 +92,8 @@ module.exports = {
       name: "vendor"
     }),
     new BundleAnalyzerPlugin({
-      generateStatsFile: true
+      generateStatsFile: true,
+      analyzerMode: "disabled"
     }),
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
     new webpack.NamedModulesPlugin(),
