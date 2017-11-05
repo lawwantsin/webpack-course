@@ -39,14 +39,18 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.7.1",
     "webpack-hot-middleware": "^2.18.2",
-    "webpack-mild-compile": "^1.0.0"
+    "webpack-mild-compile": "^1.0.0",
+    "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
+    "build":
+      "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production",
     "build:dev": "webpack --config=config/webpack.dev.js",
+    "build:server":
+      "BABEL_ENV=production webpack --config=config/webpack.server.js --env.NODE_ENV=production",
     "dev": "nodemon --watch src/server --inspect src/server/main.js",
-    "prod": "NODE_ENV=production node src/server/main.js",
+    "prod": "NODE_ENV=production node build/server-bundle.js",
     "heroku-postbuild": "yarn build"
   }
 }

@@ -1,8 +1,6 @@
 import React from "react"
-const MarkdownData = process.env.WEBPACK
-  ? require("../../data/post.md")
-  : { title: "", __content: "" }
-const imagePath = process.env.WEBPACK ? require("../images/link.jpg") : ""
+const MarkdownData = require("../../data/post.md")
+const imagePath = require("../images/link.jpg")
 
 export default class extends React.Component {
   constructor(props) {
