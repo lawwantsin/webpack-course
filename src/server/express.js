@@ -26,7 +26,8 @@ if (!isProd) {
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
   console.log("Middleware enabled")
-  server.use(express.static(path.resolve(__dirname, "dist")))
+  const staticMiddleware = express.static("dist")
+  server.use(staticMiddleware)
 } else {
   server.use(
     expressStaticGzip("dist", {
