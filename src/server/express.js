@@ -4,10 +4,10 @@ const server = express()
 import path from "path"
 const expressStaticGzip = require("express-static-gzip")
 import { renderToString } from "react-dom/server"
-import AppRoot from "../components/AppRoot"
 
 const isProd = process.env.NODE_ENV === "production"
-if (!isProd) {
+const isDev = !isProd
+if (isDev) {
   const webpack = require("webpack")
   const config = require("../../config/webpack.dev.js")
   const compiler = webpack(config)
@@ -25,10 +25,9 @@ if (!isProd) {
 
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
-  console.log("Middleware enabled")
-  const staticMiddleware = express.static("dist")
-  server.use(staticMiddleware)
+  console.log("Dev enabled")
 } else {
+  const AppRoot = require("../components/AppRoot")
   server.use(
     expressStaticGzip("dist", {
       enableBrotli: true

@@ -10,7 +10,6 @@ module.exports = {
     main: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",
-      "babel-core/register",
       "webpack-hot-middleware/client?reload=true",
       "./src/main.js"
     ]
