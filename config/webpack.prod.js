@@ -52,7 +52,7 @@ module.exports = env => {
           test: /\.jpg$/,
           use: [
             {
-              loader: "file-loader",
+              loader: "url-loader",
               options: {
                 name: "images/[name].[ext]"
               }

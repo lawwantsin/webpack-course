@@ -12,7 +12,7 @@ export default class extends React.Component {
     return (
       <div className="profile">
         <img src={imagePath} />
-        <h1>{MarkdownData.title}</h1>
+        <h1 id="title">{MarkdownData.title}</h1>
         <div
           className="content"
           dangerouslySetInnerHTML={{ __html: MarkdownData.__content }}

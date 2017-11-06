@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -85,7 +85,7 @@ var BundleAnalyzerPlugin = __webpack_require__("webpack-bundle-analyzer").Bundle
 module.exports = {
   entry: {
     vendor: ["react", "lodash", "react-dom"],
-    main: ["react-hot-loader/patch", "babel-runtime/regenerator", "babel-core/register", "webpack-hot-middleware/client?reload=true", "./src/main.js"]
+    main: ["react-hot-loader/patch", "babel-runtime/regenerator", "webpack-hot-middleware/client?reload=true", "./src/main.js"]
   },
   output: {
     filename: "[name]-bundle.js",
@@ -215,8 +215,8 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MarkdownData =  true ? __webpack_require__("./data/post.md") : { title: "", __content: "" };
-var imagePath =  true ? __webpack_require__("./src/images/link.jpg") : "";
+var MarkdownData = __webpack_require__("./data/post.md");
+var imagePath = __webpack_require__("./src/images/link.jpg");
 
 var _default = function (_React$Component) {
   (0, _inherits3.default)(_default, _React$Component);
@@ -239,7 +239,7 @@ var _default = function (_React$Component) {
         _react2.default.createElement("img", { src: imagePath }),
         _react2.default.createElement(
           "h1",
-          null,
+          { id: "title" },
           MarkdownData.title
         ),
         _react2.default.createElement("div", {
@@ -260,10 +260,6 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(MarkdownData, "MarkdownData", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/components/AppRoot.js");
-
-  __REACT_HOT_LOADER__.register(imagePath, "imagePath", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/components/AppRoot.js");
-
   __REACT_HOT_LOADER__.register(_default, "default", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/components/AppRoot.js");
 }();
 
@@ -282,7 +278,7 @@ module.exports = __webpack_require__.p + "images/link.jpg";
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(__dirname) {
+
 
 var _react = __webpack_require__("react");
 
@@ -298,10 +294,6 @@ var _path2 = _interopRequireDefault(_path);
 
 var _server = __webpack_require__("react-dom/server");
 
-var _AppRoot = __webpack_require__("./src/components/AppRoot.js");
-
-var _AppRoot2 = _interopRequireDefault(_AppRoot);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var server = (0, _express2.default)();
@@ -310,7 +302,8 @@ var expressStaticGzip = __webpack_require__("express-static-gzip");
 
 
 var isProd = "production" === "production";
-if (!isProd) {
+var isDev = !isProd;
+if (isDev) {
   var webpack = __webpack_require__("webpack");
   var config = __webpack_require__("./config/webpack.dev.js");
   var compiler = webpack(config);
@@ -322,14 +315,14 @@ if (!isProd) {
 
   server.use(webpackDevMiddleware);
   server.use(webpackHotMiddlware);
-  console.log("Middleware enabled");
-  server.use(_express2.default.static(_path2.default.resolve(__dirname, "dist")));
+  console.log("Dev enabled");
 } else {
+  var AppRoot = __webpack_require__("./src/components/AppRoot.js").default;
   server.use(expressStaticGzip("dist", {
     enableBrotli: true
   }));
   server.use("*", function (req, res) {
-    res.send("\n      <html>\n        <head>\n          <link href=\"/main.css\" rel=\"stylesheet\" />\n        </head>\n        <body>\n          <div id=\"react-root\">\n            " + (0, _server.renderToString)(_react2.default.createElement(_AppRoot2.default, null)) + "\n          </div>\n          <script src='vendor-bundle.js'></script>\n          <script src='main-bundle.js'></script>\n        </body>\n      </html>\n    ");
+    res.send("\n      <html>\n        <head>\n          <link href=\"/main.css\" rel=\"stylesheet\" />\n        </head>\n        <body>\n          <div id=\"react-root\">\n            " + (0, _server.renderToString)(_react2.default.createElement(AppRoot, null)) + "\n          </div>\n          <script src='vendor-bundle.js'></script>\n          <script src='main-bundle.js'></script>\n        </body>\n      </html>\n    ");
   });
 }
 
@@ -348,11 +341,12 @@ var _temp = function () {
 
   __REACT_HOT_LOADER__.register(isProd, "isProd", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/express.js");
 
+  __REACT_HOT_LOADER__.register(isDev, "isDev", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/express.js");
+
   __REACT_HOT_LOADER__.register(PORT, "PORT", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/express.js");
 }();
 
 ;
-/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
 

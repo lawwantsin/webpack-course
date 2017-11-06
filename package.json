@@ -34,7 +34,7 @@
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
     "url-loader": "^0.5.9",
-    "webpack": "^3.5.5",
+    "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.7.1",
     "webpack-hot-middleware": "^2.18.2",
@@ -48,8 +48,8 @@
     "build:dev": "webpack --config=config/webpack.dev.js",
     "build:server":
       "BABEL_ENV=production webpack --config=config/webpack.server.js --env.NODE_ENV=production",
-    "dev": "nodemon --watch src/server --inspect src/server/main.js",
     "prod": "NODE_ENV=production node build/server-bundle.js",
+    "dev": "nodemon --watch src/server --inspect src/server/main.js",
     "heroku-postbuild": "yarn build"
   }
 }

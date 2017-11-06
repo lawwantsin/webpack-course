@@ -12,8 +12,7 @@ module.exports = env => {
     },
     output: {
       filename: "[name]-bundle.js",
-      path: path.resolve(__dirname, "../build"),
-      publicPath: "/"
+      path: path.resolve(__dirname, "../build")
     },
     module: {
       rules: [
@@ -42,9 +41,10 @@ module.exports = env => {
           test: /\.jpg$/,
           use: [
             {
-              loader: "file-loader",
+              loader: "url-loader",
               options: {
-                name: "images/[name].[ext]"
+                name: "images/[name].[ext]",
+                limit: 1
               }
             }
           ]
@@ -63,8 +63,7 @@ module.exports = env => {
       new ExtractTextPlugin("[name].css"),
       new webpack.DefinePlugin({
         "process.env": {
-          NODE_ENV: JSON.stringify(env.NODE_ENV),
-          WEBPACK: true
+          NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
       }),
       new webpack.NamedModulesPlugin()

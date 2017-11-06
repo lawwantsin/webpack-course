@@ -25,9 +25,9 @@ if (isDev) {
 
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
-  console.log("Dev enabled")
+  console.log("Middleware enabled")
 } else {
-  const AppRoot = require("../components/AppRoot")
+  const AppRoot = require("../components/AppRoot").default
   server.use(
     expressStaticGzip("dist", {
       enableBrotli: true
