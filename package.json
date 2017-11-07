@@ -2,11 +2,13 @@
   "name": "webpack-course",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "Webpack: Beyond the Basics Course",
+  "repository": "https://github.com/lawwantsin/webpack-course.git",
   "license": "MIT",
   "dependencies": {
-    "css-loader": "^0.28.5",
-    "style-loader": "^0.18.2",
-    "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1"
+    "css-loader": "*",
+    "style-loader": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
   }
 }
