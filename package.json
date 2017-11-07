@@ -1,12 +1,12 @@
 {
   "name": "webpack-course",
   "version": "1.0.0",
-  "description": "Webpack course files",
+  "description": "Webpack Beyond the Basics Course",
   "repository": "https://github.com/lawwantsin/webpack-course.git",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1"
+    "webpack": "*",
+    "webpack-dev-server": "*"
   }
 }
