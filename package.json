@@ -16,7 +16,6 @@
     "extract-loader": "*",
     "file-loader": "*",
     "html-loader": "*",
-    "react": "*",
     "style-loader": "*",
     "url-loader": "*",
     "webpack": "*",
