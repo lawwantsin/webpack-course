@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-// const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const isProd = process.env.NODE_ENV === "production"
 
@@ -56,13 +55,6 @@ module.exports = {
       {
         test: /\.html$/,
         use: [
-          // {
-          //   loader: "file-loader",
-          //   options: {
-          //     name: "[name].[ext]"
-          //   }
-          // },
-          // { loader: "extract-loader" },
           {
             loader: "html-loader",
             options: {
@@ -74,7 +66,7 @@ module.exports = {
     ]
   },
   plugins: [
-    isProd ? new webpack.HotModuleReplacementPlugin() : null,
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
