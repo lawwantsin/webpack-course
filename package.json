@@ -31,6 +31,7 @@
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
     "build": "webpack --config=config/webpack.dev.js",
-    "dev": "nodemon --inspect src/server/main.js"
+    "dev": "nodemon --inspect src/server/main.js",
+    "prod": "node src/server/main.js"
   }
 }
