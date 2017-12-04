@@ -17,6 +17,7 @@
     "ejs-loader": "*",
     "express": "*",
     "extract-loader": "*",
+    "extract-text-webpack-plugin": "*",
     "file-loader": "*",
     "html-loader": "*",
     "html-webpack-plugin": "*",
@@ -29,9 +30,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "NODE_ENV=production webpack --config=config/webpack.dev.js",
+    "build": "webpack --config=config/webpack.dev.js",
     "dev": "nodemon --inspect src/server/main.js",
-    "prod": "NODE_ENV=production node src/server/main.js",
-    "heroku-postbuild": "yarn build"
+    "prod": "node src/server/main.js"
   }
 }

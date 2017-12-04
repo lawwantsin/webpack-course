@@ -28,5 +28,5 @@ server.use(staticMiddleware)
 
 const PORT = process.env.PORT || 8080
 server.listen(PORT, () => {
-  console.log(`Server listening`)
+  console.log(`Server listening on http://localhost:${PORT}`)
 })
