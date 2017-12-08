@@ -4,6 +4,10 @@ body {
   font-family: Helvetica;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .profile {
   display: flex;
   -ms-align-items: center;
