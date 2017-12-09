@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
+    vendor: ["react", "lodash", "react-dom"],
     main: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",

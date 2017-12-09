@@ -34,15 +34,20 @@
     "style-loader": "*",
     "url-loader": "*",
     "webpack": "*",
+    "webpack-bundle-analyzer": "^2.9.1",
     "webpack-dev-server": "*",
     "webpack-hot-middleware": "*",
     "webpack-mild-compile": "*"
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
+    "build":
+      "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production",
+    "stats":
+      "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production --profile --json > dist/stats.json",
     "build:dev": "webpack --config=config/webpack.dev.js",
-    "dev": "nodemon --watch src/server --watch config --inspect src/server/main.js",
+    "dev":
+      "nodemon --watch src/server --watch config --inspect src/server/main.js",
     "prod": "NODE_ENV=production node src/server/main.js",
     "heroku-postbuild": "npm run build"
   }
