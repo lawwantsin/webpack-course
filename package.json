@@ -14,13 +14,13 @@
     "babel-preset-env": "*",
     "babel-preset-es2015": "*",
     "babel-preset-react": "*",
-    "brotli-webpack-plugin": "^0.5.0",
-    "compression-webpack-plugin": "^1.0.1",
+    "brotli-webpack-plugin": "*",
+    "compression-webpack-plugin": "*",
     "css-loader": "*",
     "cssnano": "*",
     "ejs-loader": "*",
     "express": "*",
-    "express-static-gzip": "^0.3.1",
+    "express-static-gzip": "*",
     "extract-loader": "*",
     "extract-text-webpack-plugin": "*",
     "file-loader": "*",
@@ -28,7 +28,7 @@
     "html-webpack-plugin": "*",
     "optimize-css-assets-webpack-plugin": "*",
     "react": "*",
-    "react-dom": "^16.2.0",
+    "react-dom": "*",
     "react-hot-loader": "*",
     "style-loader": "*",
     "url-loader": "*",
@@ -39,9 +39,11 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
+    "build":
+      "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
     "build:dev": "webpack --config=config/webpack.dev.js",
-    "dev": "nodemon --inspect src/server/main.js",
+    "dev":
+      "nodemon --watch src/server --watch config --inspect src/server/main.js",
     "prod": "NODE_ENV=production node src/server/main.js",
     "heroku-postbuild": "npm run build"
   }
