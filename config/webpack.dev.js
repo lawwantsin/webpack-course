@@ -82,13 +82,13 @@ module.exports = {
         NODE_ENV: JSON.stringify("development")
       }
     }),
-    new HTMLWebpackPlugin({
-      template: "./src/index.ejs",
-      inject: true,
-      title: "Link's Journal"
-    }),
     new BundleAnalyzerPlugin({
-      generateStatsFile: true
+      generateStatsFile: false
     })
+    // new HTMLWebpackPlugin({
+    //   template: "./src/index.ejs",
+    //   inject: true,
+    //   title: "Link's Journal"
+    // })
   ]
 }

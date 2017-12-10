@@ -1,6 +1,9 @@
 import express from "express"
 const server = express()
 import path from "path"
+import React from "react"
+import ReactDOMServer from "react-dom/server"
+import AppRoot from "../components/AppRoot"
 
 const isProd = process.env.NODE_ENV === "production"
 if (!isProd) {
@@ -30,6 +33,23 @@ server.use(
     enableBrotli: true
   })
 )
+
+server.get("*", (req, res) => {
+  res.send(`
+    <html>
+      <head>
+        <link href="main.css" rel="stylesheet" />
+      </head>
+      <body>
+        <div id="react-root">
+          ${ReactDOMServer.renderToString(<AppRoot />)}
+        </div>
+        <script src="vendor-bundle.js"></script>
+        <script src="main-bundle.js"></script>
+      </body>
+    </html>
+  `)
+})
 
 const PORT = process.env.PORT || 8080
 server.listen(PORT, () => {

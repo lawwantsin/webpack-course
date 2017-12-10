@@ -83,11 +83,11 @@ module.exports = env => {
         }
       }),
       new webpack.NamedModulesPlugin(),
-      new HTMLWebpackPlugin({
-        template: "./src/index.ejs",
-        inject: true,
-        title: "Link's Journal"
-      }),
+      // new HTMLWebpackPlugin({
+      //   template: "./src/index.ejs",
+      //   inject: true,
+      //   title: "Link's Journal"
+      // }),
       new UglifyJSPlugin(),
       new CompressionPlugin({
         algorithm: "gzip"
