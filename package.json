@@ -21,7 +21,6 @@
     "html-loader": "*",
     "html-webpack-plugin": "*",
     "style-loader": "*",
-    "ts-loader": "^3.2.0",
     "typescript": "^2.6.2",
     "url-loader": "*",
     "webpack": "^3.10.0",
