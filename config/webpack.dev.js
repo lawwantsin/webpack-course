@@ -4,7 +4,8 @@ const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
-    main: ["./src/main.js"]
+    main: ["./src/main.js"],
+    ts: ["./src/index.ts"]
   },
   output: {
     filename: "[name]-bundle.js",
@@ -18,7 +19,7 @@ module.exports = {
       colors: true
     }
   },
-  devtool: "source-map",
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -29,6 +30,11 @@ module.exports = {
             loader: "babel-loader"
           }
         ]
+      },
+      {
+        test: /\.ts$/,
+        loader: "ts-loader",
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
