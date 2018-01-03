@@ -1,4 +1,4 @@
 function Greeting(greeting: string) {
   console.log(greeting)
 }
-Greeting("Hello World")
+Greeting("Hello Typescript")

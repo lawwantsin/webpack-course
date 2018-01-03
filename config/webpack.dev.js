@@ -33,8 +33,11 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: "ts-loader",
-        exclude: /node_modules/
+        loader: "awesome-typescript-loader",
+        exclude: /node_modules/,
+        options: {
+          configFileName: path.join(__dirname, "./config/tsconfig.json")
+        }
       },
       {
         test: /\.css$/,
