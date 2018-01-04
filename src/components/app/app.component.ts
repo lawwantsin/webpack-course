@@ -6,5 +6,5 @@ import { Component } from "@angular/core"
   template: require("./app.component.html")
 })
 export class AppRoot {
-  message = "Fuck Yeah"
+  message = "Hello Angular"
 }
