@@ -6,6 +6,14 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@angular/common": "^5.1.2",
+    "@angular/compiler": "^5.1.2",
+    "@angular/core": "^5.1.2",
+    "@angular/forms": "^5.1.2",
+    "@angular/http": "^5.1.2",
+    "@angular/platform-browser": "^5.1.2",
+    "@angular/platform-browser-dynamic": "^5.1.2",
+    "@angular/router": "^5.1.2",
     "awesome-typescript-loader": "^3.4.1",
     "babel-cli": "*",
     "babel-core": "*",
@@ -14,23 +22,32 @@
     "babel-polyfill": "*",
     "babel-preset-env": "*",
     "babel-preset-es2015": "*",
+    "core-js": "^2.5.3",
     "css-loader": "*",
     "express": "*",
     "extract-loader": "*",
     "file-loader": "*",
     "html-loader": "*",
     "html-webpack-plugin": "*",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.5.6",
     "style-loader": "*",
     "typescript": "^2.6.2",
     "url-loader": "*",
     "webpack": "^3.10.0",
     "webpack-dev-server": "*",
     "webpack-hot-middleware": "*",
-    "webpack-mild-compile": "*"
+    "webpack-mild-compile": "*",
+    "zone.js": "^0.8.19"
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
     "build": "webpack --config=config/webpack.dev.js",
-    "dev": "nodemon --inspect --watch config --watch src/server src/server/main.js"
+    "dev":
+      "nodemon --inspect --watch config --watch src/server src/server/main.js"
+  },
+  "devDependencies": {
+    "@types/node": "^8.5.5",
+    "@types/core-js": "^0.9.43"
   }
 }
