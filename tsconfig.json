@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "noImplicitAny": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es5",
     "allowJs": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "lib": ["es5", "es6", "dom"],
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "suppressImplicitAnyIndexErrors": true
+    "lib": ["es5", "es6", "dom"]
   },
-  "compileOnSave": false
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }

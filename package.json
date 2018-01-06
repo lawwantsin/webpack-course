@@ -43,11 +43,10 @@
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
     "build": "webpack --config=config/webpack.dev.js",
-    "dev":
-      "nodemon --inspect --watch config --watch src/server src/server/main.js"
+    "dev": "nodemon --inspect --watch config --watch src/server src/server/main.js"
   },
   "devDependencies": {
-    "@types/node": "^8.5.5",
-    "@types/core-js": "^0.9.43"
+    "@types/node": "*",
+    "@types/core-js": "*"
   }
 }

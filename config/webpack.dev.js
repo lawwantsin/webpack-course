@@ -16,7 +16,6 @@ module.exports = {
   devServer: {
     contentBase: "dist",
     overlay: true,
-    hot: true,
     historyApiFallback: true,
     stats: {
       colors: true
@@ -41,9 +40,6 @@ module.exports = {
         test: /\.ts$/,
         loader: "awesome-typescript-loader",
         exclude: /node_modules/
-        // options: {
-        //   configFileName: path.join(__dirname, "./config/tsconfig.json")
-        // }
       },
       {
         test: /\.css$/,
