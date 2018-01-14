@@ -71,12 +71,6 @@
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__dirname) {
 
-var _stringify = __webpack_require__("babel-runtime/core-js/json/stringify");
-
-var _stringify2 = _interopRequireDefault(_stringify);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var path = __webpack_require__("path");
 var webpack = __webpack_require__("webpack");
 var HTMLWebpackPlugin = __webpack_require__("html-webpack-plugin");
@@ -147,7 +141,7 @@ module.exports = {
     analyzerMode: "disabled"
   }), new webpack.DefinePlugin({
     "process.env": {
-      NODE_ENV: (0, _stringify2.default)("development"),
+      NODE_ENV: JSON.stringify("development"),
       WEBPACK: true
     }
   }), new webpack.HotModuleReplacementPlugin(), // Enable HMR
@@ -157,17 +151,6 @@ module.exports = {
     title: "Link's Journal"
   })]
 };
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(BundleAnalyzerPlugin, "BundleAnalyzerPlugin", "/Users/lawrencewhiteside/Web/courses/webpack-course/config/webpack.dev.js");
-}();
-
-;
 /* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
@@ -189,25 +172,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = __webpack_require__("babel-runtime/core-js/object/get-prototype-of");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("babel-runtime/helpers/createClass");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__("react");
 
@@ -215,22 +180,28 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var MarkdownData = __webpack_require__("./data/post.md");
 var imagePath = __webpack_require__("./src/images/link.jpg");
 
-var _default = function (_React$Component) {
-  (0, _inherits3.default)(_default, _React$Component);
+var _class = function (_React$Component) {
+  _inherits(_class, _React$Component);
 
-  function _default(props) {
-    (0, _classCallCheck3.default)(this, _default);
+  function _class(props) {
+    _classCallCheck(this, _class);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (_default.__proto__ || (0, _getPrototypeOf2.default)(_default)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
 
     _this.state = {};
     return _this;
   }
 
-  (0, _createClass3.default)(_default, [{
+  _createClass(_class, [{
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -249,21 +220,11 @@ var _default = function (_React$Component) {
       );
     }
   }]);
-  return _default;
+
+  return _class;
 }(_react2.default.Component);
 
-exports.default = _default;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, "default", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/components/AppRoot.js");
-}();
-
-;
+exports.default = _class;
 
 /***/ }),
 
@@ -274,7 +235,7 @@ module.exports = __webpack_require__.p + "images/link.jpg";
 
 /***/ }),
 
-/***/ "./src/server/express.js":
+/***/ "./src/server/main.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -315,7 +276,7 @@ if (isDev) {
 
   server.use(webpackDevMiddleware);
   server.use(webpackHotMiddlware);
-  console.log("Dev enabled");
+  console.log("Middleware enabled");
 } else {
   var AppRoot = __webpack_require__("./src/components/AppRoot.js").default;
   server.use(expressStaticGzip("dist", {
@@ -330,43 +291,6 @@ var PORT = 8080;
 server.listen(PORT, function () {
   console.log("Server listening on http://localhost:" + PORT);
 });
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(server, "server", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/express.js");
-
-  __REACT_HOT_LOADER__.register(isProd, "isProd", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/express.js");
-
-  __REACT_HOT_LOADER__.register(isDev, "isDev", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/express.js");
-
-  __REACT_HOT_LOADER__.register(PORT, "PORT", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/express.js");
-}();
-
-;
-
-/***/ }),
-
-/***/ "./src/server/main.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__("babel-core/register");
-__webpack_require__("./src/server/express.js");
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 
 /***/ }),
 
@@ -375,55 +299,6 @@ var _temp = function () {
 
 module.exports = __webpack_require__("./src/server/main.js");
 
-
-/***/ }),
-
-/***/ "babel-core/register":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-core/register");
-
-/***/ }),
-
-/***/ "babel-runtime/core-js/json/stringify":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/core-js/json/stringify");
-
-/***/ }),
-
-/***/ "babel-runtime/core-js/object/get-prototype-of":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/core-js/object/get-prototype-of");
-
-/***/ }),
-
-/***/ "babel-runtime/helpers/classCallCheck":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/classCallCheck");
-
-/***/ }),
-
-/***/ "babel-runtime/helpers/createClass":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/createClass");
-
-/***/ }),
-
-/***/ "babel-runtime/helpers/inherits":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/inherits");
-
-/***/ }),
-
-/***/ "babel-runtime/helpers/possibleConstructorReturn":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/possibleConstructorReturn");
 
 /***/ }),
 
