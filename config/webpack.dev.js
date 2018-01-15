@@ -1,12 +1,10 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin
 
 module.exports = {
   entry: {
-    vendor: ["react", "lodash", "react-dom"],
+    vendor: ["react", "react-dom"],
     main: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",
@@ -89,10 +87,6 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
-    }),
-    new BundleAnalyzerPlugin({
-      generateStatsFile: true,
-      analyzerMode: "disabled"
     }),
     new webpack.DefinePlugin({
       "process.env": {

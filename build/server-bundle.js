@@ -74,7 +74,6 @@
 var path = __webpack_require__("path");
 var webpack = __webpack_require__("webpack");
 var HTMLWebpackPlugin = __webpack_require__("html-webpack-plugin");
-var BundleAnalyzerPlugin = __webpack_require__("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -136,9 +135,6 @@ module.exports = {
   },
   plugins: [new webpack.optimize.CommonsChunkPlugin({
     name: "vendor"
-  }), new BundleAnalyzerPlugin({
-    generateStatsFile: true,
-    analyzerMode: "disabled"
   }), new webpack.DefinePlugin({
     "process.env": {
       NODE_ENV: JSON.stringify("development"),
@@ -151,6 +147,15 @@ module.exports = {
     title: "Link's Journal"
   })]
 };
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+}();
+
+;
 /* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
@@ -189,19 +194,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MarkdownData = __webpack_require__("./data/post.md");
 var imagePath = __webpack_require__("./src/images/link.jpg");
 
-var _class = function (_React$Component) {
-  _inherits(_class, _React$Component);
+var _default = function (_React$Component) {
+  _inherits(_default, _React$Component);
 
-  function _class(props) {
-    _classCallCheck(this, _class);
+  function _default(props) {
+    _classCallCheck(this, _default);
 
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (_default.__proto__ || Object.getPrototypeOf(_default)).call(this, props));
 
     _this.state = {};
     return _this;
   }
 
-  _createClass(_class, [{
+  _createClass(_default, [{
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -209,7 +214,7 @@ var _class = function (_React$Component) {
         { className: "profile" },
         _react2.default.createElement("img", { src: imagePath }),
         _react2.default.createElement(
-          "h1",
+          "h2",
           { id: "title" },
           MarkdownData.title
         ),
@@ -221,10 +226,21 @@ var _class = function (_React$Component) {
     }
   }]);
 
-  return _class;
+  return _default;
 }(_react2.default.Component);
 
-exports.default = _class;
+exports.default = _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, "default", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/components/AppRoot.js");
+}();
+
+;
 
 /***/ }),
 
@@ -262,7 +278,7 @@ var server = (0, _express2.default)();
 var expressStaticGzip = __webpack_require__("express-static-gzip");
 
 
-var isProd = "production" === "production";
+var isProd = "development" === "production";
 var isDev = !isProd;
 if (isDev) {
   var webpack = __webpack_require__("webpack");
@@ -291,6 +307,23 @@ var PORT = 8080;
 server.listen(PORT, function () {
   console.log("Server listening on http://localhost:" + PORT);
 });
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(server, "server", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/main.js");
+
+  __REACT_HOT_LOADER__.register(isProd, "isProd", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/main.js");
+
+  __REACT_HOT_LOADER__.register(isDev, "isDev", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/main.js");
+
+  __REACT_HOT_LOADER__.register(PORT, "PORT", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/main.js");
+}();
+
+;
 
 /***/ }),
 
@@ -348,13 +381,6 @@ module.exports = require("react-dom/server");
 /***/ (function(module, exports) {
 
 module.exports = require("webpack");
-
-/***/ }),
-
-/***/ "webpack-bundle-analyzer":
-/***/ (function(module, exports) {
-
-module.exports = require("webpack-bundle-analyzer");
 
 /***/ }),
 
