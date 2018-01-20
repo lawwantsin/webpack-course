@@ -53,5 +53,7 @@ if (isDev) {
 
 const PORT = 8080
 server.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`)
+  console.log(
+    `Server listening on http://localhost:${PORT} in ${process.env.NODE_ENV}`
+  )
 })

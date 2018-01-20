@@ -77,7 +77,7 @@ var HTMLWebpackPlugin = __webpack_require__("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    vendor: ["react", "lodash", "react-dom"],
+    vendor: ["react", "react-dom"],
     main: ["react-hot-loader/patch", "babel-runtime/regenerator", "webpack-hot-middleware/client?reload=true", "./src/main.js"]
   },
   output: {
@@ -147,15 +147,6 @@ module.exports = {
     title: "Link's Journal"
   })]
 };
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-}();
-
-;
 /* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
@@ -163,7 +154,7 @@ var _temp = function () {
 /***/ "./data/post.md":
 /***/ (function(module, exports) {
 
-module.exports = {"title":"The Journey Begins","author":"Link","__content":"<h1 id=\"long-ago-in-the-kingdom-of-hyrule\">Long Ago in the Kingdom of Hyrule</h1>\n<p>Our Hero wakes up.</p>\n"}
+module.exports = {"title":"Our first Post","author":"Link","__content":"<h1 id=\"long-ago-in-the-kingdom-of-hyrule\">Long Ago in the Kingdom of Hyrule</h1>\n<p>Our Hero wakes up. He is alone. He must find his sword.</p>\n"}
 
 /***/ }),
 
@@ -194,19 +185,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MarkdownData = __webpack_require__("./data/post.md");
 var imagePath = __webpack_require__("./src/images/link.jpg");
 
-var _default = function (_React$Component) {
-  _inherits(_default, _React$Component);
+var _class = function (_React$Component) {
+  _inherits(_class, _React$Component);
 
-  function _default(props) {
-    _classCallCheck(this, _default);
+  function _class(props) {
+    _classCallCheck(this, _class);
 
-    var _this = _possibleConstructorReturn(this, (_default.__proto__ || Object.getPrototypeOf(_default)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
 
     _this.state = {};
     return _this;
   }
 
-  _createClass(_default, [{
+  _createClass(_class, [{
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -214,8 +205,8 @@ var _default = function (_React$Component) {
         { className: "profile" },
         _react2.default.createElement("img", { src: imagePath }),
         _react2.default.createElement(
-          "h2",
-          { id: "title" },
+          "h1",
+          null,
           MarkdownData.title
         ),
         _react2.default.createElement("div", {
@@ -226,21 +217,10 @@ var _default = function (_React$Component) {
     }
   }]);
 
-  return _default;
+  return _class;
 }(_react2.default.Component);
 
-exports.default = _default;
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(_default, "default", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/components/AppRoot.js");
-}();
-
-;
+exports.default = _class;
 
 /***/ }),
 
@@ -278,7 +258,7 @@ var server = (0, _express2.default)();
 var expressStaticGzip = __webpack_require__("express-static-gzip");
 
 
-var isProd = "development" === "production";
+var isProd = "production" === "production";
 var isDev = !isProd;
 if (isDev) {
   var webpack = __webpack_require__("webpack");
@@ -305,25 +285,8 @@ if (isDev) {
 
 var PORT = 8080;
 server.listen(PORT, function () {
-  console.log("Server listening on http://localhost:" + PORT);
+  console.log("Server listening on http://localhost:" + PORT + " in " + "production");
 });
-;
-
-var _temp = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(server, "server", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/main.js");
-
-  __REACT_HOT_LOADER__.register(isProd, "isProd", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/main.js");
-
-  __REACT_HOT_LOADER__.register(isDev, "isDev", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/main.js");
-
-  __REACT_HOT_LOADER__.register(PORT, "PORT", "/Users/lawrencewhiteside/Web/courses/webpack-course/src/server/main.js");
-}();
-
-;
 
 /***/ }),
 
