@@ -50,7 +50,7 @@
     "build:server":
       "BABEL_ENV=production webpack --config=config/webpack.server.js --env.NODE_ENV=production",
     "prod": "NODE_ENV=production node build/server-bundle.js",
-    "dev": "NODE_ENV=development node --inspect build/server-bundle.js",
-    "heroku-postbuild": "yarn build"
+    "dev": "NODE_ENV=development nodemon --inspect build/server-bundle.js",
+    "heroku-postbuild": "npm run build"
   }
 }
