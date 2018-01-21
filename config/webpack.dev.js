@@ -86,7 +86,9 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor"
+      name: ["vendor", "manifest"],
+      filename: "[name].js",
+      minChunks: Infinity
     }),
     new webpack.DefinePlugin({
       "process.env": {

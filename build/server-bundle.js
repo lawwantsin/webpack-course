@@ -78,7 +78,7 @@ var HTMLWebpackPlugin = __webpack_require__("html-webpack-plugin");
 module.exports = {
   entry: {
     vendor: ["react", "react-dom"],
-    main: ["react-hot-loader/patch", "babel-runtime/regenerator", "webpack-hot-middleware/client?reload=true", "./src/main.js"]
+    main: ["react-hot-loader/patch", "webpack-hot-middleware/client?reload=true", "./src/main.js"]
   },
   output: {
     filename: "[name]-bundle.js",
@@ -134,7 +134,9 @@ module.exports = {
     }]
   },
   plugins: [new webpack.optimize.CommonsChunkPlugin({
-    name: "vendor"
+    name: ["vendor", "manifest"],
+    filename: "[name].js",
+    minChunks: Infinity
   }), new webpack.DefinePlugin({
     "process.env": {
       NODE_ENV: JSON.stringify("development"),
@@ -231,7 +233,7 @@ module.exports = __webpack_require__.p + "images/link.jpg";
 
 /***/ }),
 
-/***/ "./src/server/main.js":
+/***/ "./src/server/express.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -290,11 +292,29 @@ server.listen(PORT, function () {
 
 /***/ }),
 
+/***/ "./src/server/main.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__("babel-register");
+__webpack_require__("./src/server/express.js");
+
+/***/ }),
+
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./src/server/main.js");
 
+
+/***/ }),
+
+/***/ "babel-register":
+/***/ (function(module, exports) {
+
+module.exports = require("babel-register");
 
 /***/ }),
 

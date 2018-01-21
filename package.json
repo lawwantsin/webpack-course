@@ -43,12 +43,9 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build":
-      "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production",
-    "build:dev-server":
-      "BABEL_ENV=development webpack --config=config/webpack.server.js --env.NODE_ENV=development",
-    "build:server":
-      "BABEL_ENV=production webpack --config=config/webpack.server.js --env.NODE_ENV=production --watch",
+    "build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production",
+    "build:dev-server": "BABEL_ENV=development webpack --config=config/webpack.server.js --env.NODE_ENV=development",
+    "build:server": "BABEL_ENV=production webpack --config=config/webpack.server.js --env.NODE_ENV=production --watch",
     "prod": "NODE_ENV=production node build/server-bundle.js",
     "dev": "nodemon --watch build --inspect build/server-bundle.js",
     "heroku-postbuild": "npm run build"
