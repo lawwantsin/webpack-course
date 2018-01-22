@@ -71,9 +71,7 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ["manifest"],
-      filename: "[name].js",
-      minChunks: Infinity
+      name: "vendor"
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
