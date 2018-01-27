@@ -2,7 +2,7 @@ import React from "react"
 import { Route, Link } from "react-router-dom"
 import universal from "react-universal-component"
 import { Switch } from "react-router"
-import "./nav.css"
+import "../css/nav.css"
 
 const UniversalComponent = universal(props => import(`./${props.page}`))
 

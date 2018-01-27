@@ -49,7 +49,8 @@
     "webpack-hot-middleware": "^2.18.2",
     "webpack-hot-server-middleware": "^0.3.2",
     "webpack-mild-compile": "^1.0.0",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-node-externals": "^1.6.0",
+    "write-file-webpack-plugin": "^4.2.0"
   },
   "scripts": {
     "prod": "NODE_ENV=production node src/server/main.js",

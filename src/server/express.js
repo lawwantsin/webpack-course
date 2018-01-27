@@ -33,7 +33,7 @@ if (isDev) {
   const clientCompiler = compiler.compilers[0]
   const serverCompiler = compiler.compilers[1]
 
-  require("webpack-mild-compile")(serverCompiler)
+  // require("webpack-mild-compile")(serverCompiler)
 
   const webpackDevMiddleware = require("webpack-dev-middleware")(
     compiler,
@@ -49,7 +49,7 @@ if (isDev) {
   server.use(webpackHotMiddlware)
   server.use(webpackHotServerMiddleware(compiler))
   console.log("Middleware enabled")
-  compiler.plugin("done", done)
+  done()
 } else {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
     const clientStats = stats.toJson().children[0]
