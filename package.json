@@ -40,13 +40,13 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.7.1",
     "webpack-hot-middleware": "^2.18.2",
+    "webpack-hot-server-middleware": "^0.4.0",
     "webpack-mild-compile": "^1.0.0",
     "webpack-node-externals": "^1.6.0"
   },
   "scripts": {
     "prod": "NODE_ENV=production node src/server/main.js",
-    "dev":
-      "nodemon --watch src/server --watch config --inspect src/server/main",
+    "dev": "nodemon --watch src/server --watch config --inspect src/server/main",
     "heroku-postbuild": "npm run build"
   }
 }

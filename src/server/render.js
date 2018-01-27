@@ -9,9 +9,7 @@ export default () => (req, res) => {
         <link href="/main.css" rel="stylesheet" />
       </head>
       <body>
-        <div id="react-root">
-          ${renderToString(<AppRoot />)}
-        </div>
+        <div id="react-root">${renderToString(<AppRoot />)}</div>
         <script src='vendor-bundle.js'></script>
         <script src='main-bundle.js'></script>
       </body>

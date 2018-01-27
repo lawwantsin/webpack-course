@@ -1,6 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
-const HTMLWebpackPlugin = require("html-webpack-plugin")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+// const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   name: "client",
@@ -39,12 +40,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          { loader: "css-loader" }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: {
+            loader: "css-loader",
+            options: {
+              minimize: true
+            }
+          }
+        })
       },
       {
         test: /\.jpg$/,
@@ -86,6 +90,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractTextPlugin("[name].css"),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
     }),
@@ -96,11 +101,11 @@ module.exports = {
       }
     }),
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin(),
-    new HTMLWebpackPlugin({
-      template: "./src/index.ejs",
-      inject: true,
-      title: "Link's Journal"
-    })
+    new webpack.NamedModulesPlugin()
+    // new HTMLWebpackPlugin({
+    //   template: "./src/index.ejs",
+    //   inject: true,
+    //   title: "Link's Journal"
+    // })
   ]
 }
