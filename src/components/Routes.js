@@ -17,10 +17,10 @@ export default () => (
       <Route exact path="/">
         <UniversalComponent page="Gallery" />
       </Route>
-      <Route path="/about">
+      <Route path="about">
         <UniversalComponent page="About" />
       </Route>
-      <Route path="/article">
+      <Route path="article">
         <UniversalComponent page="Article" />
       </Route>
     </Switch>

@@ -458,12 +458,12 @@ exports.default = function () {
       ),
       _react2.default.createElement(
         _reactRouterDom.Route,
-        { path: "/about" },
+        { path: "about" },
         _react2.default.createElement(UniversalComponent, { page: "About" })
       ),
       _react2.default.createElement(
         _reactRouterDom.Route,
-        { path: "/article" },
+        { path: "article" },
         _react2.default.createElement(UniversalComponent, { page: "Article" })
       )
     )
