@@ -73,7 +73,7 @@ module.exports = {"title":"Our first Post","author":"Link","__content":"<h1 id=\
 
 /***/ }),
 
-/***/ "./src/components/AppRoot.js":
+/***/ "./src/components/About.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82,26 +82,6 @@ module.exports = {"title":"Our first Post","author":"Link","__content":"<h1 id=\
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _getPrototypeOf = __webpack_require__("babel-runtime/core-js/object/get-prototype-of");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("babel-runtime/helpers/classCallCheck");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("babel-runtime/helpers/createClass");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("babel-runtime/helpers/possibleConstructorReturn");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("babel-runtime/helpers/inherits");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = __webpack_require__("react");
 
@@ -112,41 +92,143 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var MarkdownData = __webpack_require__("./data/post.md");
 var imagePath = __webpack_require__("./src/images/link.jpg");
 
-var _class = function (_React$Component) {
-  (0, _inherits3.default)(_class, _React$Component);
+exports.default = function () {
+  return _react2.default.createElement(
+    "div",
+    { className: "profile" },
+    _react2.default.createElement("img", { src: imagePath }),
+    _react2.default.createElement(
+      "h1",
+      null,
+      MarkdownData.title
+    ),
+    _react2.default.createElement("div", {
+      className: "content",
+      dangerouslySetInnerHTML: { __html: MarkdownData.__content }
+    })
+  );
+};
 
-  function _class(props) {
-    (0, _classCallCheck3.default)(this, _class);
+/***/ }),
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (_class.__proto__ || (0, _getPrototypeOf2.default)(_class)).call(this, props));
+/***/ "./src/components/Article.js":
+/***/ (function(module, exports, __webpack_require__) {
 
-    _this.state = {};
-    return _this;
-  }
+"use strict";
 
-  (0, _createClass3.default)(_class, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: "profile" },
-        _react2.default.createElement("img", { src: imagePath }),
-        _react2.default.createElement(
-          "h1",
-          null,
-          MarkdownData.title
-        ),
-        _react2.default.createElement("div", {
-          className: "content",
-          dangerouslySetInnerHTML: { __html: MarkdownData.__content }
-        })
-      );
-    }
-  }]);
-  return _class;
-}(_react2.default.Component);
 
-exports.default = _class;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "h1",
+      null,
+      "Article"
+    )
+  );
+};
+
+/***/ }),
+
+/***/ "./src/components/Gallery.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "h1",
+      null,
+      "Gallery"
+    )
+  );
+};
+
+/***/ }),
+
+/***/ "./src/components/Routes.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__("react-router-dom");
+
+var _Article = __webpack_require__("./src/components/Article.js");
+
+var _Article2 = _interopRequireDefault(_Article);
+
+var _Gallery = __webpack_require__("./src/components/Gallery.js");
+
+var _Gallery2 = _interopRequireDefault(_Gallery);
+
+var _About = __webpack_require__("./src/components/About.js");
+
+var _About2 = _interopRequireDefault(_About);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "div",
+      { className: "nav" },
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: "/" },
+        "Gallery"
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: "/about" },
+        "About"
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: "/article" },
+        "Article"
+      )
+    ),
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _Gallery2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: "/about", component: _About2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: "/article", component: _Article2.default })
+  );
+};
 
 /***/ }),
 
@@ -173,50 +255,23 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__("react-dom/server");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _reactRouter = __webpack_require__("react-router");
 
-var AppRoot = __webpack_require__("./src/components/AppRoot.js").default;
+var _Routes = __webpack_require__("./src/components/Routes.js");
+
+var _Routes2 = _interopRequireDefault(_Routes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
   return function (req, res) {
-    res.send("\n    <html>\n      <head>\n        <link href=\"/main.css\" rel=\"stylesheet\" />\n      </head>\n      <body>\n        <div id=\"react-root\">" + (0, _server.renderToString)(_react2.default.createElement(AppRoot, null)) + "</div>\n        <script src='vendor-bundle.js'></script>\n        <script src='main-bundle.js'></script>\n      </body>\n    </html>\n  ");
+    res.send("\n    <html>\n      <head>\n        <link href=\"/main.css\" rel=\"stylesheet\" />\n      </head>\n      <body>\n        <div id=\"react-root\">" + (0, _server.renderToString)(_react2.default.createElement(
+      _reactRouter.StaticRouter,
+      { location: req.originalUrl, context: {} },
+      _react2.default.createElement(_Routes2.default, null)
+    )) + "</div>\n        <script src='vendor-bundle.js'></script>\n        <script src='main-bundle.js'></script>\n      </body>\n    </html>\n  ");
   };
 };
-
-/***/ }),
-
-/***/ "babel-runtime/core-js/object/get-prototype-of":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/core-js/object/get-prototype-of");
-
-/***/ }),
-
-/***/ "babel-runtime/helpers/classCallCheck":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/classCallCheck");
-
-/***/ }),
-
-/***/ "babel-runtime/helpers/createClass":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/createClass");
-
-/***/ }),
-
-/***/ "babel-runtime/helpers/inherits":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/inherits");
-
-/***/ }),
-
-/***/ "babel-runtime/helpers/possibleConstructorReturn":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-runtime/helpers/possibleConstructorReturn");
 
 /***/ }),
 
@@ -231,6 +286,20 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
+
+/***/ }),
+
+/***/ "react-router":
+/***/ (function(module, exports) {
+
+module.exports = require("react-router");
+
+/***/ }),
+
+/***/ "react-router-dom":
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-dom");
 
 /***/ })
 
