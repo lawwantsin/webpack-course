@@ -10,6 +10,7 @@ module.exports = {
   entry: "./src/server/render.js",
   output: {
     filename: "dev-server-bundle.js",
+    chunkFilename: "[name].js",
     path: path.resolve(__dirname, "../build"),
     libraryTarget: "commonjs2"
   },
@@ -26,15 +27,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: {
-            loader: "css-loader",
-            options: {
-              minimize: true
-            }
-          }
-        })
+        use: {
+          loader: "css-loader"
+        }
       },
       {
         test: /\.jpg$/,
@@ -59,6 +54,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    }),
     new ExtractTextPlugin("[name].css"),
     new webpack.DefinePlugin({
       "process.env": {

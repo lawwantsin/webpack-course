@@ -10,6 +10,7 @@ module.exports = {
   entry: "./src/server/render.js",
   output: {
     filename: "prod-server-bundle.js",
+    chunkFilename: "[name].js",
     path: path.resolve(__dirname, "../build"),
     libraryTarget: "commonjs2"
   },
@@ -59,6 +60,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    }),
     new ExtractTextPlugin("[name].css"),
     new webpack.DefinePlugin({
       "process.env": {
