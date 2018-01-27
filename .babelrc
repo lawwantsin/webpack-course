@@ -11,9 +11,5 @@
     ],
     "babel-preset-react"
   ],
-  "env": {
-    "development": {
-      "plugins": ["react-hot-loader/babel"]
-    }
-  }
+  "plugins": ["transform-runtime", "react-hot-loader/babel"]
 }
