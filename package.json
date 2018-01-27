@@ -45,6 +45,7 @@
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.7.1",
+    "webpack-flush-chunks": "^1.2.3",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-hot-server-middleware": "^0.3.2",
     "webpack-mild-compile": "^1.0.0",

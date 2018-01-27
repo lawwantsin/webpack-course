@@ -1,7 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
   name: "client",
@@ -41,13 +41,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
+        use: ExtractCssChunks.extract({
           use: {
-            loader: "css-loader",
-            options: {
-              minimize: true
-            }
+            loader: "css-loader"
           }
         })
       },
@@ -91,9 +87,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("[name].css"),
+    new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor"
+      name: ["bootstrap"],
+      filename: "[name].js",
+      minChunks: Infinity
     }),
     new webpack.DefinePlugin({
       "process.env": {

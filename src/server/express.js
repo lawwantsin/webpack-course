@@ -52,13 +52,14 @@ if (isDev) {
   compiler.plugin("done", done)
 } else {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
+    const clientStats = stats.toJson().children[0]
     const render = require("../../build/prod-server-bundle.js").default
     server.use(
       expressStaticGzip("dist", {
         enableBrotli: true
       })
     )
-    server.use(render())
+    server.use(render({ clientStats }))
     done()
   })
 }
