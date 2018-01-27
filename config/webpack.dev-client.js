@@ -3,6 +3,7 @@ const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
+  name: "client",
   entry: {
     vendor: ["react", "react-dom"],
     main: [

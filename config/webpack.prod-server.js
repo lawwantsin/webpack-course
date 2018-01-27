@@ -5,6 +5,7 @@ var nodeExternals = require("webpack-node-externals")
 
 module.exports = env => {
   return {
+    name: "server",
     target: "node",
     externals: nodeExternals(),
     entry: {

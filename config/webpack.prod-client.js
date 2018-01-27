@@ -9,6 +9,7 @@ const BrotliPlugin = require("brotli-webpack-plugin")
 
 module.exports = env => {
   return {
+    name: "client",
     entry: {
       vendor: ["react", "lodash"],
       main: ["./src/main.js"]
