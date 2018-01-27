@@ -20,7 +20,7 @@ body {
   box-shadow: 0 0 20px black;
 }
 
-.profile > h1 {
+h1 {
   font-size: 5em;
   font-family: sans-serif;
   color: white;
