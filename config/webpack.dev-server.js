@@ -1,15 +1,12 @@
 const path = require("path")
 const webpack = require("webpack")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
-var nodeExternals = require("webpack-node-externals")
-import WriteFilePlugin from "write-file-webpack-plugin"
+const nodeExternals = require("./node-externals")
 
 module.exports = {
   name: "server",
   target: "node",
-  externals: nodeExternals({
-    whitelist: ["react-universal-component", "webpack-flush-chunks"]
-  }),
+  externals: nodeExternals,
   entry: "./src/server/render.js",
   output: {
     filename: "dev-server-bundle.js",
@@ -60,7 +57,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new WriteFilePlugin(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),

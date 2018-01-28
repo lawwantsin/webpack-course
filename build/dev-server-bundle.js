@@ -571,152 +571,132 @@ exports.default = ReportChunks;
 
 Object.defineProperty(exports, "__esModule", {
   value: true
-})
-exports.clearChunks = exports.flushModuleIds = exports.flushChunkNames = exports.MODULE_IDS = exports.CHUNK_NAMES = undefined
-exports.default = requireUniversalModule
+});
+exports.clearChunks = exports.flushModuleIds = exports.flushChunkNames = exports.MODULE_IDS = exports.CHUNK_NAMES = undefined;
+exports.default = requireUniversalModule;
 
-var _utils = __webpack_require__("./node_modules/react-universal-component/dist/utils.js")
+var _utils = __webpack_require__("./node_modules/react-universal-component/dist/utils.js");
 
-var CHUNK_NAMES = (exports.CHUNK_NAMES = new Set())
-var MODULE_IDS = (exports.MODULE_IDS = new Set())
+var CHUNK_NAMES = exports.CHUNK_NAMES = new Set();
+var MODULE_IDS = exports.MODULE_IDS = new Set();
 
 function requireUniversalModule(universalConfig, options, props, prevProps) {
   var key = options.key,
-    _options$timeout = options.timeout,
-    timeout = _options$timeout === undefined ? 15000 : _options$timeout,
-    onLoad = options.onLoad,
-    onError = options.onError,
-    isDynamic = options.isDynamic,
-    modCache = options.modCache,
-    promCache = options.promCache
+      _options$timeout = options.timeout,
+      timeout = _options$timeout === undefined ? 15000 : _options$timeout,
+      onLoad = options.onLoad,
+      onError = options.onError,
+      isDynamic = options.isDynamic,
+      modCache = options.modCache,
+      promCache = options.promCache;
 
-  var config = getConfig(isDynamic, universalConfig, options, props)
+
+  var config = getConfig(isDynamic, universalConfig, options, props);
   var chunkName = config.chunkName,
-    path = config.path,
-    resolve = config.resolve,
-    load = config.load
+      path = config.path,
+      resolve = config.resolve,
+      load = config.load;
 
-  var asyncOnly = (!path && !resolve) || typeof chunkName === "function"
+  var asyncOnly = !path && !resolve || typeof chunkName === 'function';
 
   var requireSync = function requireSync(props, context) {
-    var exp = (0, _utils.loadFromCache)(chunkName, props, modCache)
+    var exp = (0, _utils.loadFromCache)(chunkName, props, modCache);
 
     if (!exp) {
-      var mod = void 0
+      var mod = void 0;
 
       if (!(0, _utils.isWebpack)() && path) {
-        var modulePath = (0, _utils.callForString)(path, props) || ""
-        mod = (0, _utils.tryRequire)(modulePath)
+        var modulePath = (0, _utils.callForString)(path, props) || '';
+        mod = (0, _utils.tryRequire)(modulePath);
       } else if ((0, _utils.isWebpack)() && resolve) {
-        var weakId = (0, _utils.callForString)(resolve, props)
+        var weakId = (0, _utils.callForString)(resolve, props);
 
         if (__webpack_require__.m[weakId]) {
-          mod = (0, _utils.tryRequire)(weakId)
+          mod = (0, _utils.tryRequire)(weakId);
         }
       }
 
       if (mod) {
-        exp = (0, _utils.resolveExport)(
-          mod,
-          key,
-          onLoad,
-          chunkName,
-          props,
-          context,
-          modCache,
-          true
-        )
+        exp = (0, _utils.resolveExport)(mod, key, onLoad, chunkName, props, context, modCache, true);
       }
     }
 
-    return exp
-  }
+    return exp;
+  };
 
   var requireAsync = function requireAsync(props, context) {
-    var exp = (0, _utils.loadFromCache)(chunkName, props, modCache)
-    if (exp) return Promise.resolve(exp)
+    var exp = (0, _utils.loadFromCache)(chunkName, props, modCache);
+    if (exp) return Promise.resolve(exp);
 
-    var cachedPromise = (0, _utils.loadFromPromiseCache)(
-      chunkName,
-      props,
-      promCache
-    )
-    if (cachedPromise) return cachedPromise
+    var cachedPromise = (0, _utils.loadFromPromiseCache)(chunkName, props, promCache);
+    if (cachedPromise) return cachedPromise;
 
-    var prom = new Promise(function(res, rej) {
+    var prom = new Promise(function (res, rej) {
       var reject = function reject(error) {
-        error = error || new Error("timeout exceeded")
-        clearTimeout(timer)
+        error = error || new Error('timeout exceeded');
+        clearTimeout(timer);
         if (onError) {
-          var _isServer = typeof window === "undefined"
-          var info = { isServer: _isServer }
-          onError(error, info)
+          var _isServer = typeof window === 'undefined';
+          var info = { isServer: _isServer };
+          onError(error, info);
         }
-        rej(error)
-      }
+        rej(error);
+      };
 
       // const timer = timeout && setTimeout(reject, timeout)
-      var timer = timeout && setTimeout(reject, timeout)
+      var timer = timeout && setTimeout(reject, timeout);
 
       var resolve = function resolve(mod) {
-        clearTimeout(timer)
+        clearTimeout(timer);
 
-        var exp = (0, _utils.resolveExport)(
-          mod,
-          key,
-          onLoad,
-          chunkName,
-          props,
-          context,
-          modCache
-        )
-        if (exp) return res(exp)
+        var exp = (0, _utils.resolveExport)(mod, key, onLoad, chunkName, props, context, modCache);
+        if (exp) return res(exp);
 
-        reject(new Error("export not found"))
-      }
+        reject(new Error('export not found'));
+      };
 
-      var request = load(props, { resolve: resolve, reject: reject })
+      var request = load(props, { resolve: resolve, reject: reject });
 
       // if load doesn't return a promise, it must call resolveImport
       // itself. Most common is the promise implementation below.
-      if (!request || typeof request.then !== "function") return
-      request.then(resolve).catch(reject)
-    })
+      if (!request || typeof request.then !== 'function') return;
+      request.then(resolve).catch(reject);
+    });
 
-    ;(0, _utils.cacheProm)(prom, chunkName, props, promCache)
-    return prom
-  }
+    (0, _utils.cacheProm)(prom, chunkName, props, promCache);
+    return prom;
+  };
 
   var addModule = function addModule(props) {
     if (_utils.isServer || _utils.isTest) {
       if (chunkName) {
-        var name = (0, _utils.callForString)(chunkName, props)
-        if (name) CHUNK_NAMES.add(name)
-        if (!_utils.isTest) return name // makes tests way smaller to run both kinds
+        var name = (0, _utils.callForString)(chunkName, props);
+        if (name) CHUNK_NAMES.add(name);
+        if (!_utils.isTest) return name; // makes tests way smaller to run both kinds
       }
 
       if ((0, _utils.isWebpack)()) {
-        var weakId = (0, _utils.callForString)(resolve, props)
-        if (weakId) MODULE_IDS.add(weakId)
-        return weakId
+        var weakId = (0, _utils.callForString)(resolve, props);
+        if (weakId) MODULE_IDS.add(weakId);
+        return weakId;
       }
 
       if (!(0, _utils.isWebpack)()) {
-        var modulePath = (0, _utils.callForString)(path, props)
-        if (modulePath) MODULE_IDS.add(modulePath)
-        return modulePath
+        var modulePath = (0, _utils.callForString)(path, props);
+        if (modulePath) MODULE_IDS.add(modulePath);
+        return modulePath;
       }
     }
-  }
+  };
 
   var shouldUpdate = function shouldUpdate(next, prev) {
-    var cacheKey = (0, _utils.callForString)(chunkName, next)
+    var cacheKey = (0, _utils.callForString)(chunkName, next);
 
-    var config = getConfig(isDynamic, universalConfig, options, prev)
-    var prevCacheKey = (0, _utils.callForString)(config.chunkName, prev)
+    var config = getConfig(isDynamic, universalConfig, options, prev);
+    var prevCacheKey = (0, _utils.callForString)(config.chunkName, prev);
 
-    return cacheKey !== prevCacheKey
-  }
+    return cacheKey !== prevCacheKey;
+  };
 
   return {
     requireSync: requireSync,
@@ -724,50 +704,45 @@ function requireUniversalModule(universalConfig, options, props, prevProps) {
     addModule: addModule,
     shouldUpdate: shouldUpdate,
     asyncOnly: asyncOnly
-  }
+  };
 }
 
-var flushChunkNames = (exports.flushChunkNames = function flushChunkNames() {
-  var chunks = Array.from(CHUNK_NAMES)
-  CHUNK_NAMES.clear()
-  return chunks
-})
+var flushChunkNames = exports.flushChunkNames = function flushChunkNames() {
+  var chunks = Array.from(CHUNK_NAMES);
+  CHUNK_NAMES.clear();
+  return chunks;
+};
 
-var flushModuleIds = (exports.flushModuleIds = function flushModuleIds() {
-  var ids = Array.from(MODULE_IDS)
-  MODULE_IDS.clear()
-  return ids
-})
+var flushModuleIds = exports.flushModuleIds = function flushModuleIds() {
+  var ids = Array.from(MODULE_IDS);
+  MODULE_IDS.clear();
+  return ids;
+};
 
-var clearChunks = (exports.clearChunks = function clearChunks() {
-  CHUNK_NAMES.clear()
-  MODULE_IDS.clear()
-})
+var clearChunks = exports.clearChunks = function clearChunks() {
+  CHUNK_NAMES.clear();
+  MODULE_IDS.clear();
+};
 
 var getConfig = function getConfig(isDynamic, universalConfig, options, props) {
   if (isDynamic) {
-    return typeof universalConfig === "function"
-      ? universalConfig(props)
-      : universalConfig
+    return typeof universalConfig === 'function' ? universalConfig(props) : universalConfig;
   }
 
-  var load =
-    typeof universalConfig === "function"
-      ? universalConfig // $FlowIssue
-      : function() {
-          return universalConfig
-        }
+  var load = typeof universalConfig === 'function' ? universalConfig : // $FlowIssue
+  function () {
+    return universalConfig;
+  };
 
   return {
-    file: "default",
-    id: options.id || "default",
-    chunkName: options.chunkName || "default",
-    resolve: options.resolve || "",
-    path: options.path || "",
+    file: 'default',
+    id: options.id || 'default',
+    chunkName: options.chunkName || 'default',
+    resolve: options.resolve || '',
+    path: options.path || '',
     load: load
-  }
-}
-
+  };
+};
 
 /***/ }),
 
@@ -886,6 +861,19 @@ var cacheProm = exports.cacheProm = function cacheProm(pr, chunkName, props, pro
   return promisecache[callForString(chunkName, props)] = pr;
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
+/***/ "./node_modules/react-universal-component/server.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+  flushModuleIds: __webpack_require__("./node_modules/react-universal-component/dist/requireUniversalModule.js").flushModuleIds,
+  flushChunkNames: __webpack_require__("./node_modules/react-universal-component/dist/requireUniversalModule.js").flushChunkNames,
+  clearChunks: __webpack_require__("./node_modules/react-universal-component/dist/requireUniversalModule.js").clearChunks,
+  ReportChunks: __webpack_require__("./node_modules/react-universal-component/dist/report-chunks.js").default
+}
+
 
 /***/ }),
 
@@ -1564,11 +1552,11 @@ var _path2 = __webpack_require__("path");
 
 var _path3 = _interopRequireDefault(_path2);
 
-var _importCss2 = __webpack_require__("babel-plugin-universal-import/importCss");
+var _importCss2 = __webpack_require__("./src/node_modules/babel-plugin-universal-import/importCss.js");
 
 var _importCss3 = _interopRequireDefault(_importCss2);
 
-var _universalImport2 = __webpack_require__("babel-plugin-universal-import/universalImport");
+var _universalImport2 = __webpack_require__("./src/node_modules/babel-plugin-universal-import/universalImport.js");
 
 var _universalImport3 = _interopRequireDefault(_universalImport2);
 
@@ -1647,11 +1635,11 @@ var _path2 = __webpack_require__("path");
 
 var _path3 = _interopRequireDefault(_path2);
 
-var _importCss2 = __webpack_require__("babel-plugin-universal-import/importCss");
+var _importCss2 = __webpack_require__("./src/node_modules/babel-plugin-universal-import/importCss.js");
 
 var _importCss3 = _interopRequireDefault(_importCss2);
 
-var _universalImport2 = __webpack_require__("babel-plugin-universal-import/universalImport");
+var _universalImport2 = __webpack_require__("./src/node_modules/babel-plugin-universal-import/universalImport.js");
 
 var _universalImport3 = _interopRequireDefault(_universalImport2);
 
@@ -1822,6 +1810,170 @@ module.exports = __webpack_require__.p + "/images/link.jpg";
 
 /***/ }),
 
+/***/ "./src/node_modules/babel-plugin-universal-import/importCss.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* eslint-disable */
+
+var ADDED = {}
+
+module.exports = function(chunkName, options) {
+  var opts = options || {}
+  var href = getHref(chunkName)
+  if (!href) {
+    if ("development" === 'development' && !opts.disableWarnings) {
+      if (typeof window === 'undefined' || !window.__CSS_CHUNKS__) {
+        console.warn(
+          '[UNIVERSAL-IMPORT] no css chunks hash found at "window.__CSS_CHUNKS__". Make sure you are using: https://www.npmjs.com/package/extract-css-chunks-webpack-plugin . If you are not serving CSS, disregard this message.'
+        )
+        return
+      }
+
+      console.warn(
+        '[UNIVERSAL-IMPORT] no chunk, ',
+        chunkName,
+        ', found in "window.__CSS_CHUNKS__". If you are not serving CSS for this chunk, disregard this message.'
+      )
+    }
+
+    return
+  }
+
+  if (ADDED[href] === true) {
+    return Promise.resolve()
+  }
+  ADDED[href] = true
+
+  var head = document.getElementsByTagName('head')[0]
+  var link = document.createElement('link')
+
+  link.charset = 'utf-8'
+  link.type = 'text/css'
+  link.rel = 'stylesheet'
+  link.timeout = 30000
+
+  return new Promise(function(resolve, reject) {
+    var timeout
+    var img
+
+    var onload = function() {
+      // Check if we created the img tag.
+      // If we did then the chunk was loaded via img.src
+      // and we need to set the link.href which will then
+      // load the resource from cache
+      if (img) {
+        link.href = href
+        img.onerror = null // avoid mem leaks in IE.
+      }
+      link.onerror = null // avoid mem leaks in IE.
+      clearTimeout(timeout)
+      resolve()
+    }
+
+    link.onerror = function() {
+      link.onerror = link.onload = null // avoid mem leaks in IE.
+      clearTimeout(timeout)
+      var message = 'could not load css chunk: ' + chunkName
+      reject(new Error(message))
+    }
+
+    if (isOnloadSupported() && 'onload' in link) {
+      link.onload = onload
+      link.href = href
+    } else {
+      // Use img.src as a fallback to loading the css chunk in browsers
+      // which don’t support link.onload
+      // We use the img.onerror handler because an error will always fire
+      // when parsing the response
+      // Then we know the resource has been loaded
+      img = document.createElement('img')
+      img.onerror = onload
+      img.src = href
+    }
+
+    timeout = setTimeout(link.onerror, link.timeout)
+    head.appendChild(link)
+  })
+}
+
+function getHref(chunkName) {
+  if (typeof window === 'undefined' || !window.__CSS_CHUNKS__) return null
+  return window.__CSS_CHUNKS__[chunkName]
+}
+
+// Checks whether the browser supports link.onload
+// Reference: https://pie.gd/test/script-link-events/
+function isOnloadSupported() {
+  var userAgent = navigator.userAgent
+  var supportedMajor = 535
+  var supportedMinor = 24
+  var match = userAgent.match(/\ AppleWebKit\/(\d+)\.(\d+)/)
+  if (match) {
+    var major = +match[1]
+    var minor = +match[2]
+    return (
+      (major === supportedMajor && minor >= supportedMinor) ||
+      major > supportedMajor
+    )
+  }
+  // All other browsers support it
+  return true
+}
+
+
+/***/ }),
+
+/***/ "./src/node_modules/babel-plugin-universal-import/universalImport.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {/* eslint-disable */
+
+module.exports = function(config, makeThennable) {
+  if (makeThennable === false) return config
+
+  var load = config.load
+  config.then = function(cb) {
+    return load().then(function(res) {
+      return cb && cb(res)
+    })
+  }
+  config.catch = function(cb) {
+    return load().catch(function(e) {
+      return cb && cb(e)
+    })
+  }
+  return config
+}
+
+var isSet = false
+
+function setHasPlugin() {
+  if (isSet) return
+  var universal
+  var isWebpack = typeof __webpack_require__ !== 'undefined'
+
+  try {
+    if (isWebpack) {
+      var weakId = /*require.resolve*/("./node_modules/react-universal-component/dist/index.js")
+      universal = __webpack_require__(weakId)
+    } else {
+      var pkg = 'react-universal-component'
+      universal = module.require(pkg)
+    }
+
+    if (universal) {
+      universal.setHasBabelPlugin()
+      isSet = true
+    }
+  } catch (e) {}
+}
+
+setHasPlugin()
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
 /***/ "./src/server/render.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1844,7 +1996,7 @@ var _Routes = __webpack_require__("./src/components/Routes.js");
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
-var _server2 = __webpack_require__("react-universal-component/server");
+var _server2 = __webpack_require__("./node_modules/react-universal-component/server.js");
 
 var _webpackFlushChunks = __webpack_require__("./node_modules/webpack-flush-chunks/dist/flushChunks.js");
 
@@ -1864,7 +2016,7 @@ var _default = function _default(_ref) {
 
     res.send("\n    <html>\n      <head>\n        " + styles + "\n      </head>\n      <body>\n        <div id=\"react-root\">" + (0, _server.renderToString)(_react2.default.createElement(
       _reactRouter.StaticRouter,
-      { location: req.originalUrl, context: {} },
+      { location: req.url, context: {} },
       _react2.default.createElement(_Routes2.default, null)
     )) + "</div>\n        " + js + "\n        " + cssHash + "\n      </body>\n    </html>\n  ");
   };
@@ -1882,20 +2034,6 @@ var _temp = function () {
 }();
 
 ;
-
-/***/ }),
-
-/***/ "babel-plugin-universal-import/importCss":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-plugin-universal-import/importCss");
-
-/***/ }),
-
-/***/ "babel-plugin-universal-import/universalImport":
-/***/ (function(module, exports) {
-
-module.exports = require("babel-plugin-universal-import/universalImport");
 
 /***/ }),
 
@@ -1959,13 +2097,6 @@ module.exports = require("react-router");
 /***/ (function(module, exports) {
 
 module.exports = require("react-router-dom");
-
-/***/ }),
-
-/***/ "react-universal-component/server":
-/***/ (function(module, exports) {
-
-module.exports = require("react-universal-component/server");
 
 /***/ })
 

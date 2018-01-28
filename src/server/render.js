@@ -18,7 +18,7 @@ export default ({ clientStats }) => (req, res) => {
       </head>
       <body>
         <div id="react-root">${renderToString(
-          <StaticRouter location={req.originalUrl} context={{}}>
+          <StaticRouter location={req.url} context={{}}>
             <Routes />
           </StaticRouter>
         )}</div>
