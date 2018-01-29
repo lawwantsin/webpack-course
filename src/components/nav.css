@@ -1,0 +1,11 @@
+.nav {
+  width: 100%;
+  line-height: 2em;
+  background-color: black;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0 20px;
+}
