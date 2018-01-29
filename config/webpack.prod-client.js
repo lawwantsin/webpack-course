@@ -67,7 +67,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractCssChunks(),
+    new ExtractCssChunks({
+      filename: "[name].[contenthash].css"
+    }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),

@@ -9,7 +9,6 @@ module.exports = {
     vendor: ["react", "react-dom"],
     main: [
       "react-hot-loader/patch",
-      "babel-runtime/regenerator",
       "webpack-hot-middleware/client?reload=true",
       "./src/main.js"
     ]
