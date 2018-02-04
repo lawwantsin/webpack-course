@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-const HTMLWebpackPlugin = require("html-webpack-plugin")
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
@@ -59,24 +58,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]"
-            }
-          },
-          { loader: "extract-loader" },
-          {
-            loader: "html-loader",
-            options: {
-              attrs: ["img:src"]
-            }
-          }
-        ]
-      },
-      {
         test: /\.md$/,
         use: [
           {
@@ -100,11 +81,6 @@ module.exports = {
       }
     }),
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin(),
-    new HTMLWebpackPlugin({
-      template: "./src/index.ejs",
-      inject: true,
-      title: "Link's Journal"
-    })
+    new webpack.NamedModulesPlugin()
   ]
 }
