@@ -1,7 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
-// const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   name: "client",
@@ -103,10 +102,5 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(), // Enable HMR
     new webpack.NamedModulesPlugin()
-    // new HTMLWebpackPlugin({
-    //   template: "./src/index.ejs",
-    //   inject: true,
-    //   title: "Link's Journal"
-    // })
   ]
 }
