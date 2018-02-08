@@ -24,7 +24,7 @@
     "webpack": "*",
     "webpack-dev-server": "*",
     "webpack-hot-middleware": "*",
-    "webpack-mild-compile": "*"
+    "webpack-mild-compile": "^2.0.0"
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
