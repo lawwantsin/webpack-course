@@ -1,0 +1,680 @@
+$white: #fff;
+$black: #000;
+$grey: #999;
+$lgrey: #ddd;
+
+@font-face {
+  font-family: 'Krungthep';
+  src: font-url('krungthep-webfont.eot');
+  src: font-url('krungthep-webfont.eot?#iefix') format('eot'),
+       font-url('krungthep-webfont.woff') format('woff'),
+       font-url('krungthep-webfont.ttf') format('truetype'),
+       font-url('krungthep-webfont.svg#webfontB2ikyPY2') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BankGothicMdBTMedium';
+  src: font-url('bankgthd-webfont.eot');
+  src: font-url('bankgthd-webfont.eot?iefix') format('eot'),
+       font-url('bankgthd-webfont.woff') format('woff'),
+       font-url('bankgthd-webfont.ttf') format('truetype'),
+       font-url('bankgthd-webfont.svg#webfontPFvjvtdZ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body.home {
+  overflow-y: scroll;
+}
+
+* {
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+ul {
+  list-style: none;
+}
+.tc {
+  text-align: center;
+}
+.hidden {display: none;}
+.fl {float: left;}
+.fr {float: right;}
+.clear {content: ''; display: block; clear: both;}
+
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $white;
+  z-index: 2;
+  color: $lgrey;
+  text-align: center;
+  font-family: arial, sans-serif;
+  font-family: 'Krungthep';
+  .elipses {
+    font-size: 90px;
+    line-height: 0px;
+    letter-spacing: 5px;
+  }
+  .initials {
+    font-size: 120px;
+    margin-top: 300px;
+  }
+}
+#all {
+  z-index: 1;
+  position: relative;
+  top: 0;
+  left: 50%;
+  height: 918px;
+  width: 960px;
+  margin-left: -480px;
+  color: $black;
+  font-family: 'BankGothicMdBTMedium';
+}
+
+.name {
+  font-family: 'Krungthep';
+  font-size: 38px;
+  padding: 40px 0 0 0;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 0.3em;
+}
+
+.title {
+  font-family: 'BankGothicMdBTMedium';
+  width: 100%;
+  color: $grey;
+  text-align: center;
+  .col {
+    font-size: 20px;
+    display: inline-block;
+    padding: 0 40px;
+  }
+}
+
+.main {
+  margin-top: 40px;
+  border-bottom: 3px solid $black;
+  width: 100%;
+  .col {
+    width: 328px;
+    float: left;
+    position: relative;
+  }
+  .video {
+    visibility: hidden;
+    background: $lgrey image-url('video_play.png') center center no-repeat;
+    width: 326px;
+    height: 212px;
+    margin-bottom: 8px;
+    border: 1px solid $black;
+  }
+  .coming_soon {
+    visibility: hidden;
+    position: absolute;
+    height: 163px;
+    width: 193px;
+    background: transparent image-url('coming_soon.png') no-repeat;
+  }
+  .coming_soon1 {
+    top: -20px;
+    left: 155px;
+  }
+  .coming_soon2 {
+    top: 58px;
+    left: -15px;
+  }
+  .title {
+    line-height: 20px;
+    width: 326px;
+    color: $black;
+    text-align: center;
+    visibility: hidden;
+  }
+  .subtitle {
+    visibility: hidden;
+    line-height: 20px;
+    width: 326px;
+    color: $grey;
+    text-align: center;
+  }
+  .navigation {
+    top: 258px;
+    position: relative;
+    font-size: 17px;
+    height: 180px;
+    width: 326px;
+    border-left: 3px solid $black;
+    .nav {
+      display: block;
+      position: relative;
+      line-height: 30px;
+      height: 30px;
+      text-decoration: none;
+      color: $black;
+      z-index: 2;
+      padding-left: 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: #efefef;
+      }
+    }
+    a {
+      color: black;
+    }
+    .indicator {
+      z-index: 1;
+      height: 30px;
+      width: 326px;
+      top: 0;
+      position: absolute;
+      background-color: $lgrey;
+    }
+  }
+  .battlemech {
+    float: left;
+    width: 304px;
+    height: 473px;
+    margin-top: -15px;
+    background: image-url('robot.png') no-repeat top center;
+  }
+  .also {
+    position: relative;
+    top: 300px;
+    text-align: center;
+    font-size: 17px;
+    color: $black;
+    a.github {
+      line-height: 40px;
+      display: block;
+      color: $black;
+    }
+  }
+}
+.supplimental {
+  margin-top: 10px;
+  .sup {
+    position: relative;
+    .summary {
+      float: left;
+      padding-right: 20px;
+      width: 350px;
+    }
+    h1 {
+      color: $black;
+      font-size: 23px;
+      padding: 5px 0;
+    }
+    p {
+      text-align: justify;
+      font-size: 13px;
+      margin: 0 0 10px 0;
+      line-height: 18px;
+      a {
+        color: $black;
+      }
+    }
+  }
+  .brief_history {
+    h1 {
+      text-align: right;
+      padding-right: 15px;
+    }
+    .portrait {
+      float: left;
+      height: 287px;
+      width: 330px;
+      background: image-url('portrait.jpg') no-repeat;
+    }
+    .text {
+      float: left;
+      margin: 10px 10px 0 10px;
+      width: 600px;
+      padding-right: 10px;
+      height: 240px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      @extend .scrollbar;
+    }
+  }
+  .preferred_apis {
+    height: 274px;
+    width: 556px;
+    .summary {
+      position: absolute;
+      left: 590px;
+      p {
+        height: 200px;
+        padding-right: 10px;
+        overflow: auto;
+        @extend .scrollbar;
+      }
+    }
+    .brain {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: $white image-url('brain.png') no-repeat center center;
+      z-index: 2;
+      height: 204px;
+      width: 556px;
+      margin: 36px 0 0 0;
+      left: 10px;
+    }
+    .logos {
+      position: absolute;
+      height: 204px;
+      width: 556px;
+      margin: 36px 0 0 0;
+      left: 10px;
+      z-index: 1;
+      a {
+        background-image: image-url('api_collage.png');
+        position: absolute;
+        cursor: pointer;
+        display: block;
+        border: 0;
+      }
+      .jquery {
+        height: 31px;
+        width: 124px;
+        background-position: 0 0;
+      }
+      .canjs {
+        width: 93px;
+        height: 40px;
+        left: 68px;
+        top: 30px;
+        background-position: -68px -30px;
+      }
+      .rails {
+        width: 52px;
+        height: 67px;
+        top: 4px;
+        left: 174px;
+        background-position: -174px -4px;
+      }
+      .flowplayer {
+        width: 122px;
+        height: 39px;
+        top: 3px;
+        left: 246px;
+        background-position: -246px -3px;
+      }
+      .chrome {
+        width: 48px;
+        height: 47px;
+        top: 32px;
+        left: 361px;
+        background-position: -362px -32px;
+      }
+      .haml {
+        width: 67px;
+        height: 76px;
+        top: 1px;
+        left: 419px;
+        background-position: -419px -1px;
+      }
+      .sass {
+        width: 65px;
+        height: 69px;
+        top: 0px;
+        left: 491px;
+        background-position: -491px -0px;
+      }
+      .facebook {
+        width: 96px;
+        height: 27px;
+        top: 45px;
+        left: 239px;
+        background-position: -239px -45px;
+      }
+      .google {
+        width: 97px;
+        height: 37px;
+        left: 6px;
+        top: 71px;
+        background-position: -6px -71px ;
+      }
+      .heroku {
+        width: 124px;
+        height: 39px;
+        left: 146px;
+        top: 75px;
+        background-position: -146px -75px ;
+      }
+      .twitter {
+        width: 91px;
+        height: 27px;
+        left: 278px;
+        top: 76px;
+        background-position: -278px -76px;
+      }
+      .textmate {
+        width: 51px;
+        height: 54px;
+        left: 424px;
+        top: 80px;
+        background-position: -424px -80px;
+      }
+      .apple {
+        width: 49px;
+        height: 56px;
+        left: 499px;
+        top: 73px;
+        background-position: -499px -73px;
+      }
+      .appmobi {
+        width: 132px;
+        height: 34px;
+        left: 4px;
+        top: 109px;
+        background-position: -4px -109px;
+      }
+      .mysql {
+        width: 93px;
+        height: 48px;
+        left: 151px;
+        top: 115px;
+        background-position: -151px -115px;
+      }
+      .samurai {
+        width: 124px;
+        height: 35px;
+        left: 297px;
+        top: 104px;
+        background-position: -297px -104px;
+      }
+      .postgres {
+        width: 152px;
+        height: 33px;
+        left: 268px;
+        top: 140px;
+        background-position: -268px -140px;
+      }
+      .finalcut {
+        width: 51px;
+        height: 53px;
+        left: 430px;
+        top: 139px;
+        background-position: -430px -139px;
+      }
+      .photoshop {
+        width: 57px;
+        height: 53px;
+        left: 497px;
+        top: 138px;
+        background-position-x: -497px;
+        background-position-y: -138px;
+      }
+      .phonegap {
+        width: 141px;
+        height: 44px;
+        left: 1px;
+        top: 153px;
+        background-position: -1px -153px;
+      }
+      .dnsimple {
+        width: 119px;
+        height: 39px;
+        left: 157px;
+        top: 166px;
+        background-position: -157px -166px;
+      }
+      .couchbase {
+        width: 108px;
+        height: 19px;
+        left: 302px;
+        top: 175px;
+        background-position: -302px -175px;
+      }
+    }
+  }
+  .javascript_frameworks {
+    .col {
+      float: left;
+      margin: 0 10px;
+      h3 {
+        text-align: center;
+        line-height: 40px;
+      }
+      .button {
+        width: 296px;
+        height: 60px;
+        border: 2px outset #ddd;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+      .pressed {
+        border: 2px inset #ddd;
+      }
+    }
+    .midtext {
+      width: 300px;
+      text-align: justify;
+      margin-top: 36px;
+      height: 180px;
+      p {
+        height: 200px;
+        padding-right: 10px;
+        overflow: auto;
+        @extend .scrollbar;
+      }
+    }
+    .frameworks {
+      width: 300px;
+      .logo-bb {
+        background: image-url('backbone.png') center center no-repeat;
+      }
+      .logo-canjs {
+        background: image-url('canjs.png') center center no-repeat;
+      }
+    }
+    .testing {
+      width: 300px;
+      .logo-test {
+        background: image-url('jasmine.png') center center no-repeat;
+      }
+    }
+  }
+  .webography {
+    height: 203px;
+    width: 476px;
+    .summary {
+      position: absolute;
+      left: 540px;
+      width: 390px;
+      p {
+        height: 200px;
+        padding-right: 10px;
+        overflow: auto;
+        @extend .scrollbar;
+      }
+    }
+    .globe {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: $white image-url('globe.png') no-repeat center center;
+      z-index: 2;
+      height: 204px;
+      width: 476px;
+      margin: 32px 70px 0 20px;
+      left: 10px;
+    }
+    .logos {
+      position: absolute;
+      height: 204px;
+      width: 476px;
+      margin: 32px 70px 0 30px;
+      a {
+        background-image: image-url('presence_collage.png');
+        position: absolute;
+        cursor: pointer;
+        display: block;
+        outline: 0;
+        border: 0;
+      }
+      .tumblr {
+        height: 38px;
+        width: 128px;
+        top: 1px;
+        left: 3px;
+        background-position: -1px -3px;
+      }
+      .linkedin {
+        top: 96px;
+        left: 3px;
+        height: 32px;
+        width: 99px;
+        background-position: -3px -96px;
+      }
+      .vimeo {
+        top: 4px;
+        left: 148px;
+        height: 43px;
+        width: 95px;
+        background-position: -148px -4px;
+      }
+      .github {
+        height: 47px;
+        width: 100px;
+        left: 259px;
+        top: 1px;
+        background-position: -259px -1px;
+      }
+      .csf {
+        height: 47px;
+        width: 104px;
+        left: 373px;
+        top: 2px;
+        background-position: -373px -2px;
+      }
+      .google {
+        height: 40px;
+        width: 106px;
+        left: 1px;
+        top: 50px;
+        background-position: -1px -50px;
+      }
+      .youtube {
+        height: 49px;
+        width: 116px;
+        left: 130px;
+        top: 54px;
+        background-position: -130px -54px;
+      }
+      .imdb {
+        height: 44px;
+        width: 87px;
+        left: 259px;
+        top: 54px;
+        background-position: -259px -54px;
+      }
+      .wwrails {
+        height: 35px;
+        width: 113px;
+        left: 361px;
+        top: 56px;
+        background-position: -361px -56px;
+      }
+      .spins {
+        height: 59px;
+        width: 105px;
+        left: 1px;
+        top: 141px;
+        background-position: -1px -141px;
+      }
+      .rsf {
+        height: 86px;
+        width: 45px;
+        left: 122px;
+        top: 112px;
+        background-position: -122px -112px;
+      }
+      .csfslate {
+        height: 86px;
+        width: 45px;
+        left: 171px;
+        top: 112px;
+        background-position: -171px -112px;
+      }
+      .fads {
+        height: 86px;
+        width: 45px;
+        left: 219px;
+        top: 112px;
+        background-position: -219px -112px;
+      }
+      .pygmalion {
+        height: 39px;
+        width: 91px;
+        left: 274px;
+        top: 107px;
+        background-position: -274px -107px;
+      }
+      .scripped {
+        height: 39px;
+        width: 103px;
+        left: 371px;
+        top: 97px;
+        background-position: -371px -97px;
+      }
+      .facebook {
+        height: 23px;
+        width: 98px;
+        left: 289px;
+        top: 150px;
+        background-position: -289px -150px;
+      }
+      .twitter {
+        height: 20px;
+        width: 89px;
+        left: 299px;
+        top: 177px;
+        background-position: -299px -177px;
+      }
+      .dice {
+        height: 45px;
+        width: 77px;
+        left: 397px;
+        top: 152px;
+        background-position: -397px -152px;
+      }
+    }
+  }
+}
+
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 12px;
+    background: white;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0px rgba(255,255,255,0.9);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background: #ddd;
+    -webkit-box-shadow: inset 0 0 0px #ddd;;
+  }
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,255,255,0);;
+  }
+}

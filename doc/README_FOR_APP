@@ -1,0 +1,22 @@
+LAWRENCEWHITESIDE.COM
+
+This is the application running at Lawrencewhiteside.com
+It consists of the javascript, ruby, haml and scss used to create a simple portfolio app.
+It is released free and open, same license (non-license as JQuery Tools.)
+
+To be completed with the following as examples of my experience and knowledge.
+- RSpec coverage for the server-side.
+- Funcunit test coverage for the client-side.
+- Comments everywhere to better understand my thought process.
+
+Technologies used include.
+
+Rails 3.2.2
+Ruby 1.9.2
+Javascript MVC 3.2
+HAML/SASS
+RSpec 2
+Funcunit
+
+Ay questions or comments.  Please email me at law@cinemasetfree.com
+Thanks for checking it out.
