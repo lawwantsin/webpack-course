@@ -1,0 +1,29 @@
+{
+  "name": "webpack-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --config=config/webpack.dev.js",
+    "prod": "webpack --config=config/webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lawwantsin/webpack-course.git"
+  },
+  "keywords": [],
+  "author":
+    "Lawrence Whiteside <law@cinemasetfree.com> (http://lawrencewhiteside.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lawwantsin/webpack-course/issues"
+  },
+  "homepage": "https://github.com/lawwantsin/webpack-course#readme",
+  "dependencies": {
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}

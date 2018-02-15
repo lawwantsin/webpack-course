@@ -13,3 +13,14 @@
   = require backbonejs/home/ibutton.js
   = require backbonejs/home/routes.js
 */
+
+require("../jquery/jquery-1.9.1")
+require("../jquery/jquery.easing.1.3")
+require("./lib/underscore.js")
+require("./lib/backbone.js")
+require("./home/body.js")
+require("./home/navigation.js")
+require("./home/collage.js")
+require("./home/explode.js")
+require("./home/ibutton.js")
+require("./home/routes.js")
