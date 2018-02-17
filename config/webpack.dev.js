@@ -6,8 +6,7 @@ module.exports = {
   entry: {
     main: [
       "react-hot-loader/patch",
-      "babel-runtime/regenerator",
-      "babel-core/register",
+      "babel-register",
       "webpack-hot-middleware/client?reload=true",
       "./src/main.js"
     ]
@@ -52,24 +51,6 @@ module.exports = {
             loader: "file-loader",
             options: {
               name: "images/[name].[ext]"
-            }
-          }
-        ]
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]"
-            }
-          },
-          { loader: "extract-loader" },
-          {
-            loader: "html-loader",
-            options: {
-              attrs: ["img:src"]
             }
           }
         ]

@@ -12,7 +12,6 @@ injectGlobal`
 
 const Profile = styled.div`
   display: flex;
-  -ms-align-items: center;
   align-items: center;
   justify-content: center;
   height: 100vh;
