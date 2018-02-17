@@ -10,7 +10,7 @@ const BrotliPlugin = require("brotli-webpack-plugin")
 module.exports = env => {
   return {
     entry: {
-      vendor: ["react", "lodash", "react-dom"],
+      vendor: ["react", "react-dom"],
       main: ["./src/main.js"]
     },
     output: {
@@ -70,6 +70,9 @@ module.exports = env => {
       ]
     },
     plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: "vendor"
+      }),
       new ExtractTextPlugin("[name].css"),
       new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,

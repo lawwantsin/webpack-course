@@ -6,7 +6,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 
 module.exports = {
   entry: {
-    vendor: ["react", "lodash"],
+    vendor: ["react", "react-dom"],
     main: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",
