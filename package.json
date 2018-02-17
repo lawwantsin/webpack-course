@@ -15,14 +15,21 @@
     "url": "git+https://github.com/lawwantsin/webpack-course.git"
   },
   "keywords": [],
-  "author":
-    "Lawrence Whiteside <law@cinemasetfree.com> (http://lawrencewhiteside.com)",
+  "author": "Lawrence Whiteside <law@cinemasetfree.com> (http://lawrencewhiteside.com)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lawwantsin/webpack-course/issues"
   },
   "homepage": "https://github.com/lawwantsin/webpack-course#readme",
   "dependencies": {
+    "backbone": "^1.3.3",
+    "expose-loader": "^0.7.4",
+    "globals-loader": "0.0.4",
+    "imports-loader": "^0.7.1",
+    "jquery": "^3.3.1",
+    "raw-loader": "^0.5.1",
+    "script-loader": "^0.7.2",
+    "val-loader": "^1.1.0",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   }

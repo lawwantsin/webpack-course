@@ -8,7 +8,7 @@
   = require canjs/lib/can.control.plugin
   = require canjs/home/body
   = require canjs/home/navigation
-   require canjs/home/collage
+  = require canjs/home/collage
   = require canjs/home/ibutton
   = require canjs/home/explode
 */

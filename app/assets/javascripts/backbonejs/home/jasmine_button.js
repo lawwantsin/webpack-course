@@ -1,15 +1,14 @@
+const $ = require("jquery")
+
 var jasmineRunner = Backbone.View.extend({
+  initialize: function() {},
 
-  initialize : function() {
+  events: {
+    "click .button": "run"
   },
 
-  events : {
-    'click .button' : 'run',
-  },
-
-  run : function() {
-    execJasmine();
+  run: function() {
+    execJasmine()
   }
-
-});
-var runner = new jasmineRunner({el:'.jasmine-runner'});
+})
+var runner = new jasmineRunner({ el: ".jasmine-runner" })
