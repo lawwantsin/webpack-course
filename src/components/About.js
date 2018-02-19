@@ -4,8 +4,8 @@ import "../css/About.css"
 export default props => {
   const siteConfig = require(`../../data/${props.site}/siteConfig.js`)
   const imagePath = require(`../images/${siteConfig.aboutImage}`)
-
   const MarkdownData = require(`../../data/${props.site}/post.md`)
+  import(`../css/${props.site}/theme.css`)
 
   return (
     <div>

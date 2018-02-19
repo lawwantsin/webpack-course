@@ -18,6 +18,7 @@ export default ({ clientStats }) => (req, res) => {
     <html>
       <head>
         ${styles}
+        <link href="/css/${site}-theme-css.css" rel="stylesheet">
       </head>
       <body>
         <div id="react-root">${renderToString(
