@@ -1,8 +1,19 @@
 import React from "react"
 import "../css/Article.css"
+import NotFound from "./NotFound"
 
-export default () => (
-  <div>
-    <h1>Article</h1>
-  </div>
-)
+export default props => {
+  try {
+    const MarkdownData = require(`../../data/${props.site}/${
+      props.params.slug
+    }.md`)
+    return (
+      <div
+        className="content"
+        dangerouslySetInnerHTML={{ __html: MarkdownData.__content }}
+      />
+    )
+  } catch (error) {
+    return <NotFound />
+  }
+}

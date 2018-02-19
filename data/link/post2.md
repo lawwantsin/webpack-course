@@ -3,6 +3,6 @@ title: Title
 author: Link
 ---
 
-# Title of an article
+# Post Two
 
 My name is Link and I'll be damned.
