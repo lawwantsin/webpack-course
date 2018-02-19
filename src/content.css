@@ -5,8 +5,11 @@
   line-height: 1.5em;
   width: 740px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
   border-radius: 10px;
+  min-height: 100vh;
+  z-index: 1;
+  position: relative;
 }
 
 .content > h1 {

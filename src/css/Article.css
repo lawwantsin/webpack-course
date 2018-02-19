@@ -1,0 +1,13 @@
+.Article {
+  margin: 200px auto;
+}
+
+.Article .billboard {
+  position: fixed;
+  height: 300px;
+  width: 100%;
+  top: 0;
+  z-index: 0;
+  background-color: #111;
+  border-bottom: 4px solid white;
+}

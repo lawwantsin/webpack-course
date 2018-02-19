@@ -8,10 +8,13 @@ export default props => {
       props.params.slug
     }.md`)
     return (
-      <div
-        className="content"
-        dangerouslySetInnerHTML={{ __html: MarkdownData.__content }}
-      />
+      <div className="Article">
+        <div className="billboard" />
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: MarkdownData.__content }}
+        />
+      </div>
     )
   } catch (error) {
     return <NotFound />

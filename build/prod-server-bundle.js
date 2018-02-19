@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		4: 0
+/******/ 		6: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -655,28 +655,31 @@ var map = {
 	],
 	"./Article": [
 		"./src/components/Article.js",
-		2
+		1
 	],
 	"./Article.js": [
 		"./src/components/Article.js",
-		2
+		1
 	],
 	"./Gallery": [
 		"./src/components/Gallery.js",
-		1
+		2
 	],
 	"./Gallery.js": [
 		"./src/components/Gallery.js",
-		1
+		2
+	],
+	"./NotFound": [
+		"./src/components/NotFound.js"
+	],
+	"./NotFound.js": [
+		"./src/components/NotFound.js"
 	],
 	"./Routes": [
 		"./src/components/Routes.js"
 	],
 	"./Routes.js": [
 		"./src/components/Routes.js"
-	],
-	"./nav.css": [
-		"./src/components/nav.css"
 	]
 };
 function webpackAsyncContext(req) {
@@ -707,9 +710,10 @@ var map = {
 	"./Article.js": "./src/components/Article.js",
 	"./Gallery": "./src/components/Gallery.js",
 	"./Gallery.js": "./src/components/Gallery.js",
+	"./NotFound": "./src/components/NotFound.js",
+	"./NotFound.js": "./src/components/NotFound.js",
 	"./Routes": "./src/components/Routes.js",
-	"./Routes.js": "./src/components/Routes.js",
-	"./nav.css": "./src/components/nav.css"
+	"./Routes.js": "./src/components/Routes.js"
 };
 function webpackContext(req) {
 	var id = webpackContextResolve(req);
@@ -729,6 +733,37 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 webpackContext.id = "./src/components weak recursive ^\\.\\/.*$";
 module.exports = webpackContext;
+
+/***/ }),
+
+/***/ "./src/components/NotFound.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+  var children = _ref.children;
+  return _react2.default.createElement(
+    "div",
+    { className: "content" },
+    _react2.default.createElement(
+      "h1",
+      null,
+      "Not Found"
+    )
+  );
+};
 
 /***/ }),
 
@@ -754,6 +789,8 @@ var _universalImport2 = __webpack_require__("babel-plugin-universal-import/unive
 
 var _universalImport3 = _interopRequireDefault(_universalImport2);
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -766,7 +803,11 @@ var _reactUniversalComponent2 = _interopRequireDefault(_reactUniversalComponent)
 
 var _reactRouter = __webpack_require__("react-router");
 
-__webpack_require__("./src/components/nav.css");
+__webpack_require__("./src/css/nav.css");
+
+var _NotFound = __webpack_require__("./src/components/NotFound.js");
+
+var _NotFound2 = _interopRequireDefault(_NotFound);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -791,7 +832,13 @@ var UniversalComponent = (0, _reactUniversalComponent2.default)(function (props)
   });
 });
 
-exports.default = function () {
+var getSite = function getSite(staticContext) {
+  return staticContext || {
+    site: location.hostname.split(".")[0]
+  };
+};
+
+exports.default = function (props) {
   return _react2.default.createElement(
     "div",
     null,
@@ -822,16 +869,26 @@ exports.default = function () {
         { exact: true, path: "/" },
         _react2.default.createElement(UniversalComponent, { page: "Gallery" })
       ),
-      _react2.default.createElement(
-        _reactRouterDom.Route,
-        { path: "/about" },
-        _react2.default.createElement(UniversalComponent, { page: "About" })
-      ),
-      _react2.default.createElement(
-        _reactRouterDom.Route,
-        { path: "/article" },
-        _react2.default.createElement(UniversalComponent, { page: "Article" })
-      )
+      _react2.default.createElement(_reactRouterDom.Route, {
+        path: "/about",
+        render: function render(_ref) {
+          var staticContext = _ref.staticContext;
+
+          var site = getSite(staticContext);
+          return _react2.default.createElement(UniversalComponent, _extends({}, site, { page: "About" }));
+        }
+      }),
+      _react2.default.createElement(_reactRouterDom.Route, {
+        path: "/article/:slug",
+        render: function render(_ref2) {
+          var staticContext = _ref2.staticContext,
+              match = _ref2.match;
+
+          var site = getSite(staticContext);
+          return _react2.default.createElement(UniversalComponent, _extends({}, site, match, { page: "Article" }));
+        }
+      }),
+      _react2.default.createElement(_reactRouterDom.Route, { component: _NotFound2.default })
     )
   );
 };
@@ -839,7 +896,7 @@ exports.default = function () {
 
 /***/ }),
 
-/***/ "./src/components/nav.css":
+/***/ "./src/css/nav.css":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -886,9 +943,12 @@ exports.default = function (_ref) {
         styles = _flushChunks.styles,
         cssHash = _flushChunks.cssHash;
 
-    res.send("\n    <html>\n      <head>\n        " + styles + "\n      </head>\n      <body>\n        <div id=\"react-root\">" + (0, _server.renderToString)(_react2.default.createElement(
+    var site = req.headers.host.split(":")[0].split(".")[0];
+    var context = { site: site };
+
+    res.send("\n    <html>\n      <head>\n        " + styles + "\n        <link href=\"/css/" + site + "-theme-css.css\" rel=\"stylesheet\">\n      </head>\n      <body>\n        <div id=\"react-root\">" + (0, _server.renderToString)(_react2.default.createElement(
       _reactRouter.StaticRouter,
-      { location: req.originalUrl, context: {} },
+      { location: req.url, context: context },
       _react2.default.createElement(_Routes2.default, null)
     )) + "</div>\n        " + js + "\n        " + cssHash + "\n      </body>\n    </html>\n  ");
   };

@@ -1,0 +1,18 @@
+.NotFound {
+  display: flex;
+  justify-content: center;
+  -ms-align-items: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.NotFound .inner {
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  height: 300px;
+  width: 300px;
+  border-radius: 100%;
+}
