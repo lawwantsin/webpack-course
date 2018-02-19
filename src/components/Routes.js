@@ -6,6 +6,11 @@ import "../css/nav.css"
 
 const UniversalComponent = universal(props => import(`./${props.page}`))
 
+const getSite = staticContext =>
+  staticContext || {
+    site: location.hostname.split(".")[0]
+  }
+
 export default () => (
   <div>
     <div className="nav">
@@ -17,9 +22,13 @@ export default () => (
       <Route exact path="/">
         <UniversalComponent page="Gallery" />
       </Route>
-      <Route path="/about">
-        <UniversalComponent page="About" />
-      </Route>
+      <Route
+        path="/about"
+        render={({ staticContext }) => {
+          const site = getSite(staticContext)
+          return <UniversalComponent {...site} page="About" />
+        }}
+      />
       <Route path="/article">
         <UniversalComponent page="Article" />
       </Route>

@@ -13,6 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, "../build"),
     libraryTarget: "commonjs2"
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -34,7 +35,7 @@ module.exports = {
         }
       },
       {
-        test: /\.jpg$/,
+        test: /\.(jpg|png|gif)$/,
         use: [
           {
             loader: "file-loader",

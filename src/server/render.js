@@ -11,6 +11,9 @@ export default ({ clientStats }) => (req, res) => {
     chunkNames: flushChunkNames()
   })
 
+  const site = req.headers.host.split(":")[0].split(".")[0]
+  const context = { site }
+
   res.send(`
     <html>
       <head>
@@ -18,7 +21,7 @@ export default ({ clientStats }) => (req, res) => {
       </head>
       <body>
         <div id="react-root">${renderToString(
-          <StaticRouter location={req.url} context={{}}>
+          <StaticRouter location={req.url} context={context}>
             <Routes />
           </StaticRouter>
         )}</div>
