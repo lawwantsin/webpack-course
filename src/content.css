@@ -1,20 +1,41 @@
 .content {
   background-color: #ffffe0;
   box-shadow: 0 0 20px black;
-  font-family: sans-serif;
-  line-height: 1.5em;
-  width: 740px;
+  line-height: 2.4em;
   margin: 0 auto;
   padding: 40px;
   border-radius: 10px;
-  min-height: 100vh;
   z-index: 1;
+  font-size: 1.15em;
+  max-width: 740px;
   position: relative;
+  display: grid;
 }
 
-.content > h1 {
-  font-size: 2em;
-  color: black;
-  text-shadow: none;
-  text-align: left;
+.content img {
+  padding: 10px;
+  margin-top: 7px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.content .left {
+  float: left;
+  width: 50%;
+  margin-right: 20px;
+}
+
+.content .right {
+  float: right;
+  width: 50%;
+  margin-left: 20px;
+}
+
+@media (max-width: 640px) {
+  .content .left,
+  .content .right {
+    float: none;
+    width: 100%;
+    margin: 0 0 20px 0;
+  }
 }

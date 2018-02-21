@@ -1,8 +1,11 @@
 ---
-title: Title
+title: "Day One: An Adventure Begins!"
 author: Link
+posterImage: http://laws-articles.s3.amazonaws.com/link-article-cover.jpg
 ---
 
-# Title of an article
+<p><img src="http://laws-articles.s3.amazonaws.com/article-link-1.jpg" alt="Link Image" class="right" />
+Good morning. I'm off on an adventure to rescue the Princess.  I'll bring my sword because, it's dangerous to go into caves alone, and my sword counts as people.</p>
 
-My name is Link and I'll be damned.
+<p><img src="http://laws-articles.s3.amazonaws.com/article-link-2.jpg" alt="Link Image" class="left" />
+Someone gave me this map. I should keep it on me, like in the upper right-hand corner. Hyrule looks gigantic. I bet they'll have me mowing lawns for a while.</p>

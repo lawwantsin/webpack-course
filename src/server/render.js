@@ -18,7 +18,6 @@ export default ({ clientStats }) => (req, res) => {
     <html>
       <head>
         ${styles}
-        <link href="/css/${site}-theme-css.css" rel="stylesheet">
       </head>
       <body>
         <div id="react-root">${renderToString(
@@ -28,6 +27,7 @@ export default ({ clientStats }) => (req, res) => {
         )}</div>
         ${js}
         ${cssHash}
+        <link href="/css/${site}-theme-css.css" rel="stylesheet">
       </body>
     </html>
   `)
