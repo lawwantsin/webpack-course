@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     main: "./src/main.js"
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist")
@@ -47,12 +48,14 @@ module.exports = {
               name: "[name].[ext]"
             }
           },
-          { loader: "extract-loader" },
           {
-            loader: "html-loader",
+            loader: "extract-loader",
             options: {
-              attrs: ["img:src"]
+              publicPath: "../"
             }
+          },
+          {
+            loader: "html-loader"
           }
         ]
       }
