@@ -6,9 +6,10 @@
   "repository": "https://github.com/lawwantsin/webpack-course.git",
   "license": "MIT",
   "dependencies": {
-    "css-loader": "*",
-    "style-loader": "*",
-    "webpack": "*",
-    "webpack-dev-server": "*"
+    "css-loader": "^0.28.10",
+    "style-loader": "^0.20.2",
+    "webpack": "^4.0.0",
+    "webpack-cli": "^2.0.9",
+    "webpack-dev-server": "^3.0.0"
   }
 }
