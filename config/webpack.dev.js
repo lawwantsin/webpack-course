@@ -5,9 +5,11 @@ module.exports = {
   entry: {
     main: ["./src/main.js"]
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
-    path: path.resolve(__dirname, "../dist")
+    path: path.resolve(__dirname, "../dist"),
+    publicPath: "/"
   },
   devServer: {
     contentBase: "dist",
@@ -15,8 +17,7 @@ module.exports = {
     hot: true,
     stats: {
       colors: true
-    },
-    reload: true
+    }
   },
   module: {
     rules: [
@@ -53,19 +54,18 @@ module.exports = {
               name: "[name].[ext]"
             }
           },
-          { loader: "extract-loader" },
           {
-            loader: "html-loader",
+            loader: "extract-loader",
             options: {
-              attrs: ["img:src"]
+              publicPath: "../"
             }
+          },
+          {
+            loader: "html-loader"
           }
         ]
       }
     ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin()
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 }
