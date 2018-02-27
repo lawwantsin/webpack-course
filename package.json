@@ -14,6 +14,7 @@
     "babel-preset-env": "*",
     "css-loader": "^0.28.10",
     "extract-loader": "1.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-alpha.0",
     "file-loader": "git+ssh://git@github.com/webpack-contrib/file-loader.git",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "github:webpack-contrib/html-webpack-plugin",
