@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     main: ["./src/main.js"]
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -53,18 +54,14 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader",
-            options: {
-              attrs: ["img:src"]
-            }
+            loader: "html-loader"
           }
         ]
       }
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/index.html"
     })
