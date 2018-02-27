@@ -6,6 +6,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "ajv": "^6.2.0",
     "babel-cli": "*",
     "babel-core": "*",
     "babel-loader": "^7.1.3",
