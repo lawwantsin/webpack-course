@@ -7,6 +7,7 @@ module.exports = {
     main: ["./src/main.js"],
     ts: ["./src/index.ts"]
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -16,6 +17,7 @@ module.exports = {
     contentBase: "dist",
     overlay: true,
     stats: {
+      warning: false,
       colors: true
     }
   },
@@ -33,11 +35,11 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: "awesome-typescript-loader",
-        exclude: /node_modules/,
-        options: {
-          configFileName: path.join(__dirname, "./config/tsconfig.json")
-        }
+        loader: "ts-loader",
+        exclude: /node_modules/
+        // options: {
+        //   configFile: path.join(__dirname, "./config/tsconfig.json")
+        // }
       },
       {
         test: /\.css$/,
