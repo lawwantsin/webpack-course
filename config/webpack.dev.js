@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     main: ["./src/main.js"]
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -14,6 +15,7 @@ module.exports = {
   devServer: {
     contentBase: "dist",
     overlay: true,
+    hot: true,
     stats: {
       colors: true
     }
@@ -54,14 +56,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.ejs$/,
-        use: [
-          {
-            loader: "ejs-loader"
-          }
-        ]
-      },
-      {
         test: /\.hbs$/,
         use: [
           {
@@ -75,8 +69,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
       inject: true,
