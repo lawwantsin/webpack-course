@@ -8,6 +8,7 @@ module.exports = {
     angular: "./src/angular.ts",
     polyfills: "./src/angular-polyfills.ts"
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
