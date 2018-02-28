@@ -38,8 +38,11 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: "awesome-typescript-loader",
+        loader: "ts-loader",
         exclude: /node_modules/
+        // options: {
+        //   configFile: path.join(__dirname, "./config/tsconfig.json")
+        // }
       },
       {
         test: /\.css$/,
@@ -75,12 +78,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.ContextReplacementPlugin(
-      // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core/,
-      path.join(__dirname, "./src"), // location of your src
+      path.join(__dirname, "./src"),
       {}
     ),
     new HTMLWebpackPlugin({
