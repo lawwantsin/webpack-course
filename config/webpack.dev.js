@@ -5,8 +5,8 @@ const HTMLWebpackPlugin = require("html-webpack-plugin")
 module.exports = {
   entry: {
     main: ["./src/main.js"],
-    angular: "./src/angular.ts",
-    polyfills: "./src/angular-polyfills.ts"
+    polyfills: "./src/angular-polyfills.ts",
+    angular: "./src/angular.ts"
   },
   mode: "development",
   output: {
@@ -69,10 +69,7 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader",
-            options: {
-              attrs: ["img:src"]
-            }
+            loader: "html-loader"
           }
         ]
       }
