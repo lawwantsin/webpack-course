@@ -6,7 +6,7 @@
   "repository": "https://github.com/lawwantsin/webpack-course.git",
   "license": "MIT",
   "dependencies": {
-    "webpack": "^4.0.0",
+    "webpack": "^4.0.1",
     "webpack-cli": "^2.0.9"
   },
   "devDependencies": {
