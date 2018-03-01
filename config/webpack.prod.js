@@ -13,6 +13,7 @@ module.exports = env => {
       vendor: ["react", "react-dom"],
       main: ["./src/main.js"]
     },
+    mode: "production",
     output: {
       filename: "[name]-bundle.js",
       path: path.resolve(__dirname, "../dist"),
@@ -70,9 +71,6 @@ module.exports = env => {
       ]
     },
     plugins: [
-      new webpack.optimize.CommonsChunkPlugin({
-        name: "vendor"
-      }),
       new ExtractTextPlugin("[name].css"),
       new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,
@@ -85,7 +83,6 @@ module.exports = env => {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
       }),
-      new webpack.NamedModulesPlugin(),
       new HTMLWebpackPlugin({
         template: "./src/index.ejs",
         inject: true,
