@@ -7,11 +7,12 @@ module.exports = {
     main: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",
-      "babel-core/register",
+      "babel-register",
       "webpack-hot-middleware/client?reload=true",
       "./src/main.js"
     ]
   },
+  mode: "production",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -60,7 +61,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development")
