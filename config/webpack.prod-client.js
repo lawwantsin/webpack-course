@@ -14,6 +14,7 @@ module.exports = env => {
       vendor: ["react", "lodash"],
       main: ["./src/main.js"]
     },
+    mode: "production",
     output: {
       filename: "[name]-bundle.js",
       path: path.resolve(__dirname, "../dist"),
@@ -84,8 +85,6 @@ module.exports = env => {
           WEBPACK: true
         }
       }),
-      new webpack.NamedModulesPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({ name: "vendor" }),
       new UglifyJSPlugin(),
       new CompressionPlugin({
         algorithm: "gzip"

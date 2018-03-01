@@ -17,7 +17,7 @@ if (isDev) {
   const clientCompiler = compiler.compilers[0]
   const serverCompiler = compiler.compilers[1]
 
-  require("webpack-mild-compile")(compiler)
+  // require("webpack-mild-compile")(compiler)
 
   const webpackDevMiddleware = require("webpack-dev-middleware")(
     compiler,
@@ -33,7 +33,7 @@ if (isDev) {
   server.use(webpackHotMiddlware)
   console.log("Middleware enabled")
 } else {
-  const render = require("/render.js")
+  const render = require("./render.js")
   server.use(
     expressStaticGzip("dist", {
       enableBrotli: true
