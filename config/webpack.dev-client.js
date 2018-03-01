@@ -14,6 +14,7 @@ module.exports = {
       "./src/main.js"
     ]
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -91,17 +92,13 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("[name].css"),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor"
-    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development"),
         WEBPACK: true
       }
     }),
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin()
+    new webpack.HotModuleReplacementPlugin() // Enable HMR
     // new HTMLWebpackPlugin({
     //   template: "./src/index.ejs",
     //   inject: true,

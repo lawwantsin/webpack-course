@@ -8,6 +8,7 @@ module.exports = {
   target: "node",
   externals: nodeExternals(),
   entry: "./src/server/render.js",
+  mode: "production",
   output: {
     filename: "prod-server-bundle.js",
     path: path.resolve(__dirname, "../build"),

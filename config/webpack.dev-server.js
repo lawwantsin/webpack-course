@@ -8,6 +8,7 @@ module.exports = {
   target: "node",
   externals: nodeExternals(),
   entry: "./src/server/render.js",
+  mode: "development",
   output: {
     filename: "dev-server-bundle.js",
     path: path.resolve(__dirname, "../build"),
@@ -64,7 +65,6 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify("development")
       }
-    }),
-    new webpack.NamedModulesPlugin()
+    })
   ]
 }
