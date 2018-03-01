@@ -10,9 +10,10 @@ const BrotliPlugin = require("brotli-webpack-plugin")
 module.exports = {
   name: "client",
   entry: {
-    vendor: ["react", "lodash"],
+    vendor: ["react", "react-dom"],
     main: ["./src/main.js"]
   },
+  mode: "production",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -83,8 +84,6 @@ module.exports = {
         WEBPACK: true
       }
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({ name: "vendor" }),
     new UglifyJSPlugin(),
     new CompressionPlugin({
       algorithm: "gzip"
