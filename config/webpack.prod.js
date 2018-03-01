@@ -9,6 +9,7 @@ module.exports = {
   entry: {
     main: ["./src/main.js"]
   },
+  mode: "production",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -59,13 +60,12 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("[name].css"),
-    // new OptimizeCssAssetsPlugin({
-    //   assetNameRegExp: /\.css$/g,
-    //   cssProcessor: require("cssnano"),
-    //   cssProcessorOptions: { discardComments: { removeAll: true } },
-    //   canPrint: true
-    // }),
-    new webpack.NamedModulesPlugin(),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require("cssnano"),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
+    }),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
       inject: true,

@@ -1,6 +1,4 @@
-// require("babel-runtime/regenerator")
-// require("webpack-hot-middleware/client?reload=true")
+require("babel-runtime/regenerator")
 require("./main.css")
 require("./nav.css")
 require("./images/link.jpg")
-// require("./index.html")
