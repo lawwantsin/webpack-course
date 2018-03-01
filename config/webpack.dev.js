@@ -4,12 +4,9 @@ const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: {
-    main: [
-      "babel-runtime/regenerator",
-      "webpack-hot-middleware/client?reload=true",
-      "./src/main.js"
-    ]
+    main: ["webpack-hot-middleware/client?reload=true", "./src/main.js"]
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
