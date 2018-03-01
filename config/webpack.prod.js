@@ -11,6 +11,7 @@ module.exports = env => {
     entry: {
       main: ["./src/main.js"]
     },
+    mode: "production",
     output: {
       filename: "[name]-bundle.js",
       path: path.resolve(__dirname, "../dist"),
@@ -72,7 +73,6 @@ module.exports = env => {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
       }),
-      new webpack.NamedModulesPlugin(),
       new HTMLWebpackPlugin({
         template: "./src/index.ejs",
         inject: true,
