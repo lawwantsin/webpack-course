@@ -10,6 +10,7 @@ module.exports = env => {
     entry: {
       server: ["./src/server/main.js"]
     },
+    mode: "development",
     output: {
       filename: "[name]-bundle.js",
       path: path.resolve(__dirname, "../build")
@@ -65,8 +66,7 @@ module.exports = env => {
         "process.env": {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
-      }),
-      new webpack.NamedModulesPlugin()
+      })
     ]
   }
 }
