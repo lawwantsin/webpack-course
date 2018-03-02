@@ -22,6 +22,7 @@ module.exports = {
   devServer: {
     contentBase: "dist",
     overlay: true,
+    hot: true,
     stats: {
       colors: true
     }
@@ -69,18 +70,12 @@ module.exports = {
   },
   plugins: [
     new ExtractCssChunks(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ["bootstrap"],
-      filename: "[name].js",
-      minChunks: Infinity
-    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development"),
         WEBPACK: true
       }
     }),
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin()
+    new webpack.HotModuleReplacementPlugin()
   ]
 }

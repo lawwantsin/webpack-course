@@ -10,9 +10,10 @@ const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 module.exports = {
   name: "client",
   entry: {
-    vendor: ["react", "lodash"],
+    vendor: ["react", "react-dom"],
     main: ["./src/main.js"]
   },
+  mode: "production",
   output: {
     filename: "[name]-bundle.js",
     chunkFilename: "[name].js",
@@ -79,12 +80,6 @@ module.exports = {
         NODE_ENV: JSON.stringify("production"),
         WEBPACK: true
       }
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ["bootstrap"],
-      filename: "[name].js",
-      minChunks: Infinity
     }),
     new UglifyJSPlugin(),
     new CompressionPlugin({

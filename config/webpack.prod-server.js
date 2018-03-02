@@ -8,6 +8,7 @@ module.exports = {
   target: "node",
   externals: nodeExternals(),
   entry: "./src/server/render.js",
+  mode: "production",
   output: {
     filename: "prod-server-bundle.js",
     path: path.resolve(__dirname, "../build"),
@@ -59,12 +60,14 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    }),
     new ExtractTextPlugin("[name].css"),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
-    }),
-    new webpack.NamedModulesPlugin()
+    })
   ]
 }
