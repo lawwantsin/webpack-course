@@ -13,6 +13,7 @@ module.exports = {
     vendor: ["react", "lodash"],
     main: ["./src/main.js"]
   },
+  mode: "production",
   output: {
     filename: "[name]-bundle.js",
     chunkFilename: "[name].js",
@@ -77,8 +78,6 @@ module.exports = {
         WEBPACK: true
       }
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({ name: "vendor" }),
     new UglifyJSPlugin(),
     new CompressionPlugin({
       algorithm: "gzip"

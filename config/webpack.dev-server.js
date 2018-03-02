@@ -7,6 +7,7 @@ module.exports = {
   target: "node",
   externals,
   entry: "./src/server/render.js",
+  mode: "development",
   output: {
     filename: "dev-server-bundle.js",
     path: path.resolve(__dirname, "../build"),
@@ -52,9 +53,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
-    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development")
