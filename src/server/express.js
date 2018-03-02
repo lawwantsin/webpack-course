@@ -18,8 +18,6 @@ if (isDev) {
   const clientCompiler = compiler.compilers[0]
   const serverCompiler = compiler.compilers[1]
 
-  require("webpack-mild-compile")(compiler)
-
   const webpackDevMiddleware = require("webpack-dev-middleware")(
     compiler,
     configDevClient.devServer

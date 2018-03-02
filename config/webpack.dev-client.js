@@ -62,24 +62,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]"
-            }
-          },
-          { loader: "extract-loader" },
-          {
-            loader: "html-loader",
-            options: {
-              attrs: ["img:src"]
-            }
-          }
-        ]
-      },
-      {
         test: /\.md$/,
         use: [
           {
@@ -91,16 +73,12 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("[name].css"),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor"
-    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development"),
         WEBPACK: true
       }
     }),
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin()
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
