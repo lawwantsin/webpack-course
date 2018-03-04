@@ -16,17 +16,16 @@
     "css-loader": "^0.28.10",
     "extract-loader": "1.0.2",
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
-    "file-loader": "git+ssh://git@github.com/webpack-contrib/file-loader.git",
+    "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
-    "html-webpack-plugin": "git+ssh://git@github.com/webpack-contrib/html-webpack-plugin.git",
+    "html-webpack-plugin": "^3.0.4",
     "style-loader": "^0.20.2",
     "url-loader": "0.6.2",
     "webpack": "^4.0.0",
     "webpack-cli": "^2.0.9",
     "webpack-dev-middleware": "2.0.6",
     "webpack-dev-server": "^3.0.0",
-    "webpack-hot-middleware": "2.21.0",
-    "webpack-mild-compile": "^2.0.0"
+    "webpack-hot-middleware": "2.21.0"
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
