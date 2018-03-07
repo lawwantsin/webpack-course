@@ -10,8 +10,8 @@ const BrotliPlugin = require("brotli-webpack-plugin")
 module.exports = env => {
   return {
     entry: {
-      vendor: ["react", "react-dom"],
-      main: ["./src/main.js"]
+      main: ["./src/main.js"],
+      main2: ["./src/main2.js"]
     },
     mode: "production",
     output: {
@@ -19,11 +19,15 @@ module.exports = env => {
       path: path.resolve(__dirname, "../dist"),
       publicPath: "/"
     },
-    devServer: {
-      contentBase: "dist",
-      overlay: true,
-      stats: {
-        colors: true
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            name: "vendor",
+            chunks: "initial",
+            minChunks: 2
+          }
+        }
       }
     },
     module: {
@@ -85,9 +89,18 @@ module.exports = env => {
       }),
       new HTMLWebpackPlugin({
         template: "./src/index.ejs",
+        filename: "index.html",
         inject: true,
-        title: "Link's Journal"
+        title: "Link's Journal",
+        chunks: ["vendor", "main"]
       }),
+      // new HTMLWebpackPlugin({
+      //   template: "./src/index.ejs",
+      //   filename: "blog.html",
+      //   inject: true,
+      //   chunks: ["vendor", "main2"],
+      //   title: "Blog"
+      // }),
       new UglifyJSPlugin(),
       new CompressionPlugin({
         algorithm: "gzip"

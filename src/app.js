@@ -5,6 +5,7 @@ import { AppContainer } from "react-hot-loader"
 import Data from "../data/bio"
 
 function render(Component) {
+  debugger
   ReactDOM.render(
     <AppContainer>
       <Component heading={Data.heading} content={Data.bioText} />
@@ -14,7 +15,7 @@ function render(Component) {
 }
 render(AppRoot)
 
-if (module.hot) {
+if (module.hot && process.env.NODE_ENV == "development") {
   module.hot.accept("./components/AppRoot.js", () => {
     const NewAppRoot = require("./components/AppRoot.js").default
     render(NewAppRoot)
