@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
   name: "client",
@@ -13,6 +12,7 @@ module.exports = {
       "./src/main.js"
     ]
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     chunkFilename: "[name].js",
@@ -41,11 +41,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractCssChunks.extract({
-          use: {
-            loader: "css-loader"
-          }
-        })
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.jpg$/,
@@ -69,7 +65,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractCssChunks(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development"),

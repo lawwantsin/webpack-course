@@ -5,7 +5,7 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 const BrotliPlugin = require("brotli-webpack-plugin")
-const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   name: "client",
@@ -40,11 +40,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractCssChunks.extract({
-          use: {
-            loader: "css-loader"
-          }
-        })
+        use: [MiniCSSExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.jpg$/,
@@ -68,7 +64,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractCssChunks(),
+    new MiniCSSExtractPlugin(),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
