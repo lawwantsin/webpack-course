@@ -23,7 +23,6 @@ export default ({ clientStats }) => (req, res) => {
           </StaticRouter>
         )}</div>
         ${js}
-        ${cssHash}
       </body>
     </html>
   `)
