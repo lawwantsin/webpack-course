@@ -1,12 +1,12 @@
 const path = require("path")
 const webpack = require("webpack")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
-var nodeExternals = require("webpack-node-externals")
+var externals = require("./node-externals")
 
 module.exports = {
   name: "server",
   target: "node",
-  externals: nodeExternals(),
+  externals: externals,
   entry: "./src/server/render.js",
   mode: "production",
   output: {
