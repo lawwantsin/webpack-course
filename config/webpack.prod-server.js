@@ -1,11 +1,11 @@
 const path = require("path")
 const webpack = require("webpack")
-var nodeExternals = require("webpack-node-externals")
+const externals = require("./node-externals")
 
 module.exports = {
   name: "server",
   target: "node",
-  externals: nodeExternals(),
+  externals: externals,
   entry: "./src/server/render.js",
   mode: "production",
   output: {
