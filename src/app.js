@@ -2,12 +2,19 @@ import React from "react"
 import ReactDOM from "react-dom"
 import AppRoot from "./components/AppRoot"
 import { AppContainer } from "react-hot-loader"
+import { configureStore } from "./store"
+import { Provider } from "react-redux"
+
+const preloadedState = window.__PRELOADED_STATE__
+const store = configureStore(preloadedState)
 
 function render(Component) {
   ReactDOM.hydrate(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
+    <Provider store={store}>
+      <AppContainer>
+        <Component />
+      </AppContainer>
+    </Provider>,
     document.getElementById("react-root")
   )
 }

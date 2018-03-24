@@ -9,7 +9,8 @@
         "debug": false
       }
     ],
-    "babel-preset-react"
+    "babel-preset-react",
+    "stage-2"
   ],
   "plugins": ["syntax-dynamic-import", "universal-import"],
   "env": {
