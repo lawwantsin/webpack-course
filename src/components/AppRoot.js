@@ -12,7 +12,8 @@ export default class AppRoot extends React.Component {
 
   render() {
     const getSite = {
-      site: location.hostname.split(".")[0]
+      site: location.hostname.split(".")[0],
+      slug: location.pathname.split("/").reverse()[0]
     }
 
     return (

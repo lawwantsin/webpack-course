@@ -17,15 +17,10 @@ function receiveArticle(content) {
   }
 }
 
-export const fetchArticle = () => (dispatch, getState, site) => {
-  const slug = "taylor-swift"
+export const fetchArticle = () => async (dispatch, getState, site) => {
+  const slug = site.slug
   dispatch(requestArticle(slug))
-  // const res = await fetch(`${SERVER_ROOT(site.site)}/api/article/${slug}`)
-  fetch(`http://link.local:8080/api/article/${slug}`)
-    .then(content => {
-      content.json().then(json => {
-        dispatch(receiveArticle(json))
-      })
-    })
-    .catch(err => console.log(err))
+  const content = await fetch(`http://link.local:8080/api/article/${slug}`)
+  const json = await content.json()
+  dispatch(receiveArticle(json))
 }

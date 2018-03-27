@@ -13,16 +13,19 @@ import { configureStore } from "../store"
 import { flushChunkNames } from "react-universal-component/server"
 import flushChunks from "webpack-flush-chunks"
 
-const preloadedState = {}
-const store = configureStore(preloadedState)
-
 export default ({ clientStats }) => (req, res) => {
   const { js, styles, cssHash } = flushChunks(clientStats, {
     chunkNames: flushChunkNames()
   })
 
-  const site = req.headers.host.split(":")[0].split(".")[0]
-  const context = { site }
+  const context = {
+    site: req.headers.host.split(":")[0].split(".")[0],
+    slug: req.originalUrl.split("/").reverse()[0]
+  }
+
+  const preloadedState = {}
+
+  const store = configureStore(preloadedState, context)
 
   const promises = matchRoutes(Routes, req.path)
     .map(({ route }) => {
@@ -47,7 +50,7 @@ export default ({ clientStats }) => (req, res) => {
           <div id="react-root">${renderToString(
             <Provider store={store}>
               <StaticRouter location={req.url} context={context}>
-                <div>{renderRoutes(Routes, { context })}</div>
+                <div>{renderRoutes(Routes, context)}</div>
               </StaticRouter>
             </Provider>
           )}</div>

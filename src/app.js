@@ -8,13 +8,13 @@ import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import reducers from "./reducers"
 
-const site = { site: location.hostname.split(".")[0] }
+const context = {
+  site: location.hostname.split(".")[0],
+  slug: location.pathname.split("/").reverse()[0]
+}
 
-const store = createStore(
-  reducers,
-  window.INITIAL_STATE,
-  applyMiddleware(thunk.withExtraArgument(site))
-)
+const preloadedState = {}
+const store = configureStore(preloadedState, context)
 
 function render(Component) {
   ReactDOM.hydrate(

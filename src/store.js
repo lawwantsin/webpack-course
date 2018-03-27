@@ -4,10 +4,10 @@ import { createLogger } from "redux-logger"
 import reducers from "./reducers"
 const loggerMiddleware = createLogger()
 
-export function configureStore(preloadedState) {
+export function configureStore(preloadedState, extra) {
   return createStore(
     reducers,
     preloadedState,
-    applyMiddleware(thunk, loggerMiddleware)
+    applyMiddleware(thunk.withExtraArgument(extra), loggerMiddleware)
   )
 }

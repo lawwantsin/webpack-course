@@ -26,6 +26,9 @@ const done = () => {
     })
 }
 
+server.get("/favicon.ico", function(req, res) {
+  res.status(204)
+})
 server.get("/api/article/:id", (req, res, next) => {
   const { id } = req.params
   res.json({ id: id })
