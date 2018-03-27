@@ -4,11 +4,15 @@ import path from "path"
 const expressStaticGzip = require("express-static-gzip")
 import webpack from "webpack"
 import webpackHotServerMiddleware from "webpack-hot-server-middleware"
+import fs from "fs"
 
 import configDevClient from "../../config/webpack.dev-client.js"
 import configDevServer from "../../config/webpack.dev-server.js"
 import configProdClient from "../../config/webpack.prod-client.js"
 import configProdServer from "../../config/webpack.prod-server.js"
+
+import marked from "marked"
+const yaml = require("yaml-front-matter")
 
 const isProd = process.env.NODE_ENV === "production"
 const isDev = !isProd
@@ -29,9 +33,15 @@ const done = () => {
 server.get("/favicon.ico", function(req, res) {
   res.status(204)
 })
-server.get("/api/article/:id", (req, res, next) => {
-  const { id } = req.params
-  res.json({ id: id })
+server.get("/api/article/:slug", (req, res, next) => {
+  const site = req.headers.host.split(":")[0].split(".")[0]
+  const { slug } = req.params
+  const file = path.resolve(__dirname, `../../data/${site}/${slug}.md`)
+  fs.readFile(file, "utf8", function(err, data) {
+    const obj = yaml.loadFront(data)
+    obj.__content = marked(obj.__content)
+    res.json(obj)
+  })
 })
 
 if (isDev) {

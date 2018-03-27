@@ -13,9 +13,13 @@ class Article extends React.Component {
   render() {
     return (
       <div>
-        <h1>Article</h1>
-        <h1>{this.props.article.content.id}</h1>
-        <h1>{this.props.article.slug}</h1>
+        <h1>{this.props.article.content.title}</h1>
+        <h1>{this.props.article.content.author}</h1>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: this.props.article.content.__content
+          }}
+        />
       </div>
     )
   }
