@@ -1,7 +1,10 @@
 import React from "react"
 import { renderToString } from "react-dom/server"
 import { StaticRouter } from "react-router"
-import Routes from "../components/Routes"
+import Routes from "../components/RoutesArray"
+import { matchRoutes, renderRoutes } from "react-router-config"
+
+import Header from "../components/Header"
 
 import { Provider } from "react-redux"
 
@@ -21,29 +24,49 @@ export default ({ clientStats }) => (req, res) => {
   const site = req.headers.host.split(":")[0].split(".")[0]
   const context = { site }
 
-  const preloadedState = store.getState()
+  const promises = matchRoutes(Routes, req.path)
+    .map(({ route }) => {
+      return route.loadData ? route.loadData(store) : null
+    })
+    .map(promise => {
+      if (promise) {
+        return new Promise((resolve, reject) => {
+          promise.then(resolve).catch(resolve)
+        })
+      }
+    })
 
-  res.send(`
-    <html>
-      <head>
-        ${styles}
-      </head>
-      <body>
-        <div id="react-root">${renderToString(
-          <Provider store={store}>
-            <StaticRouter location={req.url} context={context}>
-              <Routes />
-            </StaticRouter>
-          </Provider>
-        )}</div>
-        <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-            /</g,
-            "\\x3c"
-          )}
-        </script>
-      ${js}
-      </body>
-    </html>
-  `)
+  Promise.all(promises).then(_ => {
+    const preloadedState = store.getState()
+    const content = `
+      <html>
+        <head>
+          ${styles}
+        </head>
+        <body>
+          <div id="react-root">${renderToString(
+            <Provider store={store}>
+              <StaticRouter location={req.url} context={context}>
+                <div>{renderRoutes(Routes, { context })}</div>
+              </StaticRouter>
+            </Provider>
+          )}</div>
+          <script>
+            window.__INITIAL_STATE__ = ${JSON.stringify(preloadedState).replace(
+              /</g,
+              "\\x3c"
+            )}
+          </script>
+        ${js}
+        </body>
+      </html>
+    `
+    if (context.url) {
+      return res.redirect(301, context.url)
+    }
+    if (context.notFound) {
+      res.status(404)
+    }
+    res.send(content)
+  })
 }

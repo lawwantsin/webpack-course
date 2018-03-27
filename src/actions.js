@@ -1,56 +1,31 @@
 import fetch from "cross-fetch"
-export const REQUEST_POSTS = "REQUEST_POSTS"
-export const RECEIVE_POSTS = "RECEIVE_POSTS"
-export const SELECT_SUBREDDIT = "SELECT_SUBREDDIT"
-export const INVALIDATE_SUBREDDIT = "INVALIDATE_SUBREDDIT"
-export function selectSubreddit(subreddit) {
+export const REQUEST_ARTICLE = "REQUEST_ARTICLE"
+export const RECEIVE_ARTICLE = "RECEIVE_ARTICLE"
+const SERVER_ROOT = site => `http://${site}.local:8080`
+
+function requestArticle(slug) {
   return {
-    type: SELECT_SUBREDDIT,
-    subreddit
+    type: REQUEST_ARTICLE,
+    slug
   }
 }
-export function invalidateSubreddit(subreddit) {
+function receiveArticle(content) {
   return {
-    type: INVALIDATE_SUBREDDIT,
-    subreddit
-  }
-}
-function requestPosts(subreddit) {
-  return {
-    type: REQUEST_POSTS,
-    subreddit
-  }
-}
-function receivePosts(subreddit, json) {
-  return {
-    type: RECEIVE_POSTS,
-    subreddit,
-    posts: json.data.children.map(child => child.data),
+    type: RECEIVE_ARTICLE,
+    content,
     receivedAt: Date.now()
   }
 }
-function fetchPosts(subreddit) {
-  return dispatch => {
-    dispatch(requestPosts(subreddit))
-    return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)))
-  }
-}
-function shouldFetchPosts(state, subreddit) {
-  const posts = state.postsBySubreddit[subreddit]
-  if (!posts) {
-    return true
-  } else if (posts.isFetching) {
-    return false
-  } else {
-    return posts.didInvalidate
-  }
-}
-export function fetchPostsIfNeeded(subreddit) {
-  return (dispatch, getState) => {
-    if (shouldFetchPosts(getState(), subreddit)) {
-      return dispatch(fetchPosts(subreddit))
-    }
-  }
+
+export const fetchArticle = () => (dispatch, getState, site) => {
+  const slug = "taylor-swift"
+  dispatch(requestArticle(slug))
+  // const res = await fetch(`${SERVER_ROOT(site.site)}/api/article/${slug}`)
+  fetch(`http://link.local:8080/api/article/${slug}`)
+    .then(content => {
+      content.json().then(json => {
+        dispatch(receiveArticle(json))
+      })
+    })
+    .catch(err => console.log(err))
 }

@@ -4,9 +4,17 @@ import AppRoot from "./components/AppRoot"
 import { AppContainer } from "react-hot-loader"
 import { configureStore } from "./store"
 import { Provider } from "react-redux"
+import { createStore, applyMiddleware } from "redux"
+import thunk from "redux-thunk"
+import reducers from "./reducers"
 
-const preloadedState = window.__PRELOADED_STATE__
-const store = configureStore(preloadedState)
+const site = { site: location.hostname.split(".")[0] }
+
+const store = createStore(
+  reducers,
+  window.INITIAL_STATE,
+  applyMiddleware(thunk.withExtraArgument(site))
+)
 
 function render(Component) {
   ReactDOM.hydrate(

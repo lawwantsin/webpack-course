@@ -18,7 +18,6 @@ let isBuilt = false
 const done = () => {
   !isBuilt &&
     server.listen(PORT, () => {
-      isBuilt = true
       console.log(
         `Server listening on http://localhost:${PORT} in ${
           process.env.NODE_ENV
@@ -26,6 +25,11 @@ const done = () => {
       )
     })
 }
+
+server.get("/api/article/:id", (req, res, next) => {
+  const { id } = req.params
+  res.json({ id: id })
+})
 
 if (isDev) {
   const compiler = webpack([configDevClient, configDevServer])

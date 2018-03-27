@@ -1,18 +1,24 @@
 import React from "react"
-import { BrowserRouter as Router } from "react-router-dom"
-import Routes from "./Routes"
+import { BrowserRouter } from "react-router-dom"
+import Routes from "./RoutesArray"
+import { renderRoutes } from "react-router-config"
+import Header from "./Header"
 
-export default class extends React.Component {
+export default class AppRoot extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
 
   render() {
+    const getSite = {
+      site: location.hostname.split(".")[0]
+    }
+
     return (
-      <Router>
-        <Routes />
-      </Router>
+      <BrowserRouter>
+        <div>{renderRoutes(Routes, getSite)}</div>
+      </BrowserRouter>
     )
   }
 }
