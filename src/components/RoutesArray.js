@@ -2,7 +2,7 @@ import React from "react"
 import { Route, Link } from "react-router-dom"
 import { renderRoutes } from "react-router-config"
 import { Switch } from "react-router"
-import { loadData } from "./Article"
+import Article, { loadData } from "./Article"
 
 import universal from "react-universal-component"
 
@@ -14,7 +14,7 @@ export default [
   },
   {
     path: "/article/:id",
-    component: universal(props => import(`./Article`)),
+    component: Article,
     loadData: loadData
   },
   {
