@@ -6,6 +6,21 @@
   flex-flow: column;
 }
 
+.profile .content {
+  background-color: #ffffe0;
+  box-shadow: 0 0 20px black;
+  line-height: 2em;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 10px;
+  z-index: 1;
+  font-size: 1.2em;
+  max-width: 740px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 .profile > img {
   border-radius: 100%;
   border: 5px;
