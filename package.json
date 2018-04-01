@@ -27,6 +27,7 @@
     "front-matter-loader": "^0.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.1.0",
+    "https": "^1.0.0",
     "iltorb": "^2.2.0",
     "json-loader": "^0.5.7",
     "markdown-with-front-matter-loader": "^0.1.0",
