@@ -4,6 +4,7 @@ const externals = require("./node-externals")
 
 module.exports = {
   name: "server",
+  mode: "development",
   target: "node",
   externals,
   entry: "./src/server/render.js",
@@ -64,7 +65,6 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify("development")
       }
-    }),
-    new webpack.NamedModulesPlugin()
+    })
   ]
 }

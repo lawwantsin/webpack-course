@@ -1,9 +1,10 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   name: "client",
+  mode: "development",
   entry: {
     vendor: ["react", "react-dom"],
     main: [
@@ -40,11 +41,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractCssChunks.extract({
-          use: {
-            loader: "css-loader"
-          }
-        })
+        use: [MiniCSSExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -68,19 +65,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractCssChunks(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ["bootstrap"],
-      filename: "[name].js",
-      minChunks: Infinity
-    }),
+    new MiniCSSExtractPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development"),
         WEBPACK: true
       }
     }),
-    new webpack.HotModuleReplacementPlugin(), // Enable HMR
-    new webpack.NamedModulesPlugin()
+    new webpack.HotModuleReplacementPlugin()
   ]
 }

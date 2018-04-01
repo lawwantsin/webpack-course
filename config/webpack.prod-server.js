@@ -1,12 +1,12 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-var nodeExternals = require("webpack-node-externals")
+const externals = require("./node-externals")
 
 module.exports = {
   name: "server",
   target: "node",
-  externals: nodeExternals(),
+  mode: "production",
+  externals,
   entry: "./src/server/render.js",
   output: {
     filename: "prod-server-bundle.js",
@@ -26,15 +26,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: {
-            loader: "css-loader",
-            options: {
-              minimize: true
-            }
-          }
-        })
+        use: "css-loader"
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -59,12 +51,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("[name].css"),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
-    }),
-    new webpack.NamedModulesPlugin()
+    })
   ]
 }
