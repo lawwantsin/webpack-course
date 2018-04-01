@@ -10,7 +10,6 @@ export default props => {
     const billboardStyle = {
       backgroundImage: `url(${MarkdownData.posterImage})`
     }
-    debugger
 
     import(`../css/${props.site}/theme.css`)
     return (

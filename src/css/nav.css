@@ -2,6 +2,9 @@
   width: 100%;
   line-height: 2em;
   background-color: black;
+  position: fixed;
+  z-index: 2;
+  top: 0;
 }
 
 .nav a {

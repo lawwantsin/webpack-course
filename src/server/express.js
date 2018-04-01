@@ -52,6 +52,11 @@ if (isDev) {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
     const clientStats = stats.toJson().children[0]
     const render = require("../../build/prod-server-bundle.js").default
+    console.log(
+      stats.toString({
+        colors: true
+      })
+    )
     server.use(
       expressStaticGzip("dist", {
         enableBrotli: true
