@@ -1,10 +1,11 @@
 import express from "express"
-const server = express()
+let server = express()
 import path from "path"
 const expressStaticGzip = require("express-static-gzip")
 import webpack from "webpack"
 import webpackHotServerMiddleware from "webpack-hot-server-middleware"
 import fs from "fs"
+import https from "https"
 
 import configDevClient from "../../config/webpack.dev-client.js"
 import configDevServer from "../../config/webpack.dev-server.js"
@@ -14,22 +15,28 @@ import configProdServer from "../../config/webpack.prod-server.js"
 import marked from "marked"
 const yaml = require("yaml-front-matter")
 
+const httpsOptions = {
+  key: fs.readFileSync("./config/ssl/*.hyblog.dev.key"),
+  cert: fs.readFileSync("./config/ssl/*.hyblog.dev.crt")
+}
+
 const isProd = process.env.NODE_ENV === "production"
 const isDev = !isProd
 const PORT = process.env.PORT || 8080
 let isBuilt = false
 
 const done = () => {
-  !isBuilt &&
-    server.listen(PORT, () => {
-      console.log(
-        `Server listening on http://localhost:${PORT} in ${
-          process.env.NODE_ENV
-        }`
-      )
-    })
+  if (isBuilt) return
+  server = https.createServer(httpsOptions, server)
+  server.listen(PORT, () => {
+    isBuilt = true
+    console.log(
+      `Server listening on https://link.hyblog.dev:${PORT} in ${
+        process.env.NODE_ENV
+      }`
+    )
+  })
 }
-
 server.get("/favicon.ico", function(req, res) {
   res.status(204)
 })

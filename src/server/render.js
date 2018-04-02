@@ -14,14 +14,15 @@ import { flushChunkNames } from "react-universal-component/server"
 import flushChunks from "webpack-flush-chunks"
 
 export default ({ clientStats }) => (req, res) => {
-  const { js, styles, cssHash } = flushChunks(clientStats, {
-    chunkNames: flushChunkNames()
-  })
-
   const context = {
     site: req.headers.host.split(":")[0].split(".")[0],
     slug: req.originalUrl.split("/").reverse()[0]
   }
+  const names = flushChunkNames().concat([`css/${context.site}-theme-css`])
+
+  const { js, styles, cssHash } = flushChunks(clientStats, {
+    chunkNames: names
+  })
 
   const preloadedState = {}
 
@@ -45,7 +46,6 @@ export default ({ clientStats }) => (req, res) => {
       <html>
         <head>
           ${styles}
-          <link href="/${context.site}-theme-css.css" rel="stylesheet" />
         </head>
         <body>
           <div id="react-root">${renderToString(

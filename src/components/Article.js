@@ -9,18 +9,13 @@ class Article extends React.Component {
   componentDidMount() {
     this.props.fetchArticle()
   }
-
   render() {
-    const billboardStyle = {
-      backgroundImage: `url(${this.props.article.content.posterImage})`
-    }
-
+    import(`../css/${props.article.site}/theme.css`)
     return (
-      <div className="Article">
-        <div className="billboard" style={billboardStyle} />
+      <div>
         <h1>{this.props.article.content.title}</h1>
-        <div
-          className="content"
+        <h1>{this.props.article.content.author}</h1>
+        <p
           dangerouslySetInnerHTML={{
             __html: this.props.article.content.__content
           }}
@@ -32,7 +27,8 @@ class Article extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    article: state.article
+    article: state.article,
+    site: state.site
   }
 }
 

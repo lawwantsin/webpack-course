@@ -7,11 +7,6 @@ import "../css/nav.css"
 
 export default () => (
   <div>
-    <div className="nav">
-      <Link to="/">Gallery</Link>
-      <Link to="/about">About</Link>
-      <Link to="/article">Article</Link>
-    </div>
     <div>{renderRoutes(RoutesArray)}</div>
   </div>
 )

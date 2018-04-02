@@ -6,7 +6,8 @@ function article(
     isFetching: false,
     didInvalidate: false,
     content: "",
-    slug: ""
+    slug: "",
+    site: ""
   },
   action
 ) {
@@ -16,7 +17,8 @@ function article(
         ...state,
         isFetching: true,
         didInvalidate: false,
-        slug: action.slug
+        slug: action.slug,
+        site: action.site
       }
     case RECEIVE_ARTICLE:
       return {

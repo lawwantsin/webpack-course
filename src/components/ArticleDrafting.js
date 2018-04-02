@@ -1,6 +1,6 @@
 import React from "react"
 import "../css/Article.css"
-// import NotFound from "./NotFound"
+import NotFound from "./NotFound"
 
 export default props => {
   try {
@@ -10,6 +10,7 @@ export default props => {
     const billboardStyle = {
       backgroundImage: `url(${MarkdownData.posterImage})`
     }
+    import(`../css/${props.site}/theme.css`)
     return (
       <div className="Article">
         <div className="billboard" style={billboardStyle} />

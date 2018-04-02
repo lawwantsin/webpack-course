@@ -1,8 +1,10 @@
 import React from "react"
-import { BrowserRouter } from "react-router-dom"
+import { Route, Link, BrowserRouter } from "react-router-dom"
 import Routes from "./RoutesArray"
 import { renderRoutes } from "react-router-config"
+import RoutesArray from "./RoutesArray"
 import Header from "./Header"
+import "../css/nav.css"
 
 export default class AppRoot extends React.Component {
   constructor(props) {
@@ -18,7 +20,14 @@ export default class AppRoot extends React.Component {
 
     return (
       <BrowserRouter>
-        <div>{renderRoutes(Routes, getSite)}</div>
+        <div>
+          <div className="nav">
+            <Link to="/">Gallery</Link>
+            <Link to="/about">About</Link>
+            <Link to="/article">Article</Link>
+          </div>
+          <div>{renderRoutes(RoutesArray, getSite)}</div>
+        </div>
       </BrowserRouter>
     )
   }
