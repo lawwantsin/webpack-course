@@ -2,9 +2,13 @@ import React from "react"
 import { Route, Link } from "react-router-dom"
 import { renderRoutes } from "react-router-config"
 import { Switch } from "react-router"
-import { loadData } from "./Article"
 
 import universal from "react-universal-component"
+import { fetchArticle } from "../actions"
+
+export const loadArticle = store => {
+  return store.dispatch(fetchArticle())
+}
 
 export default [
   {
@@ -14,12 +18,13 @@ export default [
   },
   {
     path: "/article/drafting/:id",
+    exact: true,
     component: universal(props => import(`./ArticleDrafting`))
   },
   {
     path: "/article/:id",
     component: universal(props => import(`./Article`)),
-    loadData: loadData
+    loadData: loadArticle
   },
   {
     path: "/about",

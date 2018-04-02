@@ -10,12 +10,17 @@ class Article extends React.Component {
     this.props.fetchArticle()
   }
   render() {
+    const billboardStyle = {
+      backgroundImage: `url(${this.props.article.content.posterImage})`
+    }
+
     import(`../css/${props.article.site}/theme.css`)
     return (
-      <div>
+      <div className="Article">
+        <div className="billboard" style={billboardStyle} />
         <h1>{this.props.article.content.title}</h1>
-        <h1>{this.props.article.content.author}</h1>
-        <p
+        <div
+          className="content"
           dangerouslySetInnerHTML={{
             __html: this.props.article.content.__content
           }}
@@ -30,10 +35,6 @@ const mapStateToProps = state => {
     article: state.article,
     site: state.site
   }
-}
-
-export const loadData = store => {
-  return store.dispatch(fetchArticle())
 }
 
 export default connect(mapStateToProps, { fetchArticle })(Article)
