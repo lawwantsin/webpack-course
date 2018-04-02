@@ -51,7 +51,10 @@ export default ({ clientStats }) => (req, res) => {
           <div id="react-root">${renderToString(
             <Provider store={store}>
               <StaticRouter location={req.url} context={context}>
-                <div>{renderRoutes(Routes, context)}</div>
+                <div>
+                  <Header />
+                  <div>{renderRoutes(Routes, context)}</div>
+                </div>
               </StaticRouter>
             </Provider>
           )}</div>
