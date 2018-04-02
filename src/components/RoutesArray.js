@@ -18,7 +18,6 @@ export default [
   },
   {
     path: "/article/drafting/:id",
-    exact: true,
     component: universal(props => import(`./ArticleDrafting`))
   },
   {
