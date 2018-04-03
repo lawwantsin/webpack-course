@@ -7,7 +7,8 @@ import { connect } from "react-redux"
 
 class Article extends React.Component {
   componentDidMount() {
-    this.props.fetchArticle()
+    const slug = location.pathname.split("/").reverse()[0]
+    this.props.fetchArticle(slug)
   }
   render() {
     const billboardStyle = {

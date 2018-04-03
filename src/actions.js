@@ -18,8 +18,8 @@ function receiveArticle(content) {
   }
 }
 
-export const fetchArticle = () => async (dispatch, getState, site) => {
-  const slug = site.slug
+export const fetchArticle = slug => async (dispatch, getState, site) => {
+  const slug = slug || site.slug
   dispatch(requestArticle(slug, site.site))
   const content = await fetch(
     `https://${site.site}.hyblog.dev:8080/api/article/${slug}`

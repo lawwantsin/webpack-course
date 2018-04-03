@@ -17,11 +17,11 @@ export default [
     exact: true
   },
   {
-    path: "/article/drafting/:id",
+    path: "/article/drafting/:slug",
     component: universal(props => import(`./ArticleDrafting`))
   },
   {
-    path: "/article/:id",
+    path: "/article/:slug",
     component: universal(props => import(`./Article`)),
     loadData: loadArticle
   },

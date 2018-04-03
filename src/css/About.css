@@ -1,4 +1,4 @@
-.profile {
+.About {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,17 +6,30 @@
   flex-flow: column;
 }
 
-.profile > img {
+.About > img {
   border-radius: 100%;
   border: 5px;
   width: 300px;
   box-shadow: 0 0 20px black;
 }
 
-h1 {
-  font-size: 5em;
+.About > h1 {
+  font-size: 1em;
   font-family: sans-serif;
-  color: white;
+  color: black;
   text-shadow: 0 0 20px black;
   text-align: left;
+}
+
+.About .content {
+  background-color: #ffffe0;
+  box-shadow: 0 0 20px black;
+  line-height: 2em;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 10px;
+  z-index: 1;
+  font-size: 1.2em;
+  max-width: 740px;
+  position: relative;
 }

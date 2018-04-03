@@ -9,7 +9,7 @@ export default props => {
 
   return (
     <div>
-      <div className="profile">
+      <div className="About">
         <img src={imagePath} />
         <h1>{MarkdownData.title}</h1>
         <div
