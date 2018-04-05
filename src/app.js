@@ -5,13 +5,17 @@ import { AppContainer } from "react-hot-loader"
 import { configureStore } from "./store"
 import { Provider } from "react-redux"
 import { createStore, applyMiddleware } from "redux"
+import { syncHistoryWithStore } from "react-router-redux"
 import thunk from "redux-thunk"
 import reducers from "./reducers"
 
-const context = {
-  site: location.hostname.split(".")[0],
-  slug: location.pathname.split("/").reverse()[0]
-}
+// const context = {
+//   site: location.hostname.split(".")[0],
+//   slug: location.pathname.split("/").reverse()[0]
+// }
+//
+
+const context = {}
 
 const preloadedState = {}
 const store = configureStore(preloadedState, context)

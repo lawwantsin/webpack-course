@@ -1,16 +1,26 @@
 import React from "react"
 import "../css/Article.css"
-import { fetchArticle } from "../actions"
-
-import { bindActionCreators } from "redux"
+import { fetchArticle, requestArticle } from "../actions"
 import { connect } from "react-redux"
 
 class Article extends React.Component {
   componentDidMount() {
-    const slug = location.pathname.split("/").reverse()[0]
-    this.props.fetchArticle(slug)
+    const site = location.hostname.split(".")[0]
+    const slug = this.props.match.params.slug
+    this.props.dispatch(requestArticle(slug, site))
+    this.props.dispatch(fetchArticle())
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.slug !== this.props.match.params.slug) {
+      const dispatch = nextProps.dispatch
+      const slug = nextProps.match.params.slug
+      dispatch(fetchArticle(slug))
+    }
+  }
+
   render() {
+    if (!this.props.article.content) return <div>Loading</div>
     const billboardStyle = {
       backgroundImage: `url(${this.props.article.content.posterImage})`
     }
@@ -38,4 +48,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchArticle })(Article)
+export default connect(mapStateToProps)(Article)

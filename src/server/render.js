@@ -24,7 +24,9 @@ export default ({ clientStats }) => (req, res) => {
     chunkNames: names
   })
 
-  const preloadedState = {}
+  const preloadedState = {
+    article: context
+  }
 
   const store = configureStore(preloadedState, context)
 
@@ -35,14 +37,18 @@ export default ({ clientStats }) => (req, res) => {
     .map(promise => {
       if (promise) {
         return new Promise((resolve, reject) => {
-          promise.then(resolve).catch(resolve)
+          promise.then(resolve).catch(e => {
+            console.log(e)
+            resolve
+          })
         })
       }
     })
 
-  Promise.all(promises).then(_ => {
-    const preloadedState = store.getState()
-    const content = `
+  Promise.all(promises)
+    .then(_ => {
+      const preloadedState = store.getState()
+      const content = `
       <html>
         <head>
           ${styles}
@@ -68,12 +74,13 @@ export default ({ clientStats }) => (req, res) => {
         </body>
       </html>
     `
-    if (context.url) {
-      return res.redirect(301, context.url)
-    }
-    if (context.notFound) {
-      res.status(404)
-    }
-    res.send(content)
-  })
+      if (context.url) {
+        return res.redirect(301, context.url)
+      }
+      if (context.notFound) {
+        res.status(404)
+      }
+      res.send(content)
+    })
+    .catch(err => console.log(err))
 }

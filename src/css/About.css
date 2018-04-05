@@ -14,9 +14,9 @@
 }
 
 .About > h1 {
-  font-size: 1em;
+  font-size: 3em;
   font-family: sans-serif;
-  color: black;
+  color: white;
   text-shadow: 0 0 20px black;
   text-align: left;
 }
