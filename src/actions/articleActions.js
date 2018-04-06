@@ -1,7 +1,7 @@
 import fetch from "cross-fetch"
 export const REQUEST_ARTICLE = "REQUEST_ARTICLE"
 export const RECEIVE_ARTICLE = "RECEIVE_ARTICLE"
-const SERVER_ROOT = site => `https://${site}.hyblog.dev:8080`
+export const ERROR_RECEIVING_ARTICLE = "ERROR_RECEIVING_ARTICLE"
 
 export function requestArticle(slug, site) {
   return {
@@ -17,11 +17,25 @@ function receiveArticle(content) {
   }
 }
 
+function errorReceivingArticle(content) {
+  return {
+    type: ERROR_RECEIVING_ARTICLE,
+    content
+  }
+}
+
 export const fetchArticle = () => async (dispatch, getState, config) => {
-  const { slug, site } = getState().article
-  const content = await fetch(
-    `https://${site}.hyblog.dev:8080/api/article/${slug}`
-  )
-  const json = await content.json()
-  return dispatch(receiveArticle(json))
+  try {
+    const { slug, site } = getState().article
+    const SERVER_ROOT = `https://${site}.hyblog.dev:8080`
+    const content = await fetch(`${SERVER_ROOT}/api/article/${slug}`)
+    if (content.status == 200) {
+      const json = await content.json()
+      dispatch(receiveArticle(json))
+    } else {
+      dispatch(errorReceivingArticle())
+    }
+  } catch (err) {
+    debugger
+  }
 }

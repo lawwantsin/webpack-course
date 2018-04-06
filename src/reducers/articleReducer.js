@@ -1,4 +1,8 @@
-import { REQUEST_ARTICLE, RECEIVE_ARTICLE } from "../actions/articleActions"
+import {
+  REQUEST_ARTICLE,
+  RECEIVE_ARTICLE,
+  ERROR_RECEIVING_ARTICLE
+} from "../actions/articleActions"
 
 const initState = {
   content: "",
@@ -18,6 +22,11 @@ export default (state = initState, action) => {
       return {
         ...state,
         content: action.content
+      }
+    case ERROR_RECEIVING_ARTICLE:
+      return {
+        ...state,
+        content: "Not Found"
       }
     default:
       return state

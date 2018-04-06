@@ -2,6 +2,7 @@ import React from "react"
 import "../css/Article.css"
 import { fetchArticle, requestArticle } from "../actions/articleActions"
 import { connect } from "react-redux"
+import NotFound from "./NotFound"
 
 class Article extends React.Component {
   componentDidMount() {
@@ -14,13 +15,16 @@ class Article extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.slug !== this.props.match.params.slug) {
       const dispatch = nextProps.dispatch
+      const site = location.hostname.split(".")[0]
       const slug = nextProps.match.params.slug
-      dispatch(fetchArticle(slug))
+      dispatch(requestArticle(slug, site))
+      dispatch(fetchArticle())
     }
   }
 
   render() {
     if (!this.props.article.content) return <div>Loading</div>
+    if (this.props.article.content == "Not Found") return <NotFound />
     const billboardStyle = {
       backgroundImage: `url(${this.props.article.content.posterImage})`
     }

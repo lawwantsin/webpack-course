@@ -37,18 +37,29 @@ const done = () => {
     )
   })
 }
-server.get("/favicon.ico", function(req, res) {
-  res.status(204)
-})
+
+let cache = {}
 server.get("/api/article/:slug", (req, res, next) => {
-  const site = req.headers.host.split(":")[0].split(".")[0]
-  const { slug } = req.params
-  const file = path.resolve(__dirname, `../../data/${site}/${slug}.md`)
-  fs.readFile(file, "utf8", function(err, data) {
-    const obj = yaml.loadFront(data)
-    obj.__content = marked(obj.__content)
-    res.json(obj)
-  })
+  try {
+    const site = req.headers.host.split(":")[0].split(".")[0]
+    const { slug } = req.params
+    if (!slug) {
+      throw new Error("No slug provided")
+    }
+    const file = path.resolve(__dirname, `../../data/${site}/${slug}.md`)
+    fs.readFile(file, "utf8", (err, data) => {
+      if (err) {
+        res.status(404).send(err)
+        return
+      }
+      const obj = yaml.loadFront(data)
+      obj.__content = marked(obj.__content)
+      cache[cacheObj] = obj
+      res.json(obj)
+    })
+  } catch (err) {
+    res.status(404).json(err)
+  }
 })
 
 if (isDev) {

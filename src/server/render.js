@@ -52,6 +52,7 @@ export default ({ clientStats }) => (req, res) => {
       <html>
         <head>
           ${styles}
+          <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico"/>
         </head>
         <body>
           <div id="react-root">${renderToString(
