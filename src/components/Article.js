@@ -1,6 +1,6 @@
 import React from "react"
 import "../css/Article.css"
-import { fetchArticle, requestArticle } from "../actions"
+import { fetchArticle, requestArticle } from "../actions/articleActions"
 import { connect } from "react-redux"
 
 class Article extends React.Component {

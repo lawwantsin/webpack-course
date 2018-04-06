@@ -13,8 +13,7 @@ export function requestArticle(slug, site) {
 function receiveArticle(content) {
   return {
     type: RECEIVE_ARTICLE,
-    content,
-    receivedAt: Date.now()
+    content
   }
 }
 

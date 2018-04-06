@@ -4,7 +4,7 @@ import { renderRoutes } from "react-router-config"
 import { Switch } from "react-router"
 
 import universal from "react-universal-component"
-import { fetchArticle } from "../actions"
+import { fetchArticle } from "../actions/articleActions"
 
 export const loadArticle = store => {
   return store.dispatch(fetchArticle())
