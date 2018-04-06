@@ -8,6 +8,7 @@ export default props => {
       <Link to="/">Gallery</Link>
       <Link to="/about">About</Link>
       <Link to="/article/post">Article</Link>
+      <Link to="/article/post2">Article 2</Link>
     </div>
   )
 }
