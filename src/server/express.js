@@ -54,7 +54,6 @@ server.get("/api/article/:slug", (req, res, next) => {
       }
       const obj = yaml.loadFront(data)
       obj.__content = marked(obj.__content)
-      cache[cacheObj] = obj
       res.json(obj)
     })
   } catch (err) {
