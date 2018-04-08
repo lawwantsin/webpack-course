@@ -35,6 +35,10 @@ const done = () => {
   })
 }
 
+server.get("/api/articles/:post", (req, res) => {
+  res.json(req.params)
+})
+
 if (isDev) {
   const compiler = webpack([configDevClient, configDevServer])
 

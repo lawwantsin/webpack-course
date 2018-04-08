@@ -3,10 +3,10 @@ import ReactDOM from "react-dom"
 import AppRoot from "./components/AppRoot"
 import { AppContainer } from "react-hot-loader"
 import { Provider } from "react-redux"
-import store from "./store"
-import { actionTest } from "./actions"
+import configureStore from "./store"
+import { fetchArticle } from "./actions"
 
-store.dispatch(actionTest("something"))
+const store = configureStore({})
 
 function render(Component) {
   ReactDOM.hydrate(

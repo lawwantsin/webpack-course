@@ -1,9 +1,19 @@
-export const testReducer = (state = {}, action) => {
+export const fetchArticle = (state = {}, action) => {
   switch (action.type) {
-    case "TEST_ACTION":
+    case "FETCH_SUCCESS":
       return {
         ...state,
-        text: action.text
+        content: action.payload
+      }
+    case "FETCH_LOADING":
+      return {
+        ...state,
+        loading: action.payload
+      }
+    case "FETCH_ERROR":
+      return {
+        ...state,
+        response: action.payload
       }
     default:
       return state

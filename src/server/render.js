@@ -5,12 +5,13 @@ import Routes from "../components/Routes"
 
 import { flushChunkNames } from "react-universal-component/server"
 import flushChunks from "webpack-flush-chunks"
-import store from "../store"
+import configureStore from "../store"
 import { Provider } from "react-redux"
-import { actionTest } from "../actions"
+import { fetchArticle } from "../actions"
 
 export default ({ clientStats }) => (req, res) => {
   const site = req.headers.host.split(":")[0].split(".")[0]
+  const slug = req.url.split("/").reverse[0]
   const context = { site }
   const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
@@ -18,7 +19,8 @@ export default ({ clientStats }) => (req, res) => {
     chunkNames: names
   })
 
-  store.dispatch(actionTest("something"))
+  const store = configureStore()
+  store.dispatch(fetchArticle(site, slug))
 
   res.send(`
     <html>
