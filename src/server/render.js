@@ -5,6 +5,9 @@ import Routes from "../components/Routes"
 
 import { flushChunkNames } from "react-universal-component/server"
 import flushChunks from "webpack-flush-chunks"
+import store from "../store"
+import { Provider } from "react-redux"
+import { actionTest } from "../actions"
 
 export default ({ clientStats }) => (req, res) => {
   const site = req.headers.host.split(":")[0].split(".")[0]
@@ -15,6 +18,8 @@ export default ({ clientStats }) => (req, res) => {
     chunkNames: names
   })
 
+  store.dispatch(actionTest("something"))
+
   res.send(`
     <html>
       <head>
@@ -22,9 +27,11 @@ export default ({ clientStats }) => (req, res) => {
       </head>
       <body>
         <div id="react-root">${renderToString(
-          <StaticRouter location={req.url} context={context}>
-            <Routes />
-          </StaticRouter>
+          <Provider store={store}>
+            <StaticRouter location={req.url} context={context}>
+              <Routes />
+            </StaticRouter>
+          </Provider>
         )}</div>
         ${js}
       </body>

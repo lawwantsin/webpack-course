@@ -1,23 +1,24 @@
 import React from "react"
 import "../css/Article.css"
 import NotFound from "./NotFound"
-import { connect } from "react-redux"
-import { actionTest } from "../actions"
 
-const Article = props => {
+export default props => {
   try {
+    const MarkdownData = require(`../../data/${props.site}/${
+      props.params.slug
+    }.md`)
     const billboardStyle = {
-      backgroundImage: `url(${props.posterImage})`
+      backgroundImage: `url(${MarkdownData.posterImage})`
     }
 
     import(`../css/${props.site}/theme.css`)
     return (
       <div className="Article">
         <div className="billboard" style={billboardStyle} />
-        <h1>{props.title}</h1>
+        <h1>{MarkdownData.title}</h1>
         <div
           className="content"
-          dangerouslySetInnerHTML={{ __html: props.__content }}
+          dangerouslySetInnerHTML={{ __html: MarkdownData.__content }}
         />
       </div>
     )
@@ -25,7 +26,3 @@ const Article = props => {
     return <NotFound />
   }
 }
-
-export default connect(state => ({
-  __content: state.text
-}))(Article)

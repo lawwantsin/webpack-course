@@ -55,6 +55,7 @@
     "dev": "nodemon --watch src/server --watch config --inspect src/server/main.js"
   },
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-regenerator": "^6.26.0"
   }
 }
