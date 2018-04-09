@@ -1,3 +1,4 @@
+require("babel-polyfill")
 require("./main.css")
 require("./content.css")
 require("./images/link.jpg")

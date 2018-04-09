@@ -1,18 +1,20 @@
 import fetch from "cross-fetch"
 
-export const fetchArticle = (site, slug) => (dispatch, getState) => {
-  dispatch(fetchLoading(true))
-  fetch(`https://${site}.hyblog.dev:8080/api/articles/${slug}`)
-    .then(response => {
-      if (!response.ok) {
-        throw Error(response.statusText)
-      }
-      dispatch(fetchLoading(false))
-      return response
-    })
-    .then(response => response.json())
-    .then(items => dispatch(fetchSuccess(items)))
-    .catch(err => dispatch(fetchError(err)))
+export const fetchArticle = (site, slug) => async (dispatch, getState) => {
+  try {
+    dispatch(fetchLoading(true))
+    const content = await fetch(
+      `https://${site}.hyblog.dev:8080/api/articles/${slug}`
+    )
+    if (content.status == 200) {
+      const json = await content.json()
+      dispatch(fetchSuccess(json))
+    } else {
+      dispatch(fetchError(err))
+    }
+  } catch (err) {
+    dispatch(fetchError(err))
+  }
 }
 
 const fetchLoading = status => {
