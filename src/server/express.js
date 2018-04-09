@@ -35,8 +35,29 @@ const done = () => {
   })
 }
 
-server.get("/api/articles/:post", (req, res) => {
-  res.json(req.params)
+import marked from "marked"
+const yaml = require("yaml-front-matter")
+
+server.get("/api/articles/:slug", (req, res) => {
+  try {
+    const site = req.headers.host.split(":")[0].split(".")[0]
+    const { slug } = req.params
+    if (!slug) {
+      throw new Error("No slug provided")
+    }
+    const file = path.resolve(__dirname, `../../data/${site}/${slug}.md`)
+    fs.readFile(file, "utf8", (err, data) => {
+      if (err) {
+        res.status(404).send(err)
+        return
+      }
+      const obj = yaml.loadFront(data)
+      obj.__content = marked(obj.__content)
+      res.json(obj)
+    })
+  } catch (err) {
+    res.status(404).json(err)
+  }
 })
 
 if (isDev) {

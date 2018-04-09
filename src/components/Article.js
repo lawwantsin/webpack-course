@@ -38,5 +38,5 @@ class Article extends React.Component {
 }
 
 export default connect(state => ({
-  __content: state.content.post
+  ...state.content
 }))(Article)
