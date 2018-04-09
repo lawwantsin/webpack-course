@@ -25,44 +25,30 @@ export default ({ clientStats }) => (req, res) => {
     chunkNames: names
   })
 
-  if (req.path === "/article/post") {
+  const template = store => `
+    <html>
+      <head>
+        ${styles}
+      </head>
+      <body>
+        <div id="react-root">${renderToString(
+          <Provider store={store}>
+            <StaticRouter location={req.url} context={context}>
+              <Routes />
+            </StaticRouter>
+          </Provider>
+        )}</div>
+        ${js}
+      </body>
+    </html>
+  `
+
+  if (req.path.match(/^\/article\//)) {
     const promise = loadArticle(site, slug)
     promise.then(_ => {
-      res.send(`
-        <html>
-          <head>
-            ${styles}
-          </head>
-          <body>
-            <div id="react-root">${renderToString(
-              <Provider store={store}>
-                <StaticRouter location={req.url} context={context}>
-                  <Routes />
-                </StaticRouter>
-              </Provider>
-            )}</div>
-            ${js}
-          </body>
-        </html>
-      `)
+      res.send(template(store))
     })
   } else {
-    res.send(`
-      <html>
-        <head>
-          ${styles}
-        </head>
-        <body>
-          <div id="react-root">${renderToString(
-            <Provider store={store}>
-              <StaticRouter location={req.url} context={context}>
-                <Routes />
-              </StaticRouter>
-            </Provider>
-          )}</div>
-          ${js}
-        </body>
-      </html>
-    `)
+    res.send(template(store))
   }
 }

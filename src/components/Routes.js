@@ -19,9 +19,9 @@ export default props => {
         <Link to="/">Gallery</Link>
         <Link to="/about">About</Link>
         <Link to="/article/post">Article 1</Link>
-        <Link to="/draft/article/post">Draft 1</Link>
+        <Link to="/draft/post">Draft 1</Link>
         <Link to="/article/post2">Article 2</Link>
-        <Link to="/draft/article/post2">Draft 2</Link>
+        <Link to="/draft/post2">Draft 2</Link>
       </div>
       <Switch>
         <Route exact path="/">
@@ -35,7 +35,7 @@ export default props => {
           }}
         />
         <Route
-          path="/draft/article/:slug"
+          path="/draft/:slug"
           render={({ staticContext, match }) => {
             const site = getSite(staticContext)
             return (
