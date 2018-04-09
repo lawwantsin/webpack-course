@@ -26,9 +26,12 @@ export default ({ clientStats }) => (req, res) => {
   })
 
   if (req.path === "/article/post") {
-    loadArticle(site, slug).then(_ => {
-      debugger
-
+    const promise = loadArticle(site, slug)
+    new Promise((resolve, reject) => {
+      promise.then(resolve).catch(e => {
+        resolve
+      })
+    }).then(_ => {
       res.send(`
         <html>
           <head>
