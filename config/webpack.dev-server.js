@@ -14,7 +14,7 @@ module.exports = {
     path: path.resolve(__dirname, "../build"),
     libraryTarget: "commonjs2"
   },
-  devtool: "source-map",
+  devtool: "inline-source-map",
   module: {
     rules: [
       {

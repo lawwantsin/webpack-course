@@ -9,9 +9,15 @@ import configureStore from "../store"
 import { Provider } from "react-redux"
 import { fetchArticle } from "../actions"
 
+const store = configureStore()
+
+const loadArticle = (site, slug) => {
+  return store.dispatch(fetchArticle(site, slug))
+}
+
 export default ({ clientStats }) => (req, res) => {
   const site = req.headers.host.split(":")[0].split(".")[0]
-  const slug = req.url.split("/").reverse[0]
+  const slug = req.path.split("/").reverse()[0]
   const context = { site }
   const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
@@ -19,24 +25,45 @@ export default ({ clientStats }) => (req, res) => {
     chunkNames: names
   })
 
-  const store = configureStore()
-  store.dispatch(fetchArticle(site, slug))
+  if (req.path === "/article/post") {
+    loadArticle(site, slug).then(_ => {
+      debugger
 
-  res.send(`
-    <html>
-      <head>
-        ${styles}
-      </head>
-      <body>
-        <div id="react-root">${renderToString(
-          <Provider store={store}>
-            <StaticRouter location={req.url} context={context}>
-              <Routes />
-            </StaticRouter>
-          </Provider>
-        )}</div>
-        ${js}
-      </body>
-    </html>
-  `)
+      res.send(`
+        <html>
+          <head>
+            ${styles}
+          </head>
+          <body>
+            <div id="react-root">${renderToString(
+              <Provider store={store}>
+                <StaticRouter location={req.url} context={context}>
+                  <Routes />
+                </StaticRouter>
+              </Provider>
+            )}</div>
+            ${js}
+          </body>
+        </html>
+      `)
+    })
+  } else {
+    res.send(`
+      <html>
+        <head>
+          ${styles}
+        </head>
+        <body>
+          <div id="react-root">${renderToString(
+            <Provider store={store}>
+              <StaticRouter location={req.url} context={context}>
+                <Routes />
+              </StaticRouter>
+            </Provider>
+          )}</div>
+          ${js}
+        </body>
+      </html>
+    `)
+  }
 }
