@@ -18,7 +18,10 @@ export default props => {
       <div className="nav">
         <Link to="/">Gallery</Link>
         <Link to="/about">About</Link>
-        <Link to="/article">Article</Link>
+        <Link to="/article/post">Article 1</Link>
+        <Link to="/draft/article/post">Draft 1</Link>
+        <Link to="/article/post2">Article 2</Link>
+        <Link to="/draft/article/post2">Draft 2</Link>
       </div>
       <Switch>
         <Route exact path="/">
@@ -29,6 +32,15 @@ export default props => {
           render={({ staticContext }) => {
             const site = getSite(staticContext)
             return <UniversalComponent {...site} page="About" />
+          }}
+        />
+        <Route
+          path="/draft/article/:slug"
+          render={({ staticContext, match }) => {
+            const site = getSite(staticContext)
+            return (
+              <UniversalComponent {...site} {...match} page="DraftArticle" />
+            )
           }}
         />
         <Route
