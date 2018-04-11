@@ -2,12 +2,14 @@ const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const isProd = process.env.NODE_ENV === "production"
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
 module.exports = {
   entry: {
     main: ["./src/main.js"]
   },
-  mode: "development",
+  mode: "production",
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -35,7 +37,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader"
+            loader: MiniCSSExtractPlugin.loader
           },
           {
             loader: "css-loader"
@@ -64,7 +66,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new OptimizeCssAssetsPlugin(),
+    new MiniCSSExtractPlugin({
+      filename: "[name]-[contenthash].css"
+    }),
     new HTMLWebpackPlugin({
       template: "./src/index.ejs",
       title: "Link's Journal"
