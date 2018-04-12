@@ -25,3 +25,13 @@ h1 {
   text-shadow: 0 0 20px black;
   text-align: center;
 }
+
+a {
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+::placeholder {
+  color: gray;
+}
