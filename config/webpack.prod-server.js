@@ -1,6 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
 const externals = require("./node-externals")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   name: "server",
@@ -26,12 +27,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: {
-          loader: "css-loader",
-          options: {
-            minimize: true
-          }
-        }
+        use: [MiniCSSExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -56,6 +52,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new MiniCSSExtractPlugin({
+      filename: "[name]-[contenthash].css"
+    }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),

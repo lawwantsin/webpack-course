@@ -6,6 +6,7 @@ export default props => {
   const imagePath = require(`../images/${siteConfig.aboutImage}`)
 
   const MarkdownData = require(`../../data/${props.site}/bio.md`)
+  import(`../css/${props.site}/theme.css`)
 
   return (
     <div>
