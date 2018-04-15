@@ -17,9 +17,15 @@ export default () => (
       <Route exact path="/">
         <UniversalComponent page="Gallery" />
       </Route>
-      <Route path="/about">
-        <UniversalComponent page="About" />
-      </Route>
+      <Route
+        path="/about"
+        render={({ staticContext }) => {
+          const site = staticContext
+            ? staticContext.site
+            : location.hostname.split(".")[0]
+          return <UniversalComponent site={site} page="About" />
+        }}
+      />
       <Route path="/article">
         <UniversalComponent page="Article" />
       </Route>
