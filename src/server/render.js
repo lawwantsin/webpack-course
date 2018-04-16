@@ -11,6 +11,10 @@ export default ({ clientStats }) => (req, res) => {
     chunkNames: flushChunkNames()
   })
 
+  const context = {
+    site: req.hostname.split(".")[0]
+  }
+
   res.send(`
     <html>
       <head>
@@ -18,7 +22,7 @@ export default ({ clientStats }) => (req, res) => {
       </head>
       <body>
         <div id="react-root">${renderToString(
-          <StaticRouter location={req.url} context={{}}>
+          <StaticRouter location={req.url} context={context}>
             <Routes />
           </StaticRouter>
         )}</div>
