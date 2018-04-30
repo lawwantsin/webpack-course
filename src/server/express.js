@@ -1,16 +1,10 @@
 import express from "express"
-import https from "https"
 import fs from "fs"
 let server = express()
 import path from "path"
 const expressStaticGzip = require("express-static-gzip")
 import webpack from "webpack"
 import webpackHotServerMiddleware from "webpack-hot-server-middleware"
-
-const httpsOptions = {
-  key: fs.readFileSync("./config/ssl/*.hyblog.dev.key"),
-  cert: fs.readFileSync("./config/ssl/*.hyblog.dev.crt")
-}
 
 import configDevClient from "../../config/webpack.dev-client.js"
 import configDevServer from "../../config/webpack.dev-server.js"
@@ -24,20 +18,13 @@ let isBuilt = false
 
 const done = () => {
   if (isBuilt) return
-  server = https.createServer(httpsOptions, server)
   server.listen(PORT, () => {
     isBuilt = true
     console.log(
-      `Server listening on https://link.hyblog.dev:${PORT} in ${
-        process.env.NODE_ENV
-      }`
+      `Server listening on http://*.local:${PORT} in ${process.env.NODE_ENV}`
     )
   })
 }
-
-server.get("/api/articles/:post", (req, res) => {
-  res.json(req.params)
-})
 
 if (isDev) {
   const compiler = webpack([configDevClient, configDevServer])
