@@ -1,0 +1,1 @@
+exports.ids=[6],exports.modules={40:function(o,n,s){(o.exports=s(10)(!1)).push([o.i,"body {\n  background-color: #2c3227;\n}\n",""])}};
