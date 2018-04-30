@@ -1,1 +1,0 @@
-module.exports = {"title":"About Zelda","author":"Zelda","__content":"<h1 id=\"how-did-you-get-past-the-guards-\">How did you get past the guards?</h1>\n<p>Zelda wakes in a dark dungeon. Link has found her.</p>\n"}

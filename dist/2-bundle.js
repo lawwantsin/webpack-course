@@ -1,1 +1,0 @@
-webpackJsonp([2],{"./src/components/Article.js":function(e,t,l){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n,u=l("./node_modules/react/index.js"),c=(n=u)&&n.__esModule?n:{default:n};t.default=function(){return c.default.createElement("div",null,c.default.createElement("h1",null,"Article"))}}});
