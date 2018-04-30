@@ -1,23 +1,30 @@
-.profile {
-  display: flex;
-  -ms-align-items: center;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  flex-flow: column;
+.Article {
+  margin: 200px auto;
 }
 
-.profile > img {
-  border-radius: 100%;
-  border: 5px;
-  width: 300px;
-  box-shadow: 0 0 20px black;
-}
-
-h1 {
-  font-size: 5em;
-  font-family: sans-serif;
+.Article h1 {
   color: white;
+  font-weight: 100;
+  font-size: 4em;
+  text-align: right;
+  max-width: 820px;
+  padding: 0 40px 0 400px;
   text-shadow: 0 0 20px black;
-  text-align: left;
+  margin: 0 auto -13px auto;
+}
+
+.Article .poster {
+  position: fixed;
+  top: 30px;
+  height: 500px;
+  width: 100%;
+  z-index: -1;
+  border-bottom: 4px solid white;
+  background-position: center 0;
+}
+
+@media (max-width: 768px) {
+  .Article h1 {
+    padding: 0;
+  }
 }

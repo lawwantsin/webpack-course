@@ -3,10 +3,22 @@
   box-shadow: 0 0 20px black;
   font-family: sans-serif;
   line-height: 1.5em;
-  width: 740px;
+  max-width: 740px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+.content img {
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .content > h1 {
@@ -14,4 +26,12 @@
   color: black;
   text-shadow: none;
   text-align: left;
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+    border-radius: 0;
+    grid-gap: 0;
+  }
 }
