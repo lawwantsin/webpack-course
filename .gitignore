@@ -1,3 +1,5 @@
 node_modules
 *.log
 update-branches.sh
+autogit.js
+branches.json

@@ -1,0 +1,134 @@
+{
+  "setup-final": { "next": "loaders1" },
+  "loaders1": { "prev": "setup-final", "next": "loaders1-final" },
+  "loaders1-final": { "prev": "loaders1", "next": "loaders2" },
+  "loaders2": { "prev": "loaders1-final", "next": "loaders2-final" },
+  "loaders2-final": { "prev": "loaders2", "next": "babel1" },
+  "babel1": { "prev": "loaders2-final", "next": "babel1-final" },
+  "babel1-final": { "prev": "babel1", "next": "babel2" },
+  "babel2": { "prev": "babel1-final", "next": "babel2-final" },
+  "babel2-final": { "prev": "babel2", "next": "express1" },
+  "express1": { "prev": "babel2-final", "next": "express1-final" },
+  "express1-final": { "prev": "express1", "next": "reload" },
+  "reload": { "prev": "express1-final", "next": "reload-final" },
+  "reload-final": { "prev": "reload", "next": "debugging" },
+  "debugging": { "prev": "reload-final", "next": "debugging-final" },
+  "debugging-final": { "prev": "debugging", "next": "hookup" },
+
+  "hookup": { "prev": "debugging-final", "next": null },
+  "hookup-react-final": { "prev": "hookup", "next": null },
+  "templates": { "prev": "hookup", "next": "templates-final" },
+  "templates-final": { "prev": "templates", "next": null },
+  "css-prep": { "prev": "hookup", "next": "css-prep-final" },
+  "css-prep-final": { "prev": "css-prep", "next": null },
+  "hookup-typescript": {
+    "prev": "hookup",
+    "next": "hookup-typescript-final"
+  },
+  "hookup-typescript-final": { "prev": "hookup-typescript", "next": null },
+  "hookup-angular": {
+    "prev": "hookup-typescript-final",
+    "next": "hookup-angular-final"
+  },
+  "hookup-angular-final": {
+    "prev": "hookup-angular",
+    "next": null
+  },
+  "rails": { "prev": null, "next": "rails-final" },
+  "rails-final": { "prev": "rails", "next": null },
+  "styled-components": {
+    "prev": "hookup",
+    "next": "styled-components-final"
+  },
+  "styled-components-final": { "prev": "styled-components", "next": null },
+
+  "heroku": { "prev": null, "next": "heroku-final" },
+  "heroku-final": { "prev": "heroku", "next": "prod-css" },
+  "prod-css": { "prev": "heroku-final", "next": "prod-css-final" },
+  "prod-css-final": { "prev": "prod-css", "next": "prod-js" },
+  "prod-js": { "prev": "prod-css-final", "next": "prod-js-final" },
+  "prod-js-final": { "prev": "prod-js", "next": "prod-js2" },
+  "prod-js2": { "prev": "prod-js-final", "next": "prod-js2-final" },
+  "prod-js2-final": { "prev": "prod-js2", "next": "asset-compression" },
+  "asset-compression": {
+    "prev": "prod-js2-final",
+    "next": "asset-compression-final"
+  },
+  "asset-compression-final": {
+    "prev": "asset-compression",
+    "next": "react-components"
+  },
+  "react-components": {
+    "prev": "asset-compression-final",
+    "next": "react-components-final"
+  },
+  "react-components-final": { "prev": "react-components", "next": "markdown" },
+  "markdown": { "prev": "react-components-final", "next": "markdown-final" },
+  "markdown-final": { "prev": "markdown", "next": "split-chunks" },
+  "split-chunks": { "prev": "markdown-final", "next": "split-chunks-final" },
+  "split-chunks-final": { "prev": "split-chunks", "next": "ssr-react" },
+
+  "ssr-react": { "prev": "split-chunks-final", "next": "ssr-react-final" },
+  "ssr-react-final": { "prev": "ssr-react", "next": "ssr-webpack" },
+  "ssr-webpack": { "prev": "ssr-react-final", "next": "ssr-webpack-final" },
+  "ssr-webpack-final": { "prev": "ssr-webpack", "next": "named-configs" },
+  "named-configs": {
+    "prev": "ssr-webpack-final",
+    "next": "named-configs-final"
+  },
+  "named-configs-final": { "prev": "named-configs", "next": "hot-server" },
+  "hot-server": { "prev": "named-configs-final", "next": "hot-server-final" },
+  "hot-server-final": { "prev": "hot-server", "next": "react-router" },
+  "react-router": { "prev": "hot-server-final", "next": "react-router-final" },
+  "react-router-final": { "prev": "react-router", "next": "dynamic-imports" },
+  "dynamic-imports": {
+    "prev": "react-router-final",
+    "next": "dynamic-imports-final"
+  },
+  "dynamic-imports-final": {
+    "prev": "dynamic-imports",
+    "next": "universal-components"
+  },
+  "universal-components": {
+    "prev": "dynamic-imports-final",
+    "next": "universal-components-final"
+  },
+  "universal-components-final": {
+    "prev": "universal-components",
+    "next": "css-extract"
+  },
+  "css-extract": {
+    "prev": "universal-components-final",
+    "next": "css-extract-final"
+  },
+  "css-extract-final": { "prev": "css-extract", "next": "local-domains" },
+
+  "local-domains": {
+    "prev": "css-extract-final",
+    "next": "local-domains-final"
+  },
+  "local-domains-final": { "prev": "local-domains", "next": "domain-scope" },
+  "domain-scope": {
+    "prev": "local-domains-final",
+    "next": "domain-scope-final"
+  },
+  "domain-scope-final": { "prev": "domain-scope", "next": "theming-css" },
+  "theming-css": { "prev": "domain-scope-final", "next": "theming-css-final" },
+  "theming-css-final": { "prev": "theming-css", "next": "articles" },
+  "articles": { "prev": "theming-css-final", "next": "articles-final" },
+  "articles-final": { "prev": "articles", "next": "redux" },
+  "redux": { "prev": "articles-final", "next": "redux-final" },
+  "redux-final": { "prev": "redux", "next": "redux-thunk" },
+  "redux-thunk": { "prev": "redux-final", "next": "redux-thunk-final" },
+  "redux-thunk-final": { "prev": "redux-thunk", "next": "redux-client" },
+  "redux-client": { "prev": "redux-thunk-final", "next": "redux-client-final" },
+  "redux-client-final": { "prev": "redux-client", "next": "redux-server" },
+  "redux-server": {
+    "prev": "redux-client-final",
+    "next": "redux-server-final"
+  },
+  "redux-server-final": { "prev": "redux-server", "next": "ssl" },
+  "ssl": { "prev": "redux-server-final", "next": "ssl-final" },
+  "ssl-final": { "prev": "ssl", "next": null },
+  "router-config-final": { "prev": null }
+}
