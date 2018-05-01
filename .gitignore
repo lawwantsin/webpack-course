@@ -1,2 +1,4 @@
 node_modules
 *.log
+autogit.js
+branches.json
