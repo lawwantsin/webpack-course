@@ -1,6 +1,6 @@
 const S = require("shelljs")
-const BRANCHES = require("branches.json")
-const ARGS = process.argv.slice(2)
+const BRANCHES = require("./branches.json")
+const ARGS = process.argv.slice(2)[0]
 
 const X = cmd => {
   return S.exec(cmd, { silent: true }).stdout.trim()
@@ -35,5 +35,20 @@ const movePrev = () => {
   move("prev")
 }
 
+const remakeJSON = () => {
+  let newJSON = {}
+  keys = Object.keys(BRANCHES)
+  keys.map((key, index) => {
+    current = BRANCHES[key]
+    prev = keys[index - 1]
+    next = keys[index + 1]
+    newJSON[key] = { prev: prev, next: next }
+  })
+  const fileContents = JSON.stringify(newJSON)
+  X(`mv branches.json branches.json.bak`)
+  X(`echo ${fileContents} > branches.json`)
+}
+
 if (ARGS === "next") moveNext()
 if (ARGS === "prev") movePrev()
+if (ARGS === "remake") remakeJSON()
