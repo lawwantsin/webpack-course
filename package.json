@@ -46,7 +46,6 @@
   },
   "scripts": {
     "prod": "NODE_ENV=production node src/server/main.js",
-    "dev": "nodemon --watch src/server --watch config --inspect src/server/main",
-    "heroku-postbuild": "npm run prod"
+    "dev": "nodemon --watch src/server --watch config --inspect src/server/main"
   }
 }

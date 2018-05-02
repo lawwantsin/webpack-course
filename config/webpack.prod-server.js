@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 var nodeExternals = require("webpack-node-externals")
 
 module.exports = env => {
@@ -29,15 +28,7 @@ module.exports = env => {
         },
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: {
-              loader: "css-loader",
-              options: {
-                minimize: true
-              }
-            }
-          })
+          use: "css-loader"
         },
         {
           test: /\.jpg$/,
@@ -62,7 +53,6 @@ module.exports = env => {
       ]
     },
     plugins: [
-      new ExtractTextPlugin("[name].css"),
       new webpack.DefinePlugin({
         "process.env": {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
