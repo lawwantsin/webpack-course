@@ -6,11 +6,12 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 const BrotliPlugin = require("brotli-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = env => {
   return {
     entry: {
-      vendor: ["react", "lodash"],
+      vendor: ["react", "react-dom"],
       main: ["./src/main.js"]
     },
     mode: "production",
@@ -19,11 +20,15 @@ module.exports = env => {
       path: path.resolve(__dirname, "../dist"),
       publicPath: "/"
     },
-    devServer: {
-      contentBase: "dist",
-      overlay: true,
-      stats: {
-        colors: true
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            name: "vendor",
+            chunks: "initial",
+            minChunks: 2
+          }
+        }
       }
     },
     module: {
@@ -39,21 +44,13 @@ module.exports = env => {
         },
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: {
-              loader: "css-loader",
-              options: {
-                minimize: true
-              }
-            }
-          })
+          use: [MiniCSSExtractPlugin.loader, "css-loader"]
         },
         {
           test: /\.jpg$/,
           use: [
             {
-              loader: "url-loader",
+              loader: "file-loader",
               options: {
                 name: "images/[name].[ext]"
               }
@@ -71,7 +68,7 @@ module.exports = env => {
       ]
     },
     plugins: [
-      new ExtractTextPlugin("[name].css"),
+      new MiniCSSExtractPlugin(),
       new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,
         cssProcessor: require("cssnano"),
@@ -80,8 +77,7 @@ module.exports = env => {
       }),
       new webpack.DefinePlugin({
         "process.env": {
-          NODE_ENV: JSON.stringify(env.NODE_ENV),
-          WEBPACK: true
+          NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
       }),
       new UglifyJSPlugin(),
