@@ -1,7 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const HTMLWebpackPlugin = require("html-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
@@ -19,11 +18,15 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/"
   },
-  devServer: {
-    contentBase: "dist",
-    overlay: true,
-    stats: {
-      colors: true
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
     }
   },
   module: {
@@ -39,15 +42,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: {
-            loader: "css-loader",
-            options: {
-              minimize: true
-            }
-          }
-        })
+        use: [MiniCSSExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.jpg$/,
@@ -71,7 +66,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("[name].css"),
+    new MiniCSSExtractPlugin(),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
