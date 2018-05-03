@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   name: "client",
@@ -93,11 +92,6 @@ module.exports = {
         WEBPACK: true
       }
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new HTMLWebpackPlugin({
-      template: "./src/index.ejs",
-      inject: true,
-      title: "Link's Journal"
-    })
+    new webpack.HotModuleReplacementPlugin()
   ]
 }

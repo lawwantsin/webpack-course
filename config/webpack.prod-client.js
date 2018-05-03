@@ -1,7 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
-const HTMLWebpackPlugin = require("html-webpack-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
