@@ -11,7 +11,7 @@ module.exports = {
   name: "client",
   mode: "production",
   entry: {
-    vendor: ["react", "lodash"],
+    vendor: ["react", "react-dom"],
     main: ["./src/main.js"]
   },
   output: {

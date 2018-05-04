@@ -15,7 +15,7 @@ export default ({ clientStats }) => (req, res) => {
   const context = { site }
   const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
-  const { js, styles, cssHash } = flushChunks(clientStats, {
+  const { js, styles } = flushChunks(clientStats, {
     chunkNames: names
   })
 
