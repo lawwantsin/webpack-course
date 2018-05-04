@@ -67,7 +67,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCSSExtractPlugin({ name: "[name].js" }),
+    new MiniCSSExtractPlugin(),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),

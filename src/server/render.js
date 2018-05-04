@@ -10,7 +10,6 @@ export default ({ clientStats }) => (req, res) => {
   const site = req.hostname.split(".")[0]
   const context = { site }
   const names = flushChunkNames().concat([`css/${site}-theme-css`])
-  debugger
 
   const { js, styles } = flushChunks(clientStats, {
     chunkNames: names
