@@ -9,9 +9,11 @@ import flushChunks from "webpack-flush-chunks"
 export default ({ clientStats }) => (req, res) => {
   const site = req.hostname.split(".")[0]
   const context = { site }
+  const names = flushChunkNames().concat([`css/${site}-theme-css`])
+  debugger
 
-  const { js, styles, cssHash } = flushChunks(clientStats, {
-    chunkNames: flushChunkNames().concat([`css/${site}-theme-css`])
+  const { js, styles } = flushChunks(clientStats, {
+    chunkNames: names
   })
 
   res.send(`
