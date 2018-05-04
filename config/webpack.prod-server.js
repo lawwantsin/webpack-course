@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCSSExtractPlugin.loader, "css-loader"]
+        use: "css-loader"
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -52,9 +52,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCSSExtractPlugin({
-      filename: "[name]-[contenthash].css"
-    }),
+    new MiniCSSExtractPlugin({}),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
