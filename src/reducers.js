@@ -5,11 +5,6 @@ export const fetchArticle = (state = {}, action) => {
         ...state,
         content: action.payload
       }
-    case "FETCH_LOADING":
-      return {
-        ...state,
-        loading: action.payload
-      }
     case "FETCH_ERROR":
       return {
         ...state,

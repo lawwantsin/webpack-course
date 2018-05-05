@@ -11,7 +11,8 @@ import { fetchArticle } from "../actions"
 
 export default ({ clientStats }) => (req, res) => {
   const site = req.hostname.split(".")[0]
-  const slug = req.url.split("/").reverse[0]
+  const slug = req.url.split("/").reverse()[0]
+
   const context = { site }
   const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
@@ -21,7 +22,6 @@ export default ({ clientStats }) => (req, res) => {
 
   const store = configureStore()
   store.dispatch(fetchArticle(site, slug))
-
   res.send(`
     <html>
       <head>

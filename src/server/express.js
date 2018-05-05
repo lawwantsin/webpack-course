@@ -1,5 +1,4 @@
 import express from "express"
-import fs from "fs"
 let server = express()
 import path from "path"
 const expressStaticGzip = require("express-static-gzip")
@@ -25,6 +24,10 @@ const done = () => {
     )
   })
 }
+
+server.get("/api/articles/:post", (req, res) => {
+  res.json(req.params)
+})
 
 if (isDev) {
   const compiler = webpack([configDevClient, configDevServer])
