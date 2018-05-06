@@ -1,1 +1,1 @@
-exports.ids=[5],exports.modules={32:function(o,n,s){(o.exports=s(9)(!1)).push([o.i,"body {\n  background-color: #2c3227;\n}\n",""])}};
+exports.ids=[5],exports.modules={39:function(o,n,r){(o.exports=r(10)(!1)).push([o.i,"body {\n  background-color: #020f17;\n}\n\n.Article .billboard {\n  background-position: 0 -100px;\n}\n",""])}};
