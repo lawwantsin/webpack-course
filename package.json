@@ -50,8 +50,8 @@
   },
   "scripts": {
     "prod": "NODE_ENV=production node src/server/main.js",
-    "dev": "nodemon --watch src/server --watch config --inspect src/server/main.js",
-    "heroku-postbuild": "npm run build"
+    "dev":
+      "nodemon --watch src/server --watch config --inspect src/server/main.js"
   },
   "devDependencies": {
     "babel-plugin-transform-regenerator": "^6.26.0"
