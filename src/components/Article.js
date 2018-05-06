@@ -11,7 +11,9 @@ class Article extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchArticle(this.props.site, this.props.params.slug))
+    this.props.dispatch(
+      fetchArticle(this.props.site, this.props.match.params.slug)
+    )
   }
 
   render() {

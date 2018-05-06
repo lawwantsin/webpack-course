@@ -16,12 +16,12 @@ const loadArticle = (site, slug) => {
 }
 
 export default ({ clientStats }) => (req, res) => {
-  const site = req.headers.host.split(":")[0].split(".")[0]
+  const site = req.hostname.split(".")[0]
   const slug = req.path.split("/").reverse()[0]
   const context = { site }
   const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
-  const { js, styles, cssHash } = flushChunks(clientStats, {
+  const { js, styles } = flushChunks(clientStats, {
     chunkNames: names
   })
 

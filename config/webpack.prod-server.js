@@ -13,6 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, "../build"),
     libraryTarget: "commonjs2"
   },
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -51,6 +52,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
