@@ -11,6 +11,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "*",
     "babel-plugin-universal-import": "^1.5.3",
     "babel-polyfill": "*",
@@ -33,9 +34,11 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-hot-loader": "^4.1.2",
+    "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-universal-component": "^2.9.0",
+    "redux": "^4.0.0",
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "0.6.2",
@@ -50,8 +53,7 @@
   },
   "scripts": {
     "prod": "NODE_ENV=production node src/server/main.js",
-    "dev":
-      "nodemon --watch src/server --watch config --inspect src/server/main.js"
+    "dev": "nodemon --watch src/server --watch config --inspect src/server/main.js"
   },
   "devDependencies": {
     "babel-plugin-transform-regenerator": "^6.26.0"

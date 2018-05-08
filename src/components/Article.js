@@ -1,28 +1,27 @@
 import React from "react"
 import "../css/Article.css"
 import NotFound from "./NotFound"
+import { connect } from "react-redux"
 
-export default props => {
+const Article = props => {
   const siteConfig = require(`../../data/${props.site}/siteConfig.js`)
-  const imagePath = require(`../images/${siteConfig.aboutImage}`)
   require(`../css/${props.site}/theme.css`)
   try {
-    const MarkdownData = require(`../../data/${props.site}/${
-      props.match.params.slug
-    }.md`)
+    // const MarkdownData = require(`../../data/${props.site}/${
+    //   props.match.params.slug
+    // }.md`)
 
-    const posterStyle = {
-      backgroundImage: `url(${MarkdownData.posterImage})`
-    }
+    // const posterStyle = {
+    //   backgroundImage: `url(${MarkdownData.posterImage})`
+    // }
 
     return (
       <div>
         <div className="Article">
-          <div className="poster" style={posterStyle} />
-          <h1>{MarkdownData.title}</h1>
+          <h1>{props.title}</h1>
           <div
             className="content"
-            dangerouslySetInnerHTML={{ __html: MarkdownData.__content }}
+            dangerouslySetInnerHTML={{ __html: props.__content }}
           />
         </div>
       </div>
@@ -31,3 +30,8 @@ export default props => {
     return <NotFound />
   }
 }
+
+export default connect(state => ({
+  title: state.text,
+  __content: state.text
+}))(Article)
