@@ -9,10 +9,15 @@ import configureStore from "../store"
 import { Provider } from "react-redux"
 import { fetchArticle } from "../actions"
 
+const store = configureStore()
+
+const loadArticle = (site, slug) => {
+  return store.dispatch(fetchArticle(site, slug))
+}
+
 export default ({ clientStats }) => (req, res) => {
   const site = req.hostname.split(".")[0]
-  const slug = req.url.split("/").reverse()[0]
-
+  const slug = req.path.split("/").reverse()[0]
   const context = { site }
   const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
@@ -20,12 +25,11 @@ export default ({ clientStats }) => (req, res) => {
     chunkNames: names
   })
 
-  const store = configureStore()
-  store.dispatch(fetchArticle(site, slug))
-  res.send(`
+  const template = store => `
     <html>
       <head>
         ${styles}
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       </head>
       <body>
         <div id="react-root">${renderToString(
@@ -38,5 +42,14 @@ export default ({ clientStats }) => (req, res) => {
         ${js}
       </body>
     </html>
-  `)
+  `
+
+  if (req.path.match(/^\/article\//)) {
+    const promise = loadArticle(site, slug)
+    promise.then(_ => {
+      res.send(template(store))
+    })
+  } else {
+    res.send(template(store))
+  }
 }
