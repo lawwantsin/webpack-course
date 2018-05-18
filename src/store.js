@@ -13,7 +13,7 @@ export default initialState => {
   const store = createStore(fetchArticle, initialState, enhancer)
   if (module.hot) {
     module.hot.accept("./reducers", () =>
-      store.replaceReducer(require("./reducers"))
+      store.replaceReducer(require("./reducers").fetchArticle)
     )
   }
 
