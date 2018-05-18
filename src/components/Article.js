@@ -16,6 +16,10 @@ class Article extends React.Component {
     )
   }
 
+  componentWillReceiveProps(props) {
+    props.dispatch(fetchArticle(props.site, props.match.params.slug))
+  }
+
   render() {
     try {
       const billboardStyle = {
