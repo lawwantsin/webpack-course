@@ -39,6 +39,9 @@ export default ({ clientStats }) => (req, res) => {
           </Provider>
         )}</div>
         ${js}
+        <script>window.INITIAL_STATE = ${JSON.stringify(
+          store.getState()
+        )}</script>
       </body>
     </html>
   `

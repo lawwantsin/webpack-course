@@ -10,12 +10,6 @@ class Article extends React.Component {
     this.state = {}
   }
 
-  componentDidMount() {
-    this.props.dispatch(
-      fetchArticle(this.props.site, this.props.match.params.slug)
-    )
-  }
-
   componentWillReceiveProps(props) {
     props.dispatch(fetchArticle(props.site, props.match.params.slug))
   }

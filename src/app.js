@@ -6,7 +6,7 @@ import { Provider } from "react-redux"
 import configureStore from "./store"
 import { fetchArticle } from "./actions"
 
-const store = configureStore({})
+const store = configureStore(window.INITIAL_STATE)
 
 function render(Component) {
   ReactDOM.hydrate(
