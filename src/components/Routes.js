@@ -12,8 +12,10 @@ export default () => (
     <div className="nav">
       <Link to="/">Gallery</Link>
       <Link to="/about">About</Link>
-      <Link to="/article/post">Article</Link>
+      <Link to="/article/post">Article 1</Link>
       <Link to="/article/post2">Article 2</Link>
+      <Link to="/draft/post">Draft 1</Link>
+      <Link to="/draft/post2">Draft 2</Link>
     </div>
     <Switch>
       <Route exact path="/">
@@ -35,6 +37,17 @@ export default () => (
             ? staticContext.site
             : location.hostname.split(".")[0]
           return <UniversalComponent site={site} match={match} page="Article" />
+        }}
+      />
+      <Route
+        path="/draft/:slug"
+        render={({ staticContext, match }) => {
+          const site = staticContext
+            ? staticContext.site
+            : location.hostname.split(".")[0]
+          return (
+            <UniversalComponent site={site} match={match} page="DraftArticle" />
+          )
         }}
       />
       <Route component={NotFound} />

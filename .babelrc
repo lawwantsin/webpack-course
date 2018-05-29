@@ -14,7 +14,8 @@
   "plugins": [
     "syntax-dynamic-import",
     "universal-import",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "transform-async-to-promises"
   ],
   "env": {
     "development": {

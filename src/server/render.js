@@ -21,8 +21,12 @@ export default ({ clientStats }) => (req, res) => {
   })
 
   const store = configureStore()
-  store.dispatch(fetchArticle(site, slug))
-  res.send(`
+
+  const loadArticle = (site, slug) => {
+    return store.dispatch(fetchArticle(site, slug))
+  }
+
+  const template = () => `
     <html>
       <head>
         ${styles}
@@ -36,7 +40,19 @@ export default ({ clientStats }) => (req, res) => {
           </Provider>
         )}</div>
         ${js}
+        <script>
+          window.INITIAL_STATE = ${JSON.stringify(store.getState())}
+        </script>
       </body>
     </html>
-  `)
+  `
+
+  if (req.path.match(/^\/article\//)) {
+    const promise = loadArticle(site, slug)
+    promise.then(_ => {
+      res.send(template())
+    })
+  } else {
+    res.send(template())
+  }
 }
