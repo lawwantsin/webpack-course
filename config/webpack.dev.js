@@ -37,7 +37,13 @@ module.exports = {
           {
             loader: "style-loader"
           },
-          { loader: "css-loader" }
+          {
+            loader: "css-loader",
+            query: {
+              modules: true,
+              localIdentName: "[name]__[local]--[hash:base64:8]"
+            }
+          }
         ]
       },
       {

@@ -26,3 +26,7 @@ h1 {
   text-shadow: 0 0 20px black;
   text-align: center;
 }
+
+.counter {
+  text-decoration: underline;
+}
