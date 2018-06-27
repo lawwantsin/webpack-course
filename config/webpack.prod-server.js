@@ -1,6 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
 const externals = require("./node-externals")
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
   name: "server",
@@ -26,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: "css-loader"
+        use: [ExtractCssChunks.loader, "css-loader"]
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -51,6 +52,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractCssChunks(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),

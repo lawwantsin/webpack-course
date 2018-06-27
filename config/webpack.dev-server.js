@@ -1,6 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
 const externals = require("./node-externals")
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
   name: "server",
@@ -14,7 +15,7 @@ module.exports = {
     path: path.resolve(__dirname, "../build"),
     libraryTarget: "commonjs2"
   },
-  devtool: "source-map",
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -28,12 +29,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: {
-          loader: "css-loader",
-          options: {
-            minimize: true
-          }
-        }
+        use: [ExtractCssChunks.loader, "css-loader"]
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -58,6 +54,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractCssChunks(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
