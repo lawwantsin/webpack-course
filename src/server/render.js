@@ -31,7 +31,6 @@ export default ({ clientStats }) => (req, res) => {
     )
 
   const template = () => {
-    debugger
     const appOutput = app()
     const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
