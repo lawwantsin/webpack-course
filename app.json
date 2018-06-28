@@ -1,0 +1,11 @@
+{
+  "name": "Turbolinks 3 TodoMVC example",
+  "description": "An implementation of TodoMVC using Turbolinks 3",
+  "repository": "https://github.com/nateberkopec/todomvc-turbolinks",
+  "logo": "http://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Ruby_on_Rails.svg/791px-Ruby_on_Rails.svg.png",
+  "keywords": ["rails", "todomvc", "turbolinks"],
+  "scripts": {"postdeploy": "bundle exec rake db:migrate"},
+  "env": {
+    "RAILS_ENV": "production"
+  }
+}

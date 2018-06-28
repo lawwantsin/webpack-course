@@ -1,0 +1,62 @@
+<section id="todoapp">
+  <header id="header" data-turbolinks-permanent>
+    <h1>todos</h1>
+    <%= form_for Todo.new, remote: true, authenticity_token: true do |f| %>
+      <%= f.text_field :title, id: "new-todo", placeholder: "What needs to be done?", autofocus: true, autocomplete: "off" %>
+    <% end %>
+  </header>
+  <% @todos.load %>
+  <section id="main">
+    <%= form_tag update_many_todos_path, method: :put, remote: true, "data-turbolinks-temporary" => true, id: "update_many_todos", authenticity_token: true do %>
+      <% @todos.map do |todo| %>
+        <%= hidden_field_tag "ids[]", todo.id %>
+      <% end %>
+      <%= check_box :todo, :is_completed, checked: @todos.any? && @todos.all?(&:is_completed), id: "toggle-all", "data-behavior": "submit_on_check" %>
+      <label for="toggle-all">Mark all as complete</label>
+    <% end %>
+    <ul id="todos">
+      <% @todos.each do |todo| %>
+        <li id="todos:<%= todo.id %>" class="<%= 'completed' if todo.is_completed %>" data-behavior="toggle_form_on_dblclick">
+          <div class="view">
+            <%= form_for todo, remote: true, authenticity_token: true do |f| %>
+              <%= f.check_box :is_completed, class: "toggle", "data-behavior": "submit_on_check" %>
+            <% end %>
+
+            <label class="toggle-me"><%= todo.title %></label>
+
+            <%= form_for todo, remote: true, authenticity_token: true, method: "delete", html: { class: "destroy_todo" } do |f| %>
+              <%= button_tag "", class: "destroy" %>
+            <% end %>
+          </div>
+          <%= form_for todo, remote: true, html: { class: "toggle-me todo-title", style: "display: none", "data-behavior": "intercept_destroy" } do |f|%>
+            <%= f.text_field :title, class: "edit", "data-behavior": "submit_on_blur close_on_esc", autocomplete: "off" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+  <footer id="footer" data-turbolinks-temporary class="<%= "hidden" unless @todos.any? || filtering_params.any? %>">
+    <span id="todo-count">
+      <%= pluralize @todos.reject(&:is_completed).size, "item" %> left
+    </span>
+    <ul id="filters">
+      <li>
+        <a id="all" href="/" class="<%= "selected" if request.fullpath == '/' || request.fullpath == "/todos" %>">All</a>
+      </li>
+      <li>
+        <a id="active" href="/?completed=false" class="<%= "selected" if request.fullpath.match("completed=false") %>">Active</a>
+      </li>
+      <li>
+        <a id="completed" href="/?completed=true" class="<%= "selected" if request.fullpath.match("completed=true") %>">Completed</a>
+      </li>
+    </ul>
+    <% if @todos.select { |t| t.is_completed }.size > 0 %>
+      <%= form_tag destroy_many_todos_path, remote: true, authenticity_token: true, method: :delete do %>
+        <% @todos.select { |t| t.is_completed }.map do |todo| %>
+          <%= hidden_field_tag "ids[]", todo.id %>
+        <% end %>
+        <%= button_tag "Clear completed", id: "clear-completed" %>
+      <% end %>
+    <% end %>
+  </footer>
+</section>

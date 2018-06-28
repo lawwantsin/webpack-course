@@ -1,28 +1,16 @@
-development:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: lawrencewhiteside.com_development
+default: &default
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  host: 127.0.0.1
-  username: root
-  password:
 
-test: &test
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: lawrencewhiteside.com_test
-  pool: 5
-  username: root
-  password:
+development:
+  <<: *default
+  database: todomvc_development
+
+test:
+  <<: *default
+  database: todomvc_test
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: lawrencewhiteside.com_development
-  pool: 5
-  username: root
-  password:
-
+  <<: *default
+  database: todomvc_production
