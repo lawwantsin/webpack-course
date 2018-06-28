@@ -71,7 +71,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractCssChunks({ hot: true }),
+    new ExtractCssChunks(),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
