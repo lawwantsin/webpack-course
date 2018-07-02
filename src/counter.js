@@ -15,9 +15,7 @@ export default class extends React.Component {
   render() {
     return (
       <div onClick={this.climb.bind(this)}>
-        <h1 style={{ color: "black" }}>
-          {this.state.count}
-        </h1>
+        <h1 style={{ color: "black" }}>{this.state.count}</h1>
       </div>
     )
   }
