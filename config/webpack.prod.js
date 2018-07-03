@@ -1,9 +1,9 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const isProd = process.env.NODE_ENV === "production"
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   entry: {
@@ -35,15 +35,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: {
+        use: [
+          {
+            loader: MiniCSSExtractPlugin.loader
+          },
+          {
             loader: "css-loader",
             options: {
               minimize: true
             }
           }
-        })
+        ]
       },
       {
         test: /\.jpg$/,
@@ -59,7 +61,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("[name].css"),
+    new MiniCSSExtractPlugin(),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
