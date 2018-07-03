@@ -21,12 +21,17 @@ module.exports = env => {
       publicPath: "/"
     },
     optimization: {
+      runtimeChunk: {
+        name: "bootstrap"
+      },
       splitChunks: {
+        chunks: "all", // <-- The key to this
+        automaticNameDelimiter: "-",
         cacheGroups: {
           vendor: {
             name: "vendor",
-            chunks: "initial",
-            minChunks: 2
+            chunks: "all",
+            minChunks: Infinity
           }
         }
       }
