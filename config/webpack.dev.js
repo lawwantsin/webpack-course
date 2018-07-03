@@ -76,9 +76,6 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify("development")
       }
-    }),
-    new BundleAnalyzerPlugin({
-      generateStatsFile: false
     })
     // new HTMLWebpackPlugin({
     //   template: "./src/index.ejs",

@@ -10,7 +10,6 @@ if (!isProd) {
   const webpack = require("webpack")
   const config = require("../../config/webpack.dev.js")
   const compiler = webpack(config)
-  require("webpack-mild-compile")(compiler)
 
   const webpackDevMiddleware = require("webpack-dev-middleware")(
     compiler,
