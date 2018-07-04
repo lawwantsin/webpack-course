@@ -1,6 +1,5 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 var externals = require("./node-externals")
 
 module.exports = {
@@ -27,15 +26,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: {
-            loader: "css-loader",
-            options: {
-              minimize: true
-            }
+        use: [
+          {
+            loader: "css-loader"
           }
-        })
+        ]
       },
       {
         test: /\.jpg$/,
@@ -63,7 +58,6 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
-    new ExtractTextPlugin("[name].css"),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")

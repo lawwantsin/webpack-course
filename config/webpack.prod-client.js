@@ -20,13 +20,6 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/"
   },
-  devServer: {
-    contentBase: "dist",
-    overlay: true,
-    stats: {
-      colors: true
-    }
-  },
   module: {
     rules: [
       {
@@ -40,11 +33,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractCssChunks.extract({
-          use: {
+        use: [
+          { loader: ExtractCssChunks.loader },
+          {
             loader: "css-loader"
           }
-        })
+        ]
       },
       {
         test: /\.jpg$/,

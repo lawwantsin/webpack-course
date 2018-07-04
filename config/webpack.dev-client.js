@@ -41,11 +41,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractCssChunks.extract({
-          use: {
+        use: [
+          { loader: ExtractCssChunks.loader },
+          {
             loader: "css-loader"
           }
-        })
+        ]
       },
       {
         test: /\.jpg$/,
@@ -69,7 +70,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractCssChunks(),
+    new ExtractCssChunks({ hot: true }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development"),
