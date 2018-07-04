@@ -11,7 +11,13 @@ export default ({ clientStats }) => (req, res) => {
   const context = { site }
   const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
-  const { js, styles } = flushChunks(clientStats, {
+  const app = (
+    <StaticRouter location={req.url} context={context}>
+      <Routes />
+    </StaticRouter>
+  )
+
+  const { js, styles, cssHash } = flushChunks(clientStats, {
     chunkNames: names
   })
 
@@ -21,11 +27,7 @@ export default ({ clientStats }) => (req, res) => {
         ${styles}
       </head>
       <body>
-        <div id="react-root">${renderToString(
-          <StaticRouter location={req.url} context={context}>
-            <Routes />
-          </StaticRouter>
-        )}</div>
+        <div id="react-root">${renderToString(app)}</div>
         ${js}
       </body>
     </html>
