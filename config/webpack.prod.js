@@ -22,9 +22,11 @@ module.exports = env => {
     },
     optimization: {
       splitChunks: {
+        automaticNameDelimiter: "_",
         cacheGroups: {
           vendor: {
             name: "vendor",
+            test: /[\\/]node_modules[\\/]/,
             chunks: "initial",
             minChunks: 2
           }
@@ -79,6 +81,13 @@ module.exports = env => {
         "process.env": {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
+      }),
+      new HTMLWebpackPlugin({
+        template: "./src/index.ejs",
+        filename: "index.html",
+        inject: true,
+        title: "Link's Journal",
+        chunks: ["vendor", "main"]
       }),
       new UglifyJSPlugin(),
       new CompressionPlugin({
