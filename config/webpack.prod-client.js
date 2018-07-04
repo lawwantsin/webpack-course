@@ -15,11 +15,13 @@ module.exports = {
   mode: "production",
   output: {
     filename: "[name]-bundle.js",
+    chunkFilename: "[name].js",
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/"
   },
   optimization: {
     splitChunks: {
+      automaticNameDelimiter: "-",
       cacheGroups: {
         vendor: {
           name: "vendor",
