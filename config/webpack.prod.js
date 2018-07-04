@@ -1,9 +1,8 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
-const MinifyPlugin = require("babel-minify-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 const BrotliPlugin = require("brotli-webpack-plugin")
@@ -19,13 +18,6 @@ module.exports = env => {
       path: path.resolve(__dirname, "../dist"),
       publicPath: "/"
     },
-    devServer: {
-      contentBase: "dist",
-      overlay: true,
-      stats: {
-        colors: true
-      }
-    },
     module: {
       rules: [
         {
@@ -39,15 +31,15 @@ module.exports = env => {
         },
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: {
+          use: [
+            { loader: MiniCSSExtractPlugin.loader },
+            {
               loader: "css-loader",
               options: {
                 minimize: true
               }
             }
-          })
+          ]
         },
         {
           test: /\.jpg$/,
@@ -63,7 +55,7 @@ module.exports = env => {
       ]
     },
     plugins: [
-      new ExtractTextPlugin("[name].css"),
+      new MiniCSSExtractPlugin(),
       new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,
         cssProcessor: require("cssnano"),
@@ -80,7 +72,6 @@ module.exports = env => {
         inject: true,
         title: "Link's Journal"
       }),
-      // new MinifyPlugin()
       new UglifyJSPlugin(),
       new CompressionPlugin({
         algorithm: "gzip"
