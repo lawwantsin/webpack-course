@@ -20,6 +20,7 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
+      automaticNameDelimiter: "-",
       cacheGroups: {
         vendor: {
           name: "vendor",
