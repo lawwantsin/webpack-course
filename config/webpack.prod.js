@@ -22,9 +22,11 @@ module.exports = env => {
     },
     optimization: {
       splitChunks: {
+        automaticNameDelimiter: "_",
         cacheGroups: {
           vendor: {
             name: "vendor",
+            test: /[\\/]node_modules[\\/]/,
             chunks: "initial",
             minChunks: 2
           }
