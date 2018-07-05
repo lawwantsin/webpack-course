@@ -20,6 +20,20 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/"
   },
+  optimization: {
+    runtimeChunk: {
+      name: "bootstrap"
+    },
+    splitChunks: {
+      chunks: "initial",
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor"
+        }
+      }
+    }
+  },
   module: {
     rules: [
       {
@@ -41,7 +55,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpg|png|gif)$/,
+        test: /\.(jpg|gif|png)$/,
         use: [
           {
             loader: "url-loader",
