@@ -1,7 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
 const externals = require("./node-externals")
-const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   name: "server",
@@ -52,7 +51,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCSSExtractPlugin({}),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
