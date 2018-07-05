@@ -7,8 +7,11 @@ import { flushChunkNames } from "react-universal-component/server"
 import flushChunks from "webpack-flush-chunks"
 
 export default ({ clientStats }) => (req, res) => {
-  const app = (
-    <StaticRouter location={req.url} context={{}}>
+  const site = req.hostname.split(".")[0]
+  const context = { site }
+
+  const app = renderToString(
+    <StaticRouter location={req.url} context={context}>
       <Routes />
     </StaticRouter>
   )
@@ -23,9 +26,9 @@ export default ({ clientStats }) => (req, res) => {
         ${styles}
       </head>
       <body>
-        <div id="react-root">${renderToString(app)}</div>
-        ${js}
+        <div id="react-root">${app}</div>
         ${cssHash}
+        ${js}
       </body>
     </html>
   `)
