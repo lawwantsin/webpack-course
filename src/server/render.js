@@ -9,13 +9,13 @@ import flushChunks from "webpack-flush-chunks"
 export default ({ clientStats }) => (req, res) => {
   const site = req.hostname.split(".")[0]
   const context = { site }
-  const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
-  const app = (
+  const app = renderToString(
     <StaticRouter location={req.url} context={context}>
       <Routes />
     </StaticRouter>
   )
+  const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
   const { js, styles, cssHash } = flushChunks(clientStats, {
     chunkNames: names
@@ -27,7 +27,8 @@ export default ({ clientStats }) => (req, res) => {
         ${styles}
       </head>
       <body>
-        <div id="react-root">${renderToString(app)}</div>
+        <div id="react-root">${app}</div>
+        ${cssHash}
         ${js}
       </body>
     </html>
