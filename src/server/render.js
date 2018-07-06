@@ -37,6 +37,7 @@ export default ({ clientStats }) => (req, res) => {
     const { js, styles, cssHash } = flushChunks(clientStats, {
       chunkNames: names
     })
+
     return `
       <html>
         <head>
