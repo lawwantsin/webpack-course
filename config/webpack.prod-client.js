@@ -5,15 +5,15 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 const BrotliPlugin = require("brotli-webpack-plugin")
-const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
   name: "client",
-  mode: "production",
   entry: {
     vendor: ["react", "react-dom"],
     main: ["./src/main.js"]
   },
+  mode: "production",
   output: {
     filename: "[name]-bundle.js",
     chunkFilename: "[name].js",
@@ -21,12 +21,15 @@ module.exports = {
     publicPath: "/"
   },
   optimization: {
+    runtimeChunk: {
+      name: "bootstrap"
+    },
     splitChunks: {
+      chunks: "initial",
       cacheGroups: {
-        vendor: {
-          name: "vendor",
-          chunks: "initial",
-          minChunks: 2
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor"
         }
       }
     }
@@ -44,10 +47,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCSSExtractPlugin.loader, "css-loader"]
+        use: [
+          { loader: ExtractCssChunks.loader },
+          {
+            loader: "css-loader"
+          }
+        ]
       },
       {
-        test: /\.(jpg|png|gif)$/,
+        test: /\.(jpg|gif|png)$/,
         use: [
           {
             loader: "url-loader",
@@ -68,7 +76,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCSSExtractPlugin(),
+    new ExtractCssChunks(),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
