@@ -14,28 +14,33 @@ export default ({ clientStats }) => (req, res) => {
   const slug = req.url.split("/").reverse()[0]
 
   const context = { site }
-  const names = flushChunkNames().concat([`css/${site}-theme-css`])
-
-  const { js, styles } = flushChunks(clientStats, {
-    chunkNames: names
-  })
 
   const store = configureStore()
   store.dispatch(fetchArticle(site, slug))
+
+  const app = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <Routes />
+      </StaticRouter>
+    </Provider>
+  )
+
+  const names = flushChunkNames().concat([`css/${site}-theme-css`])
+
+  const { js, styles, cssHash } = flushChunks(clientStats, {
+    chunkNames: names
+  })
+
   res.send(`
     <html>
       <head>
         ${styles}
       </head>
       <body>
-        <div id="react-root">${renderToString(
-          <Provider store={store}>
-            <StaticRouter location={req.url} context={context}>
-              <Routes />
-            </StaticRouter>
-          </Provider>
-        )}</div>
+        <div id="react-root">${app}</div>
         ${js}
+        ${cssHash}
       </body>
     </html>
   `)
