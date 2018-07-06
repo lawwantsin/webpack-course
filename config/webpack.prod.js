@@ -22,7 +22,7 @@ module.exports = env => {
     },
     optimization: {
       splitChunks: {
-        automaticNameDelimiter: "_",
+        automaticNameDelimiter: "-",
         cacheGroups: {
           vendor: {
             name: "vendor",
