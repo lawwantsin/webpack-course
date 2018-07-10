@@ -10,6 +10,7 @@ module.exports = {
   mode: "development",
   output: {
     filename: "dev-server-bundle.js",
+    chunkFilename: "[name].js",
     path: path.resolve(__dirname, "../build"),
     libraryTarget: "commonjs2"
   },
@@ -27,11 +28,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: {
-          loader: "css-loader"
+          loader: "css-loader",
+          options: {
+            minimize: true
+          }
         }
       },
       {
-        test: /\.(jpg|png|gif)$/,
+        test: /\.jpg$/,
         use: [
           {
             loader: "file-loader",
@@ -53,6 +57,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development")
