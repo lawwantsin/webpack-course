@@ -3,18 +3,15 @@ import { renderToString } from "react-dom/server"
 import { StaticRouter } from "react-router"
 import Routes from "../components/Routes"
 
-import { clearChunks, flushChunkNames } from "react-universal-component/server"
+import { flushChunkNames } from "react-universal-component/server"
 import flushChunks from "webpack-flush-chunks"
 
 export default ({ clientStats }) => (req, res) => {
   const context = {}
 
-  clearChunks()
   const app = renderToString(
     <StaticRouter location={req.url} context={context}>
-      <div>
-        <Routes />
-      </div>
+      <Routes />
     </StaticRouter>
   )
 
