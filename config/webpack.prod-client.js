@@ -1,6 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
-const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
@@ -44,7 +44,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCSSExtractPlugin.loader, "css-loader"]
+        use: [ExtractCssChunks.loader, "css-loader"]
       },
       {
         test: /\.jpg$/,
@@ -68,7 +68,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCSSExtractPlugin(),
+    new ExtractCssChunks(),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
