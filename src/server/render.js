@@ -26,8 +26,8 @@ export default ({ clientStats }) => (req, res) => {
       </head>
       <body>
         <div id="react-root">${app}</div>
-        ${cssHash}
         ${js}
+        ${cssHash}
       </body>
     </html>
   `)
