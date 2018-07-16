@@ -70,18 +70,6 @@
   text-align: left;
 }
 
-body {
-  background-color: #2c3227;
-}
-
-body {
-  background-color: #020f17;
-}
-
-.Article .billboard {
-  background-position: 0 -100px;
-}
-
 .Article {
   margin: 100px auto;
 }
@@ -113,4 +101,16 @@ body {
   text-shadow: 0 0 20px black;
 }
 
+
+body {
+  background-color: #2c3227;
+}
+
+body {
+  background-color: #020f17;
+}
+
+.Article .billboard {
+  background-position: 0 -100px;
+}
 
