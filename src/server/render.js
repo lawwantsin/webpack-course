@@ -10,7 +10,7 @@ export default ({ clientStats }) => (req, res) => {
   const context = {}
 
   const app = renderToString(
-    <StaticRouter location={req.url} context={context}>
+    <StaticRouter location={req.originalUrl} context={context}>
       <Routes />
     </StaticRouter>
   )
